@@ -73,6 +73,7 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
 
   const handleStateSelect = (state: React.SetStateAction<{ code: string; name: string }>) => {
     setSelectedState(state);
+    setOpenState(false);
   };
   return (
     <Modal
@@ -185,64 +186,74 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                   <span className="text-sm font-medium text-text-dark">Country</span>
                   <span className="text-sm text-primary-base">*</span>
                 </Box>
-                <List
-                  component="nav"
-                  aria-labelledby="nested-list-subheader"
-                  sx={{
-                    width: '100%',
-                    padding: '8px',
-                    height: '39px',
-                    borderRadius: '8px',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    display: 'flex',
-                    border: '1px solid #0000003b',
-                    '&:hover': {
-                      backgroundColor: 'transparent',
-                    },
-                  }}
-                >
-                  <ListItemButton
+                <Box position={'relative'}>
+                  <List
+                    component="nav"
+                    aria-labelledby="nested-list-subheader"
                     sx={{
-                      padding: '0px',
+                      width: '100%',
+                      padding: '8px',
+                      height: '39px',
+                      borderRadius: '8px',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      display: 'flex',
+                      border: '1px solid #0000003b',
                       '&:hover': {
                         backgroundColor: 'transparent',
                       },
                     }}
-                    onClick={handleClick}
                   >
-                    <ListItemIcon>
-                      <img src={us} alt={selectedCountry.name} className="w-5 h-auto" />
-                    </ListItemIcon>
-                    <ListItemText primary={selectedCountry.name} />
-                    {opens ? (
-                      <ExpandLess sx={{ color: '#525866', width: '20px' }} />
-                    ) : (
-                      <ExpandMore sx={{ color: '#525866', width: '20px' }} />
-                    )}
-                  </ListItemButton>
-                </List>
-                <Collapse in={opens} timeout="auto" unmountOnExit>
-                  <List
-                    component="div"
-                    disablePadding
-                    // sx={{ position: 'absolute', width: '100%', top: '50px', zIndex: 10 }}
-                  >
-                    {countries.map((country) => (
-                      <ListItemButton
-                        key={country.code}
-                        sx={{
-                          '&:hover': {
-                            backgroundColor: '#f0f0f0',
-                          },
-                        }}
-                        onClick={() => handleCountrySelect(country)}
-                      >
-                        <ListItemText primary={country.name} />
-                      </ListItemButton>
-                    ))}
+                    <ListItemButton
+                      sx={{
+                        padding: '0px',
+                        '&:hover': {
+                          backgroundColor: 'transparent',
+                        },
+                      }}
+                      onClick={handleClick}
+                    >
+                      <ListItemIcon>
+                        <img src={us} alt={selectedCountry.name} className="w-5 h-auto" />
+                      </ListItemIcon>
+                      <ListItemText primary={selectedCountry.name} />
+                      {opens ? (
+                        <ExpandLess sx={{ color: '#525866', width: '20px' }} />
+                      ) : (
+                        <ExpandMore sx={{ color: '#525866', width: '20px' }} />
+                      )}
+                    </ListItemButton>
                   </List>
-                </Collapse>
+                  <Collapse in={opens} timeout="auto" unmountOnExit>
+                    <List
+                      component="div"
+                      disablePadding
+                      sx={{
+                        position: 'absolute',
+                        width: '100%',
+                        top: '45px',
+                        zIndex: 10,
+                        background: 'white',
+                        border: '1px solid #0000003b',
+                        borderRadius: '8px',
+                      }}
+                    >
+                      {countries.map((country) => (
+                        <ListItemButton
+                          key={country.code}
+                          sx={{
+                            '&:hover': {
+                              backgroundColor: '#f0f0f0',
+                            },
+                          }}
+                          onClick={() => handleCountrySelect(country)}
+                        >
+                          <ListItemText primary={country.name} />
+                        </ListItemButton>
+                      ))}
+                    </List>
+                  </Collapse>
+                </Box>
               </Box>
             </Grid>
             <Grid item xs={12} lg={6}>
@@ -275,61 +286,71 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                   <span className="text-sm font-medium text-text-dark">State</span>
                   <span className="text-sm text-primary-base">*</span>
                 </Box>
-                <List
-                  component="nav"
-                  aria-labelledby="nested-list-subheader"
-                  sx={{
-                    width: '100%',
-                    padding: '8px',
-                    height: '39px',
-                    borderRadius: '8px',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    display: 'flex',
-                    border: '1px solid #0000003b',
-                    '&:hover': {
-                      backgroundColor: 'transparent',
-                    },
-                  }}
-                >
-                  <ListItemButton
+                <Box position={'relative'}>
+                  <List
+                    component="nav"
+                    aria-labelledby="nested-list-subheader"
                     sx={{
-                      padding: '0px',
+                      width: '100%',
+                      padding: '8px',
+                      height: '39px',
+                      borderRadius: '8px',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      display: 'flex',
+                      border: '1px solid #0000003b',
                       '&:hover': {
                         backgroundColor: 'transparent',
                       },
                     }}
-                    onClick={handleStateClick}
                   >
-                    <ListItemText primary={selectedState.name} />
-                    {opensState ? (
-                      <ExpandLess sx={{ color: '#525866', width: '20px' }} />
-                    ) : (
-                      <ExpandMore sx={{ color: '#525866', width: '20px' }} />
-                    )}
-                  </ListItemButton>
-                </List>
-                <Collapse in={opensState} timeout="auto" unmountOnExit>
-                  <List
-                    component="div"
-                    disablePadding
-                    // sx={{ position: 'absolute', width: '100%', top: '50px', zIndex: 10 }}
-                  >
-                    {states.map((states) => (
-                      <ListItemButton
-                        key={states.code}
-                        sx={{
-                          '&:hover': {
-                            backgroundColor: '#f0f0f0',
-                          },
-                        }}
-                        onClick={() => handleStateSelect(states)}
-                      >
-                        <ListItemText primary={states.name} />
-                      </ListItemButton>
-                    ))}
+                    <ListItemButton
+                      sx={{
+                        padding: '0px',
+                        '&:hover': {
+                          backgroundColor: 'transparent',
+                        },
+                      }}
+                      onClick={handleStateClick}
+                    >
+                      <ListItemText primary={selectedState.name} />
+                      {opensState ? (
+                        <ExpandLess sx={{ color: '#525866', width: '20px' }} />
+                      ) : (
+                        <ExpandMore sx={{ color: '#525866', width: '20px' }} />
+                      )}
+                    </ListItemButton>
                   </List>
-                </Collapse>
+                  <Collapse in={opensState} timeout="auto" unmountOnExit>
+                    <List
+                      component="div"
+                      disablePadding
+                      sx={{
+                        position: 'absolute',
+                        width: '100%',
+                        top: '45px',
+                        zIndex: 10,
+                        background: 'white',
+                        border: '1px solid #0000003b',
+                        borderRadius: '8px',
+                      }}
+                    >
+                      {states.map((states) => (
+                        <ListItemButton
+                          key={states.code}
+                          sx={{
+                            '&:hover': {
+                              backgroundColor: '#f0f0f0',
+                            },
+                          }}
+                          onClick={() => handleStateSelect(states)}
+                        >
+                          <ListItemText primary={states.name} />
+                        </ListItemButton>
+                      ))}
+                    </List>
+                  </Collapse>
+                </Box>
               </Box>
             </Grid>
             <Grid item xs={12} lg={6}>

@@ -9,8 +9,18 @@ import Login from './pages/Login';
 import ForgotPassword from './pages/ForgotPassword';
 import { ClientDashboard } from './Client-Portal/pages/ClientDashboard';
 import ClientLayout from './Client-Portal/layout/ClientLayout';
+import { Invoices } from './Client-Portal/pages/Invoices';
+import { ViewInvoice } from './Client-Portal/components/finance/invoice/ViewInvoice';
+import { Estimates } from './Client-Portal/pages/Estimates';
+import { ViewEstimate } from './Client-Portal/components/finance/estimate/ViewEstimate';
 
-const clientRoutes = ['/client-dashboard']; // Add more client routes as needed
+const clientRoutes = [
+  '/client-dashboard',
+  '/finance/invoices',
+  '/finance/invoices/invoice-details',
+  '/finance/estimates',
+  '/finance/estimates/estimate-details',
+]; // Add more client routes as needed
 
 const App: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
@@ -33,6 +43,10 @@ const App: React.FC = () => {
           <ClientLayout sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
             <Routes>
               <Route path="/client-dashboard" element={<ClientDashboard />} />
+              <Route path="/finance/invoices" element={<Invoices />} />
+              <Route path="/finance/estimates" element={<Estimates />} />
+              <Route path="/finance/invoices/invoice-details" element={<ViewInvoice />} />
+              <Route path="/finance/estimates/estimate-details" element={<ViewEstimate />} />
               {/* Add more client routes here */}
             </Routes>
           </ClientLayout>

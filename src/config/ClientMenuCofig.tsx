@@ -30,7 +30,7 @@ export interface ClientMenuConfig {
 
 const clientMenuConfig: ClientMenuConfig = {
   '/client-dashboard': { title: 'Dashboard', icon: IconDashboard },
-  '/customers': {
+  '/finance': {
     title: 'Finance',
     icon: IconFinance,
     subMenu: [

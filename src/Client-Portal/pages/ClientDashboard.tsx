@@ -58,7 +58,7 @@ export const ClientDashboard = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <div className="px-8 pb-6 pt-20 bg-[#F5F7FA]">
+    <div className="px-8 pb-6 pt-20 bg-gray-week">
       <EditModal open={open} handleClose={handleClose} />
       <Grid container spacing={2}>
         {/* Left Card */}

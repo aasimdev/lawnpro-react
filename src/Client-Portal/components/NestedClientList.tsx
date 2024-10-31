@@ -110,6 +110,7 @@ const NestedClientList: React.FC<NestedListItemProps> = ({ baseUrl, menu, hovere
                   },
                   background: subMenu.url === path[1] ? '#75A428 !important' : '',
                   height: '40px',
+                  color: subMenu.url === path[1] ? '#ffff' : '',
                 }}
                 key={subMenu.url}
               >
@@ -122,7 +123,7 @@ const NestedClientList: React.FC<NestedListItemProps> = ({ baseUrl, menu, hovere
                   {/* Change icon color based on whether the specific submenu is hovered */}
                   <CustomIcon
                     iconPath={subMenu['icon']}
-                    color={subMenuHover === subKey ? 'white' : '#525866'}
+                    color={subMenuHover === subKey || subMenu.url === path[1] ? 'white' : '#525866'}
                     size={20}
                   />
                 </ListItemIcon>
