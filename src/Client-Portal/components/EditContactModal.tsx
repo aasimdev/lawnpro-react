@@ -1,10 +1,22 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { IconClose, IconPencilEdit, IconSingleUser, IconSingleUserUnfilled } from '../../utils/SvgUtil';
-import { Button, Divider, Grid, InputAdornment, TextField } from '@mui/material';
+import { IconClose, IconPencilEdit, IconSingleUserUnfilled } from '../../utils/SvgUtil';
+import {
+  Button,
+  Collapse,
+  Divider,
+  Grid,
+  InputAdornment,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  TextField,
+} from '@mui/material';
 import user from '../../assets/images/user-img.svg';
+import us from '../../assets/country/us.svg';
+import { ExpandLess, ExpandMore, StarBorder } from '@mui/icons-material';
 
 interface EditModalProps {
   open: boolean;
@@ -25,7 +37,43 @@ const style = {
   overflow: 'scroll',
 };
 
+const countries = [
+  { code: 'US', name: 'United States', flag: '🇺🇸' },
+  { code: 'CA', name: 'Canada', flag: '🇨🇦' },
+  { code: 'GB', name: 'United Kingdom', flag: '🇬🇧' },
+  { code: 'AU', name: 'Australia', flag: '🇦🇺' },
+];
+
+const states = [
+  { code: 'CA', name: 'California' },
+  { code: 'TX', name: 'Texas' },
+  { code: 'NY', name: 'New York' },
+  { code: 'FL', name: 'Florida' },
+  // Add more states as needed
+];
+
 const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
+  const [opens, setOpen] = useState(false);
+  const [opensState, setOpenState] = useState(false);
+
+  const handleClick = () => {
+    setOpen(!opens);
+  };
+  const handleStateClick = () => {
+    setOpenState(!opensState);
+  };
+
+  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+  const [selectedState, setSelectedState] = useState(states[0]);
+
+  const handleCountrySelect = (country: { code: string; name: string; flag: string }) => {
+    setSelectedCountry(country);
+    setOpen(false);
+  };
+
+  const handleStateSelect = (state: React.SetStateAction<{ code: string; name: string }>) => {
+    setSelectedState(state);
+  };
   return (
     <Modal
       open={open}
@@ -127,29 +175,74 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
             </Grid>
           </Grid>
           <Divider orientation="horizontal" />
+
+          {/* address  */}
+
           <Grid container spacing={2} py={2}>
             <Grid item xs={12} lg={6}>
-              <Box display="flex" flexDirection="column" gap={1}>
+              <Box display="flex" flexDirection="column" gap={1} position="relative">
                 <Box display="flex">
                   <span className="text-sm font-medium text-text-dark">Country</span>
                   <span className="text-sm text-primary-base">*</span>
                 </Box>
-                <TextField
-                  id="input-with-icon-textfield-country"
-                  placeholder="heather_carter@gmail.com"
-                  variant="outlined"
+                <List
+                  component="nav"
+                  aria-labelledby="nested-list-subheader"
                   sx={{
-                    '& .MuiInputBase-input::placeholder': {
-                      color: 'gray',
-                      opacity: 1,
+                    width: '100%',
+                    padding: '8px',
+                    height: '39px',
+                    borderRadius: '8px',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    display: 'flex',
+                    border: '1px solid #0000003b',
+                    '&:hover': {
+                      backgroundColor: 'transparent',
                     },
                   }}
-                  inputProps={{
-                    style: {
-                      padding: '8px',
-                    },
-                  }}
-                />
+                >
+                  <ListItemButton
+                    sx={{
+                      padding: '0px',
+                      '&:hover': {
+                        backgroundColor: 'transparent',
+                      },
+                    }}
+                    onClick={handleClick}
+                  >
+                    <ListItemIcon>
+                      <img src={us} alt={selectedCountry.name} className="w-5 h-auto" />
+                    </ListItemIcon>
+                    <ListItemText primary={selectedCountry.name} />
+                    {opens ? (
+                      <ExpandLess sx={{ color: '#525866', width: '20px' }} />
+                    ) : (
+                      <ExpandMore sx={{ color: '#525866', width: '20px' }} />
+                    )}
+                  </ListItemButton>
+                </List>
+                <Collapse in={opens} timeout="auto" unmountOnExit>
+                  <List
+                    component="div"
+                    disablePadding
+                    // sx={{ position: 'absolute', width: '100%', top: '50px', zIndex: 10 }}
+                  >
+                    {countries.map((country) => (
+                      <ListItemButton
+                        key={country.code}
+                        sx={{
+                          '&:hover': {
+                            backgroundColor: '#f0f0f0',
+                          },
+                        }}
+                        onClick={() => handleCountrySelect(country)}
+                      >
+                        <ListItemText primary={country.name} />
+                      </ListItemButton>
+                    ))}
+                  </List>
+                </Collapse>
               </Box>
             </Grid>
             <Grid item xs={12} lg={6}>
@@ -177,27 +270,66 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
               </Box>
             </Grid>
             <Grid item xs={12} lg={6}>
-              <Box display="flex" flexDirection="column" gap={1}>
+              <Box display="flex" flexDirection="column" gap={1} position="relative">
                 <Box display="flex">
                   <span className="text-sm font-medium text-text-dark">State</span>
                   <span className="text-sm text-primary-base">*</span>
                 </Box>
-                <TextField
-                  id="input-with-icon-textfield-state"
-                  placeholder="New Jersey"
-                  variant="outlined"
+                <List
+                  component="nav"
+                  aria-labelledby="nested-list-subheader"
                   sx={{
-                    '& .MuiInputBase-input::placeholder': {
-                      color: 'gray',
-                      opacity: 1,
+                    width: '100%',
+                    padding: '8px',
+                    height: '39px',
+                    borderRadius: '8px',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    display: 'flex',
+                    border: '1px solid #0000003b',
+                    '&:hover': {
+                      backgroundColor: 'transparent',
                     },
                   }}
-                  inputProps={{
-                    style: {
-                      padding: '8px',
-                    },
-                  }}
-                />
+                >
+                  <ListItemButton
+                    sx={{
+                      padding: '0px',
+                      '&:hover': {
+                        backgroundColor: 'transparent',
+                      },
+                    }}
+                    onClick={handleStateClick}
+                  >
+                    <ListItemText primary={selectedState.name} />
+                    {opensState ? (
+                      <ExpandLess sx={{ color: '#525866', width: '20px' }} />
+                    ) : (
+                      <ExpandMore sx={{ color: '#525866', width: '20px' }} />
+                    )}
+                  </ListItemButton>
+                </List>
+                <Collapse in={opensState} timeout="auto" unmountOnExit>
+                  <List
+                    component="div"
+                    disablePadding
+                    // sx={{ position: 'absolute', width: '100%', top: '50px', zIndex: 10 }}
+                  >
+                    {states.map((states) => (
+                      <ListItemButton
+                        key={states.code}
+                        sx={{
+                          '&:hover': {
+                            backgroundColor: '#f0f0f0',
+                          },
+                        }}
+                        onClick={() => handleStateSelect(states)}
+                      >
+                        <ListItemText primary={states.name} />
+                      </ListItemButton>
+                    ))}
+                  </List>
+                </Collapse>
               </Box>
             </Grid>
             <Grid item xs={12} lg={6}>
@@ -272,6 +404,9 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
             </Grid>
           </Grid>
           <Divider orientation="horizontal" />
+
+          {/* info  */}
+
           <Grid container spacing={2} py={2}>
             <Grid item xs={12} lg={6}>
               <Box display="flex" flexDirection="column" gap={1}>

@@ -15,6 +15,7 @@ module.exports = {
         'primary-alpha': '#A2DC3F1A',
         'green-200': '#D7EEA8',
         'gray-week': '#F5F7FA',
+        'gray-300': '#0000003b',
         'gray-600': '#525866',
         'gray-700': '#F2F5F8',
         'gray-800': '#717784',

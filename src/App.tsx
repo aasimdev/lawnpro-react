@@ -7,8 +7,8 @@ import MainLayout from './layouts/MainLayout';
 import Customers from './pages/Customer/Customers';
 import Login from './pages/Login';
 import ForgotPassword from './pages/ForgotPassword';
-import { ClientDashboard } from './Client Portal/pages/ClientDashboard';
-import ClientLayout from './Client Portal/layout/ClientLayout';
+import { ClientDashboard } from './Client-Portal/pages/ClientDashboard';
+import ClientLayout from './Client-Portal/layout/ClientLayout';
 
 const clientRoutes = ['/client-dashboard']; // Add more client routes as needed
 
