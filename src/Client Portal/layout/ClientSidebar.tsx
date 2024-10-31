@@ -43,7 +43,7 @@ const ClientSidebar: React.FC<SideBarProps> = ({ open, setOpen }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={clsx(
-        'h-screen bg-[#FFFFFF] pt-20 text-[#525866] transition-all duration-300 flex-col p-3 fixed  z-[21] min-h-full overflow-y-scroll sidebar',
+        'h-screen bg-white pt-20 text-gray-600 transition-all duration-300 flex-col p-3 fixed  z-20 min-h-full overflow-y-scroll sidebar',
         {
           'w-full sm:w-72': open || hovered,
           'w-0 left-[-40px] sm:w-16 sm:flex sm:left-0': !open && !hovered,

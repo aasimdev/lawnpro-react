@@ -29,7 +29,7 @@ export interface ClientMenuConfig {
 }
 
 const clientMenuConfig: ClientMenuConfig = {
-  '/client-dasboard': { title: 'Dashboard', icon: IconDashboard },
+  '/client-dashboard': { title: 'Dashboard', icon: IconDashboard },
   '/customers': {
     title: 'Finance',
     icon: IconFinance,

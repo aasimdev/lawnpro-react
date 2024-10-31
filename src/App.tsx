@@ -3,62 +3,64 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Dashboard from './pages/Dashboard';
 import { ThemeProvider } from '@mui/material';
 import theme from './config/ThemeConfig';
-import MenuBar from './layouts/MenuBar';
-import SideBar from './layouts/SideBar';
-import clsx from 'clsx';
+import MainLayout from './layouts/MainLayout';
 import Customers from './pages/Customer/Customers';
 import Login from './pages/Login';
 import ForgotPassword from './pages/ForgotPassword';
 import { ClientDashboard } from './Client Portal/pages/ClientDashboard';
-import { Header } from './Client Portal/layout/Header';
-import ClientSidebar from './Client Portal/layout/ClientSidebar';
+import ClientLayout from './Client Portal/layout/ClientLayout';
 
-function App() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+const clientRoutes = ['/client-dashboard']; // Add more client routes as needed
+
+const App: React.FC = () => {
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
   const location = useLocation();
 
-  // Check if the current path is /login
+  // Check if the current path is for the login page
   const isLoginPage = location.pathname.startsWith('/login');
-  const isClientPage = location.pathname.startsWith('/client-dasboard');
+
+  // Check if the current path matches any of the client routes
+  const isClientPage = clientRoutes.some((route) => location.pathname.startsWith(route));
+
+  // Layout conditionals
+  const isMainLayout = !isLoginPage && !isClientPage;
 
   return (
     <ThemeProvider theme={theme}>
       <div className="h-screen mainpage">
-        {isClientPage && <Header />}
-
-        {isClientPage && <ClientSidebar open={sidebarOpen} setOpen={setSidebarOpen} />}
-        {!isLoginPage && !isClientPage && <SideBar open={sidebarOpen} setOpen={setSidebarOpen} />}
-
-        <div
-          style={{
-            maxWidth: `calc(100vw - ${isLoginPage ? '0px' : sidebarOpen ? '72px' : '16px'})`,
-          }}
-          className={clsx(
-            'transition-all duration-300 m-0 bg-[#F5F7FA] mainpage h-full',
-            isLoginPage ? 'sm:m-0' : sidebarOpen ? 'sm:ml-72' : 'sm:ml-16',
-          )}
-        >
-          {!isLoginPage && !isClientPage && <MenuBar open={sidebarOpen} setOpen={setSidebarOpen} />}
+        {/* Render appropriate layout based on the current page */}
+        {isClientPage ? (
+          <ClientLayout sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+            <Routes>
+              <Route path="/client-dashboard" element={<ClientDashboard />} />
+              {/* Add more client routes here */}
+            </Routes>
+          </ClientLayout>
+        ) : isMainLayout ? (
+          <MainLayout sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+            <Routes>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/customers" element={<Customers />} />
+              {/* Add more main app routes here */}
+            </Routes>
+          </MainLayout>
+        ) : (
           <Routes>
-            <Route path="/" element={<></>} />
             <Route path="/login" element={<Login />} />
             <Route path="/login/forget" element={<ForgotPassword />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/customers" element={<Customers />} />
-            <Route path="/client-dasboard" element={<ClientDashboard />} />
           </Routes>
-        </div>
+        )}
       </div>
     </ThemeProvider>
   );
-}
+};
 
-function AppWrapper() {
+const AppWrapper: React.FC = () => {
   return (
     <Router>
       <App />
     </Router>
   );
-}
+};
 
 export default AppWrapper;

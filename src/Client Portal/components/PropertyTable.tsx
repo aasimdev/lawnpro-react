@@ -1,5 +1,6 @@
 import React from 'react';
 import { IconCalendar, IconCalendarCheckOut, IconCoordinate, IconHome, IconOffice } from '../../utils/SvgUtil';
+import { Box } from '@mui/material';
 
 type SubItem = {
   name: string;
@@ -78,7 +79,7 @@ export const PropertyTable: React.FC = () => {
     <div className="overflow-x-auto">
       <table className="min-w-full">
         <thead>
-          <tr className="bg-[#F5F7FA] text-[14px] font-normal text-[#525866]">
+          <tr className="bg-gray-week text-sm font-normal text-gray-600">
             <th className="py-2 px-4 text-start">Property Name</th>
             <th className="py-2 px-4 text-start">Tags</th>
             <th className="py-2 px-4 text-start">Lawn Size</th>
@@ -89,51 +90,51 @@ export const PropertyTable: React.FC = () => {
         <tbody>
           {properties.map((property) => (
             <tr key={property.id} className="hover:bg-gray-100">
-              <td className="py-2 text-[14px] font-normal px-4 border-b">
-                <div className="flex gap-2 items-center">
-                  <div className="w-[32px] h-[32px] flex items-center justify-center rounded-full border border-[#E1E4EA]">
+              <td className="py-2 text-sm font-normal px-4 border-b">
+                <Box display={'flex'} gap={2} alignItems={'center'}>
+                  <div className="w-9 h-9 flex items-center justify-center rounded-full border border-[#E1E4EA]">
                     <property.icon size={20} color="#525866" />
                   </div>
                   {property.name}
-                </div>
+                </Box>
               </td>
-              <td className="py-2 px-4 text-[14px] font-normal border-b">
+              <td className="py-2 px-4 text-sm font-normal border-b">
                 <div className="flex gap-2">
                   {property.subItems.map((item) => (
                     <div
                       key={item.name}
-                      className="py-[2px] px-[8px] rounded-full"
+                      className="py-0.5 px-2 rounded-full"
                       style={{ backgroundColor: item.bgColor, color: item.color }}
                     >
                       {item.name}
                     </div>
                   ))}
-                  <div className="py-[2px] px-[8px] rounded-full text-[#717784] text-[12px] bg-[#F2F5F8]">+4</div>
+                  <div className="py-0.5 px-2 rounded-full text-gray-800 text-xs bg-gray-700">+4</div>
                 </div>
               </td>
-              <td className="py-2 px-4 text-[14px] font-normal border-b">
-                <div className="flex gap-2 items-center">
-                  <div className="w-[32px] h-[32px] bg-white rounded-full flex items-center justify-center">
+              <td className="py-2 px-4 text-sm font-normal border-b">
+                <Box display={'flex'} gap={2} alignItems={'center'}>
+                  <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center">
                     <property.lwnIcon size={20} color="#99A0AE" />
                   </div>
-                  <span className="text-[#525866]">{property.sq}</span>
-                </div>
+                  <span className="text-gray-600">{property.sq}</span>
+                </Box>
               </td>
-              <td className="py-2 px-4 text-[14px] font-normal border-b">
-                <div className="flex gap-2 items-center">
-                  <div className="w-[32px] h-[32px] bg-white rounded-full flex items-center justify-center">
+              <td className="py-2 px-4 text-sm font-normal border-b">
+                <Box display={'flex'} gap={2} alignItems={'center'}>
+                  <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center">
                     <property.calendar size={20} color="#99A0AE" />
                   </div>
-                  <span className="text-[#525866]">{property.lastDate}</span>
-                </div>
+                  <span className="text-gray-600">{property.lastDate}</span>
+                </Box>
               </td>
-              <td className="py-2 px-4 text-[14px] font-normal border-b">
-                <div className="flex gap-2 items-center">
-                  <div className="w-[32px] h-[32px] bg-white rounded-full flex items-center justify-center">
+              <td className="py-2 px-4 text-sm font-normal border-b">
+                <Box display={'flex'} gap={2} alignItems={'center'}>
+                  <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center">
                     <property.checkInCalendar size={20} color="#99A0AE" />
                   </div>
-                  <span className="text-[#525866]">{property.lastDate}</span>
-                </div>
+                  <span className="text-gray-600">{property.lastDate}</span>
+                </Box>
               </td>
             </tr>
           ))}

@@ -5,16 +5,16 @@ import { Button } from '@mui/material';
 
 export const Header = () => {
   return (
-    <div className="bg-[#222530] px-[16px] py-[10px] fixed w-full  z-[22]">
+    <div className="bg-faded-dark px-4 py-3 fixed w-full  z-30">
       <div className="flex justify-between items-center">
         <div className="flex gap-2 items-center">
           <img src={LogoImage} className="w-full h-auto" alt="" />
-          <span className="text-white font-medium text-[16px]">LawnProSoftware</span>
+          <span className="text-white font-medium text-md">LawnProSoftware</span>
         </div>
         <div className="flex gap-5">
-          <div className="md:flex  hidden items-center gap-2">
+          <div className="md:flex  hidden items-center gap-2 cursor-pointer">
             <IconUser color="#FFFFFF" size={20} />
-            <span className="text-white font-medium text-[14px]">My Profile</span>
+            <span className="text-white font-medium text-sm">My Profile</span>
           </div>
           <Button
             sx={{

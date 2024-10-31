@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { MenuItem } from '../../config/MenuConfig';
 import { List, ListItemButton, ListItemIcon, ListItemText, Collapse } from '@mui/material';
-
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import splitPath from '../../utils/PathUtil';
@@ -13,16 +12,23 @@ export interface NestedListItemProps {
   hovered: boolean;
   expanded: boolean;
 }
+
 const NestedClientList: React.FC<NestedListItemProps> = ({ baseUrl, menu, hovered, expanded }) => {
   const [hover, setHover] = useState(false);
   const location = useLocation();
   const path = splitPath(location.pathname);
   const menuSelected = path[0] === baseUrl;
   const [open, setOpen] = React.useState(menuSelected);
+
+  // Create an array to track hover state for each submenu item
+  const [subMenuHover, setSubMenuHover] = useState<number | null>(null);
+
   const handleClick = () => {
     setOpen(!open);
   };
+
   const navigate = useNavigate();
+
   return (
     <>
       <ListItemButton
@@ -32,7 +38,7 @@ const NestedClientList: React.FC<NestedListItemProps> = ({ baseUrl, menu, hovere
         sx={{
           display: 'flex',
           alignItems: 'left',
-          gap: '10px', // Spacing between the icon and text,
+          gap: '10px',
           padding: '10px',
           '&:hover': {
             backgroundColor: '#75A428',
@@ -47,7 +53,6 @@ const NestedClientList: React.FC<NestedListItemProps> = ({ baseUrl, menu, hovere
           if (menu.subMenu !== undefined) {
             handleClick();
           } else {
-            // Do something else or nothing
             console.log('Condition not met');
             navigate(baseUrl);
           }
@@ -74,7 +79,6 @@ const NestedClientList: React.FC<NestedListItemProps> = ({ baseUrl, menu, hovere
             lineHeight: '20px',
           }}
         />
-
         {menu.subMenu !== undefined ? open ? <ExpandLess /> : <ExpandMore /> : <></>}
       </ListItemButton>
       {menu.subMenu !== undefined ? (
@@ -82,9 +86,9 @@ const NestedClientList: React.FC<NestedListItemProps> = ({ baseUrl, menu, hovere
           <List
             component="div"
             sx={{
-              gap: '4px', // Spacing between ListItems
+              gap: '4px',
               display: 'flex',
-              flexDirection: 'column', // To ensure vertical stacking,
+              flexDirection: 'column',
               padding: '0 0 0 8px',
             }}
             key={baseUrl}
@@ -92,10 +96,12 @@ const NestedClientList: React.FC<NestedListItemProps> = ({ baseUrl, menu, hovere
             {menu.subMenu.map((subMenu, subKey) => (
               <ListItemButton
                 href={baseUrl + subMenu.url}
+                onMouseEnter={() => setSubMenuHover(subKey)} // Set hover state to the index
+                onMouseLeave={() => setSubMenuHover(null)} // Reset hover state
                 sx={{
                   display: 'flex',
                   alignItems: 'left',
-                  gap: '10px', // Spacing between the icon and text,
+                  gap: '10px',
                   paddingLeft: '16px',
                   borderRadius: '8px',
                   '&:hover': {
@@ -113,7 +119,12 @@ const NestedClientList: React.FC<NestedListItemProps> = ({ baseUrl, menu, hovere
                     minWidth: 'auto',
                   }}
                 >
-                  <CustomIcon iconPath={subMenu['icon']} color={'#525866'} size={20}></CustomIcon>
+                  {/* Change icon color based on whether the specific submenu is hovered */}
+                  <CustomIcon
+                    iconPath={subMenu['icon']}
+                    color={subMenuHover === subKey ? 'white' : '#525866'}
+                    size={20}
+                  />
                 </ListItemIcon>
                 <ListItemText
                   primary={subMenu['title']}
