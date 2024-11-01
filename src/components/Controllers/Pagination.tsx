@@ -1,15 +1,26 @@
 import React from 'react';
-import { IconArrowLeftDouble, IconArrowLeftSingle, IconArrowRightDouble, IconArrowRightSingle } from '../utils/SvgUtil';
+import { IconArrowDown, IconArrowLeftDouble, IconArrowLeftSingle, IconArrowRightDouble, IconArrowRightSingle } from '../../utils/SvgUtil';
 import clsx from 'clsx'
+import { Menu, MenuItem } from '@mui/material';
 
 interface PaginationProps {
     totalPages: number;
     currentPage: number;
     siblingCount?: number;
     boundaryCount?: number;
+    itemCountPerPage?: number;
+    handleChangeItemCountPerPage?: (size: number) => void;
     setPage: (page: number) => void;
 }
-const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage, siblingCount = 1, boundaryCount = 2, setPage }) => {
+const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage, siblingCount = 1, boundaryCount = 2, setPage, handleChangeItemCountPerPage, itemCountPerPage = 5 }) => {
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handlePagesClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     const renderPageNumbers = () => {
         // if (totalPages < 7) {
         //     return Array.from({ length: totalPages }, (_, page) => (
@@ -49,13 +60,13 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage, siblin
                 </div>)
         }
 
-        for (pageIndex = Math.max(pageIndex, currentPage - siblingCount); pageIndex < currentPage + siblingCount + 1; pageIndex ++) {
-            if(pageIndex > totalPages)
+        for (pageIndex = Math.max(pageIndex, currentPage - siblingCount); pageIndex < currentPage + siblingCount + 1; pageIndex++) {
+            if (pageIndex > totalPages)
                 return elements;
             (function (i: number) {
                 elements.push(
                     <div className={clsx('p-1.5 cursor-pointer text-sm text-gray-600',
-                        (i=== currentPage) ? "" : "bg-white rounded-lg border-mini border-solid border-gray-200"
+                        (i === currentPage) ? "" : "bg-white rounded-lg border-mini border-solid border-gray-200"
                     )} key={`page-${i}`} onClick={() => setPage(i)}>
                         <div className="w-5 h-5 flex items-center justify-center"><span className="">{i}</span></div>
                     </div>
@@ -71,7 +82,7 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage, siblin
                 </div>)
         }
 
-        for (pageIndex = Math.max(pageIndex, totalPages-boundaryCount + 1); pageIndex < totalPages + 1; pageIndex++) {
+        for (pageIndex = Math.max(pageIndex, totalPages - boundaryCount + 1); pageIndex < totalPages + 1; pageIndex++) {
             (function (i: number) {
                 elements.push(
                     <div className={clsx('p-1.5 cursor-pointer text-sm text-gray-600',
@@ -82,7 +93,7 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage, siblin
                 )
             })(pageIndex);
         }
-        
+
 
         // let i: number = 0;
         // for (i = Math.max(1, currentPage - 3); i < Math.max(currentPage + 2, 5); i++) {
@@ -138,7 +149,66 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage, siblin
                 </div>
             </div>
             {/* Page */}
-            <div></div>
+            <div className={clsx(
+                'cursor-pointer bg-white border-mini border-gray-200 rounded-md',
+            )}>
+                <div
+                    onClick={handlePagesClick}
+                    id="menu-button"
+                    className="p-2 flex items-center gap-2 text-sm text-gray-600"
+                    aria-controls={open ? 'demo-positioned-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                >
+                    <span>{itemCountPerPage} Rows</span>
+                    <IconArrowDown size={14} color="currentColor" />
+                </div>
+                <Menu
+                    id="demo-positioned-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    // elevation={0}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    MenuListProps={{
+                        'aria-labelledby': 'menu-button',
+                    }}
+                    sx={{
+                        marginTop: '4px',
+                        '& .MuiMenu-paper': {
+                            borderRadius: '16px',
+                            boxShadow: '0px 16px 32px -12px rgba(14, 18, 27, 0.10)',
+                            border: "1px solid #E1E4EA",
+                        }
+                    }}
+                >
+
+                    <MenuItem onClick={() => { handleClose(); handleChangeItemCountPerPage?.(5); }} sx={{
+                        fontSize: '14px',
+                        fontWeight: 500,
+                        color: '#525866'
+                    }}>5 Rows</MenuItem>
+
+                    <MenuItem onClick={() => { handleClose(); handleChangeItemCountPerPage?.(10);}} sx={{
+                        fontSize: '14px',
+                        fontWeight: 500,
+                        color: '#525866'
+                    }}>10 Rows</MenuItem>
+
+                    <MenuItem onClick={() => { handleClose(); handleChangeItemCountPerPage?.(20);}} sx={{
+                        fontSize: '14px',
+                        fontWeight: 500,
+                        color: '#525866'
+                    }}>20 Rows</MenuItem>
+                </Menu>
+            </div>
         </div>
     )
 }

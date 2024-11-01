@@ -16,7 +16,7 @@ import {
 } from '@mui/material';
 import user from '../../assets/images/user-img.svg';
 import us from '../../assets/country/us.svg';
-import { ExpandLess, ExpandMore, StarBorder } from '@mui/icons-material';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
 interface EditModalProps {
   open: boolean;

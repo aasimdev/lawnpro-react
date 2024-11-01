@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Dashboard from './pages/Dashboard';
 import { ThemeProvider } from '@mui/material';
 import theme from './config/ThemeConfig';
-import MainLayout from './layouts/MainLayout';
 import Customers from './pages/Customer/Customers';
 import Login from './pages/Login';
 import ForgotPassword from './pages/ForgotPassword';
@@ -13,6 +12,8 @@ import { Invoices } from './Client-Portal/pages/Invoices';
 import { ViewInvoice } from './Client-Portal/components/finance/invoice/ViewInvoice';
 import { Estimates } from './Client-Portal/pages/Estimates';
 import { ViewEstimate } from './Client-Portal/components/finance/estimate/ViewEstimate';
+import MainLayout from './layouts/MainLayout';
+import CustomerEditor from './pages/Customer/CustomerEditor';
 
 const clientRoutes = [
   '/client-dashboard',
@@ -55,6 +56,7 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/customers" element={<Customers />} />
+              <Route path="/customers/add" element={<CustomerEditor isNew={true}/>} />
               {/* Add more main app routes here */}
             </Routes>
           </MainLayout>

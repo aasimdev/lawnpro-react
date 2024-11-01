@@ -1,12 +1,12 @@
 import React, { SVGProps } from "react";
 import { useLocation } from 'react-router-dom';
-import MenuConfig from '../config/MenuConfig';
 import { Avatar, Badge, Divider, Link, Tooltip } from "@mui/material";
 import { LuBell, LuListChecks, LuSettings } from "react-icons/lu";
 import splitPath from "../utils/PathUtil";
 import { IconMessenger, IconClockIn, IconMenu } from "../utils/SvgUtil";
 import CustomIcon from "../components/CustomIcon";
 import clsx from 'clsx';
+import { UrlConfig } from "../config/UrlConfig";
 interface MenuBarProps {
     open?: boolean;
     setOpen: (val: boolean) => void;
@@ -19,24 +19,25 @@ const EmptyIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => {
 
 const MenuBar: React.FC<MenuBarProps> = ({ open, setOpen }) => {
     const location = useLocation();
-    const path = splitPath(location.pathname)
-    let title, icon;
-    if (path.length > 0) {
-        const subMenu = MenuConfig[path[0]]?.subMenu;
-        if (subMenu) {
-            const menuItem = subMenu.find(menu => menu.url === path[1]);
-            title = menuItem?.title || '';  // Use optional chaining and default to an empty string
-            icon = menuItem?.icon || EmptyIcon;  // Use optional chaining
-        }
-        else {
-            title = '';
-            icon = EmptyIcon;
-        }
-    }
-    else {
-        title = MenuConfig[location.pathname].title;
-        icon = MenuConfig[location.pathname].icon;
-    }
+    // const path = splitPath(location.pathname)
+    let title = UrlConfig[location.pathname].title;
+    let icon = UrlConfig[location.pathname].icon;
+    // if (path.length > 0) {
+    //     const subMenu = UrlConfig[path[0]]?.subMenu;
+    //     if (subMenu) {
+    //         const menuItem = subMenu.find(menu => menu.url === path[1]);
+    //         title = menuItem?.title || '';  // Use optional chaining and default to an empty string
+    //         icon = menuItem?.icon || EmptyIcon;  // Use optional chaining
+    //     }
+    //     else {
+    //         title = '';
+    //         icon = EmptyIcon;
+    //     }
+    // }
+    // else {
+    //     title = MenuConfig[location.pathname].title;
+    //     icon = MenuConfig[location.pathname].icon;
+    // }
 
     return (
         <div className={clsx(

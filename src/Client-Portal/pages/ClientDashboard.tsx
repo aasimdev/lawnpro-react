@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   IconCreditCard,
   IconDolor,
-  IconEmail,
   IconEmptyCalendar,
   IconLocation,
   IconMail,
@@ -14,7 +13,7 @@ import {
 } from '../../utils/SvgUtil';
 import { Box, Button, Chip, Divider, Grid, Link } from '@mui/material';
 import avatar from '../../assets/images/avatar.svg';
-import DashboardItem from '../../components/Dashboard/DashboardItem';
+// import DashboardItem from '../../components/Dashboard/DashboardItem';
 import { CheckCircle, OpenInNew } from '@mui/icons-material';
 
 import { ReactComponent as WisestackPatternSVG } from '../../assets/icons/WisestackPattern.svg';

@@ -31,7 +31,16 @@ const themeOptions: ThemeOptions = {
         MuiOutlinedInput: {
             styleOverrides: {
                 root: {
-                    borderRadius: '8px'
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderWidth: "2px",
+                        borderColor: "#75A428AA", // Set your desired hover border color here
+                    },
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    fontColor: '#525866'
+                },
+                input: {
+                    padding: '10px 12px'
                 }
             }
         },
@@ -82,6 +91,24 @@ const themeOptions: ThemeOptions = {
                         margin: 0
                     },
                     textTransform: "none"
+                },
+            },
+        },
+
+        MuiTextField: {
+            styleOverrides: {
+                root: {
+                    '& input[type=number]': {
+                        MozAppearance: 'textfield', // Firefox
+                    },
+                    '& input[type=number]::-webkit-outer-spin-button': {
+                        WebkitAppearance: 'none', // Chrome, Safari, Edge
+                        margin: 0,
+                    },
+                    '& input[type=number]::-webkit-inner-spin-button': {
+                        WebkitAppearance: 'none', // Chrome, Safari, Edge
+                        margin: 0,
+                    },
                 },
             },
         },

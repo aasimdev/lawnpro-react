@@ -1,25 +1,53 @@
 import React, { ReactNode, useState } from "react";
-import DropdownMenu, { DropdownMenuItemProps } from "../DropdownMenu";
-import { Button, Checkbox } from "@mui/material";
-import { IconFilterFill, IconPrinter, IconSortASC, IconSortDSC, IconSortable } from "../../utils/SvgUtil";
-import Pagination from "../Pagination";
+import DropdownMenu, { DropdownMenuItemProps } from "../Controllers/DropdownMenu";
+import { Button, Checkbox, InputAdornment, TextField } from "@mui/material";
+import { IconPreferenceHorizontal, IconPrinter, IconSearch, IconSortASC, IconSortDSC, IconSortable } from "../../utils/SvgUtil";
+import Pagination from "../Controllers/Pagination";
 import ColumnSelector, { Column } from "./ColumnSelector";
 import clsx from 'clsx'
-
+import FilterPopup from "./FilterPopup";
 interface DataTableProps<T extends { id: number }> {
     data: T[];
     columns: Column<T>[];
     totalPages: number;
-    pageSize?: number;
+    handlePageSizeChange?: (size: number) => void;
     actionMenu?: DropdownMenuItemProps[];
     onSelectionChange?: (selectedRows: T[]) => void; // New prop to notify parent of selection changes
+    handleFilter?: (filters: { [key: string]: (string | number)[] }) => void;
+    handleSearch?: (keyword: string) => void;
+    renderActions?: (row: T) => React.ReactNode; // New prop for customizable actions
 }
 
-const DataTable = <T extends { id: number }>({ data, columns, pageSize, actionMenu, totalPages, onSelectionChange }: DataTableProps<T>) => {
+const DataTable = <T extends { id: number }>({ data, columns, actionMenu, handlePageSizeChange, handleFilter, totalPages, onSelectionChange, handleSearch, renderActions }: DataTableProps<T>) => {
+    const [pageSize, setPageSize] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
     const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
     const [selectedColumns, setSelectedColumns] = useState(columns.map(col => String(col.accessor)));
     const [selectedRows, setSelectedRows] = useState<Set<number>>(new Set());
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+    const [searchKeyword, setSearchKeyword] = useState('');
+    const [filters, setFilters] = useState<{ [key: string]: (string | number)[] }>({});
+
+    const handleFilters = (key: string, value: (string | number)[]) => {
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            [key]: value,
+        }));
+        handleFilter?.(filters);
+    }
+
+    const handlePageSize = (pageSize: number) => {
+        setPageSize(pageSize);
+        handlePageSizeChange?.(pageSize);
+    }
+
+    const handleActionClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleActionClose = () => {
+        setAnchorEl(null);
+    };
 
     const handleColumnChange = (selected: string[]) => {
         setSelectedColumns(selected);
@@ -70,6 +98,10 @@ const DataTable = <T extends { id: number }>({ data, columns, pageSize, actionMe
         }
     };
 
+    const handleSearchKeywordChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        setSearchKeyword(event.target.value);
+        handleSearch?.(event.target.value);
+    }
 
     return (
         <div className="flex flex-col gap-4 w-full">
@@ -82,7 +114,30 @@ const DataTable = <T extends { id: number }>({ data, columns, pageSize, actionMe
                         {actionMenu &&
                             <DropdownMenu title="Actions" items={actionMenu} className="bg-white text-[#525866] rounded-lg border-solid border-[1px] border-main-gray" />
                         }
-                        <Button startIcon={<IconFilterFill />}>Filter</Button>
+                        <Button startIcon={<IconPreferenceHorizontal size={16} />} onClick={handleActionClick}> Filter</Button>
+                        <TextField
+                            id="search-field"
+                            placeholder="Search..."
+                            slotProps={{
+                                input: {
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <IconSearch size={20} />
+                                        </InputAdornment>
+                                    ),
+                                },
+                                htmlInput: {
+                                    style: {
+                                        padding: '8px',
+                                        paddingLeft: 0
+                                    },
+                                }
+                            }}
+                            variant="outlined"
+                            value={searchKeyword}
+                            onChange={handleSearchKeywordChange}
+                        />
+                        <FilterPopup open={Boolean(anchorEl)} anchorEl={anchorEl} handleClose={handleActionClose} columns={columns} handleFilter={handleFilters} filters={filters} />
                         <span className="text-gray-600 text-xs">Total: <span className="text-black font-medium">166</span></span>
                         <span className="text-gray-600 text-xs">Selected: <span className="text-black font-medium">{selectedRows.size}</span></span>
                     </div>
@@ -98,7 +153,7 @@ const DataTable = <T extends { id: number }>({ data, columns, pageSize, actionMe
                 </div>
                 {/* Table */}
                 <div className="flex flex-col gap-2 overflow-x-auto">
-                    <table className="w-max">
+                    <table className="w-max min-w-full">
                         <thead className="bg-gray-50 ">
                             <tr>
                                 <th>
@@ -128,7 +183,7 @@ const DataTable = <T extends { id: number }>({ data, columns, pageSize, actionMe
                                             </div>
                                         </th>
                                     ))}
-                                <th className="px-4 py-2 border-b">Actions</th>
+                                <th className="px-4 py-2 border-b"> </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -149,18 +204,12 @@ const DataTable = <T extends { id: number }>({ data, columns, pageSize, actionMe
                                         </td>
                                     ))}
                                     <td className="px-4 py-2 space-x-2">
-                                        <button
-                                            // onClick={() => onEdit && onEdit(row)}
-                                            className="px-2 py-1 text-white bg-blue-500 rounded"
-                                        >
-                                            Edit
-                                        </button>
-                                        <button
-                                            // onClick={() => onDelete && onDelete(row)}
-                                            className="px-2 py-1 text-white bg-red-500 rounded"
-                                        >
-                                            Delete
-                                        </button>
+                                        {renderActions ? (
+                                            renderActions(row) // Use custom actions if provided
+                                        ) : (
+                                            <>
+                                            </>
+                                        )}
                                     </td>
                                 </tr>
                             ))}
@@ -169,7 +218,7 @@ const DataTable = <T extends { id: number }>({ data, columns, pageSize, actionMe
                 </div>
             </div>
             {/* Pagination Controls */}
-            <Pagination totalPages={totalPages} currentPage={currentPage} setPage={handlePageChange} boundaryCount={2} />
+            <Pagination totalPages={totalPages} currentPage={currentPage} setPage={handlePageChange} boundaryCount={2} itemCountPerPage={pageSize} handleChangeItemCountPerPage={handlePageSize} />
         </div>
     )
 }

@@ -3,11 +3,17 @@ import React, { useEffect, useRef, useState } from 'react';
 import { IconArrowDown, IconLayoutColumn } from '../../utils/SvgUtil';
 import { Checkbox } from '@mui/material';
 
+interface FilterOption {
+    label: string;
+    value: string | number;
+}
 export interface Column<T> {
     header: string;
     accessor: keyof T;
     sortable?: boolean;
     render?: (row: T) => React.ReactNode;
+    filterOptions?: FilterOption[];
+    filterType?: 'text' | 'select';
 }
 
 interface ColumnSelectorProps<T> {

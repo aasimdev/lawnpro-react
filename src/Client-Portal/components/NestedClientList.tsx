@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MenuItem } from '../../config/MenuConfig';
+import { SidebarMenuItem } from '../../config/SidebarConfig';
 import { List, ListItemButton, ListItemIcon, ListItemText, Collapse } from '@mui/material';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ import CustomIcon from '../../components/CustomIcon';
 
 export interface NestedListItemProps {
   baseUrl: string;
-  menu: MenuItem;
+  menu: SidebarMenuItem;
   hovered: boolean;
   expanded: boolean;
 }
