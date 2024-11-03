@@ -14,6 +14,7 @@ import { Estimates } from './Client-Portal/pages/Estimates';
 import { ViewEstimate } from './Client-Portal/components/finance/estimate/ViewEstimate';
 import MainLayout from './layouts/MainLayout';
 import CustomerEditor from './pages/Customer/CustomerEditor';
+import { Payments } from './Client-Portal/pages/Payments';
 
 const clientRoutes = [
   '/client-dashboard',
@@ -21,6 +22,7 @@ const clientRoutes = [
   '/finance/invoices/invoice-details',
   '/finance/estimates',
   '/finance/estimates/estimate-details',
+  '/finance/payments',
 ]; // Add more client routes as needed
 
 const App: React.FC = () => {
@@ -46,6 +48,7 @@ const App: React.FC = () => {
               <Route path="/client-dashboard" element={<ClientDashboard />} />
               <Route path="/finance/invoices" element={<Invoices />} />
               <Route path="/finance/estimates" element={<Estimates />} />
+              <Route path="/finance/payments" element={<Payments />} />
               <Route path="/finance/invoices/invoice-details" element={<ViewInvoice />} />
               <Route path="/finance/estimates/estimate-details" element={<ViewEstimate />} />
               {/* Add more client routes here */}
@@ -56,7 +59,7 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/customers" element={<Customers />} />
-              <Route path="/customers/add" element={<CustomerEditor isNew={true}/>} />
+              <Route path="/customers/add" element={<CustomerEditor isNew={true} />} />
               {/* Add more main app routes here */}
             </Routes>
           </MainLayout>

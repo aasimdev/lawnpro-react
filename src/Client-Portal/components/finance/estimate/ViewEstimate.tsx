@@ -1,4 +1,17 @@
-import { Box, Button, Divider, Grid, Link } from '@mui/material';
+import {
+  Box,
+  Button,
+  Divider,
+  Grid,
+  Link,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@mui/material';
 import React from 'react';
 import {
   IconArrowLeftSingle,
@@ -120,9 +133,9 @@ export const ViewEstimate = () => {
               </Box>
             </Grid>
             <Grid item xs={12} lg={6}>
-              <Box display={'flex'} flexDirection={'column'} gap={2} maxWidth={'430px'} width={'100%'} ml={'auto'}>
+              <Box display={'flex'} flexDirection={'column'} gap={2} width={'100%'}>
                 <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
-                  <span className="text-sm font-medium text-text-dark">Invoice#</span>
+                  <span className="text-sm font-medium text-text-dark">Estimate#</span>
                   <span className="text-sm font-medium text-text-dark">100642</span>
                 </Box>
                 <Box
@@ -134,7 +147,7 @@ export const ViewEstimate = () => {
                   bgcolor={'#F5F7FA'}
                   px={1}
                 >
-                  <span className="text-sm font-medium text-text-dark">Invoice Date/Due Date</span>
+                  <span className="text-sm font-medium text-text-dark">Estimate Date/Due Date</span>
                   <span className="text-sm font-medium text-text-dark">Nov 21, 2022 / Nov 24, 2022</span>
                 </Box>
                 <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
@@ -145,108 +158,102 @@ export const ViewEstimate = () => {
             </Grid>
           </Grid>
           <Divider orientation="horizontal" />
-          <Box pt={2}>
-            <Box
-              display={'flex'}
-              alignItems={'center'}
-              justifyContent={'space-between'}
-              py={1}
-              px={1.5}
-              bgcolor={'#F5F7FA'}
-              borderRadius={'8px'}
-              flexWrap={'wrap'}
-            >
-              <span className="text-sm text-gray-600 font-medium">Description</span>
-              <Box display={'flex'} gap={3}>
-                <span className="text-sm w-32 uppercase text-center text-gray-600 font-medium">cost/rate</span>
-
-                <span className="text-sm w-32 uppercase text-center  text-gray-600 font-medium">qty/hr</span>
-                <span className="text-sm w-32 uppercase text-center text-gray-600 font-medium">Total</span>
-              </Box>
-            </Box>
-            <span className="block text-sm py-5 px-3 text-text-dark font-normal">
-              Property: Home: 1386 Church Cir Gadsden AL 35901
-            </span>
-            {data.map((item, index) => (
-              <Box
-                key={index}
-                display={'flex'}
-                alignItems={'center'}
-                justifyContent={'space-between'}
-                py={1}
-                px={1.5}
-                borderRadius={'8px'}
-                flexWrap={'wrap'}
-              >
-                <span className="text-sm text-gray-600 font-normal">
-                  {item.date} {item.description}
-                </span>
-                <Box display={'flex'} gap={3}>
-                  <span className="text-sm w-32 uppercase text-center text-gray-600 font-normal">{item.price}</span>
-                  <span className="text-sm w-32 uppercase text-center text-gray-600 font-normal">{item.quantity}</span>
-                  <span className="text-sm w-32 uppercase text-center text-gray-600 font-normal">{item.total}</span>
-                </Box>
-              </Box>
-            ))}
-          </Box>
-          <Grid container pt={5} pb={3} spacing={1}>
-            <Grid item xs={12} lg={6}>
-              <Box display={'flex'} flexDirection={'column'}>
-                <span className="text-sm font-normal text-gray-600">
-                  <span className="font-medium text-text-dark">Notes:</span>
-                  To pay online or access our customer portal please visit us on our website.
-                </span>
-                <span className="text-sm font-normal text-gray-600">Instructions for first time portal users:</span>
-                <span className="text-xs font-normal text-gray-600">
-                  1.Click on “Client Login” Button on top of our homepage.
-                </span>
-                <span className="text-xs font-normal text-gray-600">
-                  2.Select Register and enter the email address provided to us and then create a password. <br />
-                  Once you have completed these steps you should be able to select an invoice under the “Invoices”{' '}
-                  <br /> tab and see payment options at the top of the page. If you have any issues please email or call
-                  me.
-                </span>
-              </Box>
-            </Grid>
-            <Grid item xs={12} lg={6}>
-              <Box display={'flex'} flexDirection={'column'} gap={2}>
-                <Box display={'flex'} justifyContent={'center'} gap={30} alignItems={'center'}>
-                  <span className="text-sm font-medium text-text-dark">Subtotal</span>
-                  <span className="text-sm font-medium text-text-dark">$60.00</span>
-                </Box>
-                <Box
-                  display={'flex'}
-                  justifyContent={'center'}
-                  gap={32}
-                  alignItems={'center'}
-                  py={0.5}
-                  borderRadius={'8px'}
-                  bgcolor={'#F5F7FA'}
-                  px={1}
-                >
-                  <span className="text-sm font-medium text-text-dark">Taxes</span>
-                  <span className="text-sm font-medium text-text-dark">$0.00</span>
-                </Box>
-                <Box display={'flex'} justifyContent={'center'} gap={28} alignItems={'center'}>
-                  <span className="text-sm font-medium text-text-dark">This Invoice</span>
-                  <span className="text-sm font-medium text-text-dark">$60.00</span>
-                </Box>
-                <Box
-                  display={'flex'}
-                  justifyContent={'center'}
-                  gap={28}
-                  alignItems={'center'}
-                  py={0.5}
-                  borderRadius={'8px'}
-                  bgcolor={'#F5F7FA'}
-                  px={1}
-                >
-                  <span className="text-sm font-medium text-text-dark">Amount Paid</span>
-                  <span className="text-sm font-medium text-text-dark">$1.00</span>
-                </Box>
-              </Box>
-            </Grid>
-          </Grid>
+          <TableContainer component={Paper} sx={{ boxShadow: 'none', pt: 2 }}>
+            <Table aria-label="grid-based table" sx={{ boxShadow: 'none' }}>
+              <TableHead>
+                <TableRow>
+                  <TableCell sx={{ background: '#F5F7FA', padding: '8px 12px', border: 'none' }}>
+                    <Grid container>
+                      <Grid item xs={6}>
+                        <span className="text-gray-600 uppercase">Description</span>
+                      </Grid>
+                      <Grid item xs={2} pl={8}>
+                        <span className="text-gray-600 uppercase">cost/rate</span>
+                      </Grid>
+                      <Grid item xs={2} pl={8}>
+                        <span className="text-gray-600 uppercase">qty/hr</span>
+                      </Grid>
+                      <Grid item xs={2} pl={8}>
+                        <span className="text-gray-600 uppercase">Total</span>
+                      </Grid>
+                    </Grid>
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell sx={{ border: 'none', padding: '8px 12px' }}>
+                    <Grid container>
+                      <Grid item xs={12} py={1}>
+                        <span className="text-text-dark text-sm">Property: Home: 1386 Church Cir Gadsden AL 35901</span>
+                      </Grid>
+                    </Grid>
+                  </TableCell>
+                </TableRow>
+                {data.map((item) => (
+                  <TableRow>
+                    <TableCell sx={{ border: 'none', padding: '6px 12px' }}>
+                      <Grid container>
+                        <Grid item xs={6}>
+                          <span className="text-gray-600 text-sm font-normal">
+                            {item.date} {item.description}
+                          </span>
+                        </Grid>
+                        <Grid item xs={2} pl={9}>
+                          <span className="text-gray-600 uppercase">{item.price}</span>
+                        </Grid>
+                        <Grid item xs={2} pl={8}>
+                          <span className="text-gray-600 uppercase">{item.quantity}</span>
+                        </Grid>
+                        <Grid item xs={2} pl={8}>
+                          <span className="text-gray-600 uppercase">{item.total}</span>
+                        </Grid>
+                      </Grid>
+                    </TableCell>
+                  </TableRow>
+                ))}
+                <TableRow>
+                  <TableCell sx={{ border: 'none', pt: 3, px: '12px' }}>
+                    <Grid container>
+                      <Grid item xs={6}>
+                        <span className="text-gray-600 text-sm font-normal block ">
+                          <span className="text-text-dark">Notes:</span> To pay online or access our customer portal
+                          please visit us on our website.
+                        </span>
+                        <span className="text-gray-600 text-sm font-normal block ">
+                          Instructions for first time portal users:
+                        </span>
+                        <ul className="text-gray-600 text-sm font-normal list-decimal pl-5">
+                          <li>Click on “Client Login” Button on top of our homepage.</li>
+                          <li>
+                            Select Register and enter the email address provided to us and then create a password.
+                          </li>
+                        </ul>
+                      </Grid>
+                      <Grid item xs={2}>
+                        <span className="text-text-dark block py-1 pl-16">Subtotal</span>
+                        <span className="text-text-dark block py-1 bg-gray-week pl-16 rounded-l-lg">Taxes</span>
+                        <span className="text-text-dark block  py-1 pl-16">This Invoice</span>
+                      </Grid>
+                      <Grid item xs={2}>
+                        <span className="text-gray-600 block py-3.5"></span>
+                        <span className="text-gray-600 block py-3.5 bg-gray-week"></span>
+                        <span className="text-gray-600 block py-3.5"></span>
+                      </Grid>
+                      <Grid item xs={2}>
+                        <span className="text-text-dark block  py-1 pl-16 ">$60.00</span>
+                        <span className="text-text-dark block  py-1 bg-gray-week roundedr-md pl-16 rounded-r-lg">
+                          $0.00
+                        </span>
+                        <span className="text-text-dark block  py-1 pl-16">$60.00</span>
+                      </Grid>
+                    </Grid>
+                  </TableCell>
+                </TableRow>
+                {/* ))} */}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
       </div>
     </div>

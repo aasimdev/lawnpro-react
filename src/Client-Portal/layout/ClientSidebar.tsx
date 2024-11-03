@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import { List, Link, IconButton, Divider } from '@mui/material';
+import { List, Divider } from '@mui/material';
 import LogoImage from '../../assets/images/client_logo.svg';
 import { generateRandomId } from '../../utils/MathUtil';
 import NestedClientList from '../components/NestedClientList';
