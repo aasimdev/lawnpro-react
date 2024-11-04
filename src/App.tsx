@@ -48,9 +48,9 @@ const App: React.FC = () => {
               <Route path="/client-dashboard" element={<ClientDashboard />} />
               <Route path="/finance/invoices" element={<Invoices />} />
               <Route path="/finance/estimates" element={<Estimates />} />
-              <Route path="/finance/payments" element={<Payments />} />
               <Route path="/finance/invoices/invoice-details" element={<ViewInvoice />} />
               <Route path="/finance/estimates/estimate-details" element={<ViewEstimate />} />
+              <Route path="/finance/payments" element={<Payments />} />
               {/* Add more client routes here */}
             </Routes>
           </ClientLayout>
@@ -59,7 +59,7 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/customers" element={<Customers />} />
-              <Route path="/customers/add" element={<CustomerEditor isNew={true} />} />
+              <Route path="/customers/add" element={<CustomerEditor isNew={true}/>} />
               {/* Add more main app routes here */}
             </Routes>
           </MainLayout>

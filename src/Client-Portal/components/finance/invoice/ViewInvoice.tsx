@@ -116,8 +116,14 @@ export const ViewInvoice = () => {
               </Box>
             </Grid>
             <Grid item xs={12} lg={6}>
-              <Box display={'flex'} flexDirection={'column'} gap={2} width={'100%'}>
-                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
+              <Box display={'flex'} flexDirection={'column'} gap={2} width={'100%'} pl={6}>
+              <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} py={0.5}
+                  borderRadius={'8px'}
+                  bgcolor={'#F5F7FA'} px={1}>
+                  <span className="text-sm font-medium text-text-dark">Customer #</span>
+                  <span className="text-sm font-medium text-text-dark">10</span>
+                </Box>
+                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} px={1}>
                   <span className="text-sm font-medium text-text-dark">Invoice#</span>
                   <span className="text-sm font-medium text-text-dark">100642</span>
                 </Box>
@@ -133,7 +139,7 @@ export const ViewInvoice = () => {
                   <span className="text-sm font-medium text-text-dark">Invoice Date/Due Date</span>
                   <span className="text-sm font-medium text-text-dark">Nov 21, 2022 / Nov 24, 2022</span>
                 </Box>
-                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
+                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} px={1}>
                   <span className="text-sm font-medium text-text-dark">Credit Available</span>
                   <span className="text-sm font-medium text-text-dark">$0.00</span>
                 </Box>
@@ -200,6 +206,7 @@ export const ViewInvoice = () => {
                   <TableCell sx={{ border: 'none', pt: 3, px: '12px' }}>
                     <Grid container>
                       <Grid item xs={6}>
+                      <Box pr={1}>
                         <span className="text-gray-600 text-sm font-normal block ">
                           <span className="text-text-dark">Notes:</span> To pay online or access our customer portal
                           please visit us on our website.
@@ -226,6 +233,7 @@ export const ViewInvoice = () => {
                             call me.
                           </span>
                         </ul>
+                        </Box>
                       </Grid>
                       <Grid item xs={2}>
                         <span className="text-text-dark block py-1 pl-16 text-xs 2xl:text-sm">Subtotal</span>

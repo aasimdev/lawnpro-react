@@ -133,24 +133,22 @@ export const ViewEstimate = () => {
               </Box>
             </Grid>
             <Grid item xs={12} lg={6}>
-              <Box display={'flex'} flexDirection={'column'} gap={2} width={'100%'}>
-                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
+              <Box display={'flex'} flexDirection={'column'} gap={2} width={'100%'} pl={6}>
+              <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} py={0.5}
+                  borderRadius={'8px'}
+                  bgcolor={'#F5F7FA'} px={1}>
+                  <span className="text-sm font-medium text-text-dark">Customer #</span>
+                  <span className="text-sm font-medium text-text-dark">10</span>
+                </Box>
+                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} px={1}>
                   <span className="text-sm font-medium text-text-dark">Estimate#</span>
                   <span className="text-sm font-medium text-text-dark">100642</span>
                 </Box>
-                <Box
-                  display={'flex'}
-                  justifyContent={'space-between'}
-                  alignItems={'center'}
-                  py={0.5}
-                  borderRadius={'8px'}
-                  bgcolor={'#F5F7FA'}
-                  px={1}
-                >
-                  <span className="text-sm font-medium text-text-dark">Estimate Date/Due Date</span>
-                  <span className="text-sm font-medium text-text-dark">Nov 21, 2022 / Nov 24, 2022</span>
+                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} py={0.5} borderRadius={'8px'} bgcolor={'#F5F7FA'} px={1}>
+                  <span className="text-sm font-medium text-text-dark">Estimate Date</span>
+                  <span className="text-sm font-medium text-text-dark">Nov 21, 2024</span>
                 </Box>
-                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
+                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} px={1}>
                   <span className="text-sm font-medium text-text-dark">Credit Available</span>
                   <span className="text-sm font-medium text-text-dark">$0.00</span>
                 </Box>
@@ -216,6 +214,7 @@ export const ViewEstimate = () => {
                   <TableCell sx={{ border: 'none', pt: 3, px: '12px' }}>
                     <Grid container>
                       <Grid item xs={6}>
+                        <Box pr={1}>
                         <span className="text-gray-600 text-sm font-normal block ">
                           <span className="text-text-dark">Notes:</span> To pay online or access our customer portal
                           please visit us on our website.
@@ -229,11 +228,12 @@ export const ViewEstimate = () => {
                             Select Register and enter the email address provided to us and then create a password.
                           </li>
                         </ul>
+                        </Box>
                       </Grid>
                       <Grid item xs={2}>
                         <span className="text-text-dark block py-1 pl-16">Subtotal</span>
                         <span className="text-text-dark block py-1 bg-gray-week pl-16 rounded-l-lg">Taxes</span>
-                        <span className="text-text-dark block  py-1 pl-16">This Invoice</span>
+                        <span className="text-text-dark block  py-1 pl-16">This Estimate</span>
                       </Grid>
                       <Grid item xs={2}>
                         <span className="text-gray-600 block py-3.5"></span>

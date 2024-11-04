@@ -219,12 +219,12 @@ export const Estimates = () => {
                 isAllSelected={isAllSelected}
                 properties={columns}
               >
-                {columns.map((property) => (
+                {columns.map((property, index) => (
                   <tr
                     key={property.id}
                     className={`hover:bg-primary-alpha ${selectedRows.includes(property.id) ? 'bg-primary-alpha' : ''}`}
                   >
-                    <td className="py-3 px-3 text-sm font-normal  border-b">
+                    <td className={`py-3 px-3 text-sm font-normal ${index === columns.length - 1 ? '' : 'border-b'}`}>
                       <Box display={'flex'} gap={2} alignItems={'center'}>
                         <Checkbox
                           checked={selectedRows.includes(property.id)}
@@ -233,19 +233,19 @@ export const Estimates = () => {
                         {property.estimateNumber}
                       </Box>
                     </td>
-                    <td className="py-3 px-3 text-sm font-normal border-b">
+                    <td className={`py-3 px-3 text-sm font-normal ${index === columns.length - 1 ? '' : 'border-b'}`}>
                       <div className="flex gap-2">
                         <IconCalendar size={20} color="#99A0AE" />
                         <span className="text-gray-600">{property.estimateDate}</span>
                       </div>
                     </td>
-                    <td className="py-3 px-3 text-sm font-normal border-b">
+                    <td className={`py-3 px-3 text-sm font-normal ${index === columns.length - 1 ? '' : 'border-b'}`}>
                       <div className="flex gap-2">
                         <IconCoin size={20} color="#99A0AE" />
                         <span className="text-gray-600">{property.estimateTotal}</span>
                       </div>
                     </td>
-                    <td className="py-3 px-3 text-sm font-normal border-b">
+                    <td className={`py-3 px-3 text-sm font-normal ${index === columns.length - 1 ? '' : 'border-b'}`}>
                       <Box display={'flex'} gap={2} alignItems={'center'}>
                         <div className="p-1 rounded-md bg-white border border-main-gray flex gap-2 items-center text-mini text-gray-600">
                           <div className="w-1 h-1 rounded-full" style={{ background: property.dotColor }}></div>
@@ -253,14 +253,14 @@ export const Estimates = () => {
                         </div>
                       </Box>
                     </td>
-                    <td className="py-3 px-3 text-sm font-normal border-b">
+                    <td className={`py-3 px-3 text-sm font-normal ${index === columns.length - 1 ? '' : 'border-b'}`}>
                       <div className="flex gap-2">
                         <IconDoubleNote size={20} color="#99A0AE" />
                         <span className="text-gray-600 truncate">{property.paidAmount}</span>
                       </div>
                     </td>
 
-                    <td className="py-3 px-3  text-sm font-normal border-b">
+                    <td className={`py-3 px-3 text-sm font-normal ${index === columns.length - 1 ? '' : 'border-b'}`}>
                       <div className="cursor-pointer" onClick={handleClick}>
                         <IconCompact size={24} color="#525866" />
                       </div>

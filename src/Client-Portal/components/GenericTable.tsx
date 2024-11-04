@@ -150,7 +150,9 @@ const GenericTable: React.FC<InvoiceDataTableProps> = ({
                   {heading.title}
                 </th>
               ))}
+              {payment !== 'payment' && (
               <th className="py-2 px-3 text-start"></th>
+              )}
             </tr>
           </thead>
           <tbody>{children}</tbody>

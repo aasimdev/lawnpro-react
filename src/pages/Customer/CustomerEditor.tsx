@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import CustomBreadcrumbs from "../../components/CustomBreadcrumbs";
 import { IconHome, IconSingleUserUnfilled } from "../../utils/SvgUtil";
-import { Divider, Link, TextField } from "@mui/material";
+import { Checkbox, Divider, Link, TextField } from "@mui/material";
 import Select2 from "../../components/Controllers/Select2";
+import DateInput from "../../components/DateInput";
 
 interface CustomerEditorProps {
     isNew?: boolean;
@@ -31,7 +32,19 @@ const CustomerEditor: React.FC<CustomerEditorProps> = ({ isNew = true }) => {
         }),
         customer_title: createCustomerFormProps({
             value: "",
-        })
+        }),
+        customer_number: createCustomerFormProps({
+            value: "",
+        }),
+        customer_first_name: createCustomerFormProps({
+            value: "",
+        }),
+        customer_last_name: createCustomerFormProps({
+            value: "",
+        }),
+        customer_company_name: createCustomerFormProps({
+            value: "",
+        }),
     });
     // Use a function to set the default for isRequired if undefined
     const handleFormChange = (key: string, newValue: string | number) => {
@@ -137,14 +150,14 @@ const CustomerEditor: React.FC<CustomerEditorProps> = ({ isNew = true }) => {
                                 </div>
                                 <div className="flex flex-col gap-1 col-span-1">
                                     <span className="text-sm font-medium">Customer Number</span>
-                                    <TextField placeholder="Customer Number" type='number' variant="outlined" />
+                                    <TextField placeholder="Customer Number" type='number' variant="outlined" onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleFormChange("customer_number", event.target.value)} value={formState.customer_number.value} />
                                 </div>
                             </div>
                             <div className="flex flex-col">
                                 <span>Customer Name</span>
                                 <div className="grid grid-cols-12">
                                     <div className="col-span-2 h-full">
-                                        <Select2 options={customerTitle} accessor="customer_title" value={[formState.customer_title.value]} onChange={(key: string, value: (string | number)[]) => handleFormChange(key, value.length ? value[0] : "")} buttonClass="rounded-r-none !py-2 h-full" className="h-full"/>
+                                        <Select2 options={customerTitle} accessor="customer_title" value={[formState.customer_title.value]} onChange={(key: string, value: (string | number)[]) => handleFormChange(key, value.length ? value[0] : "")} buttonClass="rounded-r-none !py-2 h-full" className="h-full" />
                                     </div>
                                     <div className="col-span-5">
                                         <TextField placeholder="First Name" variant="outlined"
@@ -153,17 +166,36 @@ const CustomerEditor: React.FC<CustomerEditorProps> = ({ isNew = true }) => {
                                                 "& .MuiOutlinedInput-root": {
                                                     borderRadius: 0, // Set the desired border radius here
                                                 },
-                                            }} />
+                                            }} value={formState.customer_first_name.value} onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleFormChange("customer_first_name", event.target.value)} />
                                     </div>
                                     <div className="col-span-5">
-                                        <TextField placeholder="Last Name" variant="outlined" 
+                                        <TextField placeholder="Last Name" variant="outlined"
                                             sx={{
                                                 width: '100%',
                                                 "& .MuiOutlinedInput-root": {
                                                     borderRadius: "0px 10px 10px 0px", // Set the desired border radius here
                                                 },
-                                            }} />
+                                            }} value={formState.customer_last_name.value} onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleFormChange("customer_last_name", event.target.value)} />
                                     </div>
+                                </div>
+                            </div>
+                            <div className="flex flex-col">
+                                <div className="flex items-center justify-between">
+                                    <span>Business Name <span className="text-red-600">*</span></span>
+                                    <div className="font-normal text-sm">
+                                        <Checkbox />
+                                        Use company name as the primary name
+                                    </div>
+                                </div>
+                                <TextField placeholder="LawnScape Services" type='number' variant="outlined" value={formState.customer_company_name.value} onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleFormChange("customer_company_name", event.target.value)} />
+                            </div>
+                            <div className="grid items-center grid-cols-2">
+                                <div className="col-span-1 flex flex-col">
+                                    <span>Since</span>
+                                    <DateInput />
+                                </div>
+                                <div className="col-span-1 flex flex-col">
+                                    <span>Tags</span>
                                 </div>
                             </div>
                         </div>

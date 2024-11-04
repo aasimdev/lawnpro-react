@@ -621,29 +621,29 @@ export const Payments = () => {
             <Divider orientation="horizontal" />
             <Box pt={1.5}>
               <GenericTable head={tableHead} payment={'payment'}>
-                {columns.map((property) => (
+                {columns.map((property, index) => (
                   <tr key={property.id} className={`hover:bg-primary-alpha  `}>
-                    <td className="py-3 px-3 text-sm font-normal border-b">
+                    <td  className={`py-3 px-3 text-sm font-normal ${index === columns.length - 1 ? '' : 'border-b'}`}>
                       <div className="flex gap-2">
                         <IconCalendar size={20} color="#99A0AE" />
                         <span className="text-gray-600">{property.date}</span>
                       </div>
                     </td>
-                    <td className="py-3 px-3 text-sm font-normal border-b">
+                    <td className={`py-3 px-3 text-sm font-normal ${index === columns.length - 1 ? '' : 'border-b'}`}>
                       <Box display={'flex'} gap={1}>
                         <IconCoin size={20} color="#99A0AE" />
                         <span className="text-gray-600">{property.tip}</span>
                       </Box>
                     </td>
 
-                    <td className="py-2 text-sm font-normal text-gray-600 px-3 border-b">
+                    <td className={`py-3 px-3 text-sm text-gray-600 font-normal ${index === columns.length - 1 ? '' : 'border-b'}`}>
                       <Box display={'flex'} gap={1} alignItems={'center'}>
                         {property.method === 'Cash' ? <IconCash size={20} color="#99A0AE" /> : <IconCard size={20} />}
                         {property.method}
                       </Box>
                     </td>
 
-                    <td className="py-3 px-3 text-sm font-normal border-b">
+                    <td className={`py-3 px-3 text-sm font-normal ${index === columns.length - 1 ? '' : 'border-b'}`}>
                       <div className="flex gap-2">
                         <IconFolder size={20} color="#99A0AE" />
                         <span className="text-gray-600 truncate" style={{ maxWidth: '250px' }} title={property.details}>
@@ -652,10 +652,10 @@ export const Payments = () => {
                       </div>
                     </td>
 
-                    <td className="py-3 px-3 text-sm font-normal border-b">
+                    <td className={`py-3 px-3 text-sm font-normal ${index === columns.length - 1 ? '' : 'border-b'}`}>
                       <div className="flex gap-2"></div>
                     </td>
-                    <td className="py-3 px-3 text-sm font-normal border-b">
+                    <td className={`py-3 px-3 text-sm font-normal ${index === columns.length - 1 ? '' : 'border-b'}`}>
                       <Box display={'flex'} gap={2} alignItems={'center'}>
                         <IconMoneySend size={20} color="#99A0AE" />
                         <span className="text-gray-600 truncate" style={{ maxWidth: '250px' }}>
@@ -691,7 +691,7 @@ export const Payments = () => {
                     <Grid item xs={2}></Grid>
                     <Grid item xs={2}></Grid>
                     <Grid item xs={2}>
-                      <Box display={'flex'} gap={2} py={1.5} alignItems={'center'}>
+                      <Box display={'flex'} gap={2} py={1.5} pl={3.5} alignItems={'center'}>
                         <IconMoneySend size={20} color="#99A0AE" />
                         <span className="text-gray-600 text-sm font-normal ">$1010.00</span>
                       </Box>
