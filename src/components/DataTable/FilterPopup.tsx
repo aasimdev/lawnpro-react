@@ -1,7 +1,7 @@
 import { Popover } from "@mui/material";
 import React from "react";
 import { Column } from "./ColumnSelector";
-import Select2 from "../Controllers/Select2";
+import Select2 from "../controllers/Select2";
 import { generateRandomId } from "../../utils/MathUtil";
 
 interface FilterPopupProps<T> {

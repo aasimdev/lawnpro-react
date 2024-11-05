@@ -6,6 +6,7 @@ import { generateRandomId } from "../../utils/MathUtil";
 
 export interface DropdownMenuItemProps {
     title: string;
+    icon?: React.ReactNode;
     trigger?: () => void;
 }
 
@@ -60,8 +61,8 @@ const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
                     'aria-labelledby': 'menu-button',
                 }}
                 sx={{
-                    marginTop : '4px',
-                    '& .MuiMenu-paper' : {
+                    marginTop: '4px',
+                    '& .MuiMenu-paper': {
                         borderRadius: '16px',
                         boxShadow: '0px 16px 32px -12px rgba(14, 18, 27, 0.10)',
                         border: "1px solid #E1E4EA",
@@ -70,11 +71,16 @@ const DropdownMenu: React.FC<DropdownMenuProps> = (props) => {
             >
                 {
                     props.items.map((item, index) => (
-                        <MenuItem onClick={()=>{handleClose(); if(item.trigger) item.trigger();}} sx={{
+                        <MenuItem onClick={() => { handleClose(); if (item.trigger) item.trigger(); }} sx={{
                             fontSize: '14px',
                             fontWeight: 500,
                             color: '#525866'
-                        }} key={generateRandomId()}>{item.title}</MenuItem>
+                        }} key={generateRandomId()}>
+                            <div className="flex items-center text-gray-600 gap-2">
+                                {item.icon}
+                                {item.title}
+                            </div>
+                        </MenuItem>
                     ))
                 }
             </Menu>

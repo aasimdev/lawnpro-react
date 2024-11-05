@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
-import CustomBreadcrumbs from '../components/CustomBreadcrumbs';
+import CustomBreadcrumbs from '../components/controllers/CustomBreadcrumbs';
 import { Link, ButtonGroup, Button, Chip, Divider, Tabs, Tab } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import ButtonGroupItem from '../components/ButtonGroupItem';
 import DashboardConfig from '../config/DashboardConfig';
 import { CheckCircle, InfoRounded, OpenInNew } from '@mui/icons-material';
-import DashboardItem from '../components/Dashboard/DashboardItem';
+import DashboardItem from '../components/dashboard/DashboardItem';
 
 import { IconCoinsDollar, IconRevenue, IconWisestackLogo, IconHome, IconAutomation, IconViewPropery, IconNewPropery, IconDeletePropery, IconNotes, IconEmail, IconEmailOpened, IconEmailSent, IconCalendarFavorite, IconCalendarCheckIn, IconSaveMoneyDollar, IconCreditPos, IconDollar, IconCustomers, IconContact, IconSchedule, IconTimeQuarter, IconCancelCircleHalfDot, IconCancelCircle, IconInvoice2Mail, IconCheckCircle, IconExchange, IconNavigateLeft, IconNavigateRight, IconBrochure, IconAccountDollar } from '../utils/SvgUtil';
 
-import TodoListItem from '../components/Dashboard/TodoListItem';
+import TodoListItem from '../components/dashboard/TodoListItem';
 import { formatInteger, formatToCurrency, formatToShortCurrency, generateRandomId } from '../utils/MathUtil';
-import CustomerBalanceItem from '../components/Dashboard/CustomerBalanceItem';
-import CustomAreaChart from '../components/CustomAreaChart';
-import DashboardButtonGroup from '../components/Dashboard/DashboardButtonGroup';
-import CustomDonutChart from '../components/CustomDonutChart';
+import CustomerBalanceItem from '../components/dashboard/CustomerBalanceItem';
+import CustomAreaChart from '../components/chart/CustomAreaChart';
+import DashboardButtonGroup from '../components/dashboard/DashboardButtonGroup';
+import CustomDonutChart from '../components/chart/CustomDonutChart';
 // import { ReactComponent as PlanPatternSVG } from '../assets/icons/PlansPattern.svg'
 import { ReactComponent as WisestackPatternSVG } from '../assets/icons/WisestackPattern.svg'
-import DashboardEventItem from '../components/Dashboard/DashboardEventItem';
+import DashboardEventItem from '../components/dashboard/DashboardEventItem';
 
 const Dashboard: React.FC = () => {
     const [selectedPeriod, setSelectedPeriod] = useState(0);

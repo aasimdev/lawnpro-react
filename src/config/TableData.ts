@@ -17,7 +17,6 @@ interface CustomerData {
     avatar: string;
 }
 
-
 export const CustomersData : CustomerData[] = [{
     id: 157512,
     name: "Patrick Cash",

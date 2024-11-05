@@ -1,5 +1,5 @@
 import React from "react";
-import { SidebarMenuItem } from "../config/SidebarConfig";
+import { SidebarItem } from "../config/SidebarConfig";
 import { List, ListItemButton, ListItemIcon, ListItemText, Collapse } from '@mui/material';
 import CustomIcon from "./CustomIcon";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
@@ -8,18 +8,30 @@ import splitPath from "../utils/PathUtil";
 
 export interface NestedListItemProps {
     baseUrl: string,
-    menu: SidebarMenuItem,
+    menu: SidebarItem,
     hovered: boolean,
     expanded: boolean
 }
 const NestedListItem: React.FC<NestedListItemProps> = ({ baseUrl, menu, hovered, expanded }) => {
     const location = useLocation();
-    const path = splitPath(location.pathname)
-    const menuSelected = path[0] === baseUrl;
-    const [open, setOpen] = React.useState(menuSelected);
+
+    // Helper function to check if an item is active
+    const isItemActive = (item: SidebarItem): boolean => {
+        if (item.url === location.pathname) {
+            return true;
+        }
+        // Check if any children match the current URL
+        if (item.subMenu) {
+            return item.subMenu.some((child) => child.url === location.pathname);
+        }
+        return false;
+    };
+
+    const [open, setOpen] = React.useState(isItemActive(menu));
     const handleClick = () => {
         setOpen(!open);
     };
+
     const navigate = useNavigate();
     return (
         <>
@@ -33,7 +45,7 @@ const NestedListItem: React.FC<NestedListItemProps> = ({ baseUrl, menu, hovered,
                     '&:hover': {
                         backgroundColor: '#A2DC3F1A', // Background color on hover
                     },
-                    background: menuSelected ? "#75A428 !important" : "",
+                    background: isItemActive(menu) ? "#75A428 !important" : "",
                     borderRadius: '8px',
                     height: '40px'
                 }}
@@ -42,8 +54,8 @@ const NestedListItem: React.FC<NestedListItemProps> = ({ baseUrl, menu, hovered,
                         handleClick();
                     } else {
                         // Do something else or nothing
-                        console.log("Condition not met");
-                        navigate(baseUrl);
+                        if(menu.url)
+                            navigate(menu.url);
                     }
                 }} >
                 <ListItemIcon sx={{
@@ -72,7 +84,12 @@ const NestedListItem: React.FC<NestedListItemProps> = ({ baseUrl, menu, hovered,
                         padding: "0 0 0 8px"
                     }} key={baseUrl}>
                         {menu.subMenu.map((subMenu, subKey) => (
-                            <ListItemButton href={baseUrl + subMenu.url}
+                            <ListItemButton
+                                onClick={() => {
+                                    if (subMenu.url !== undefined) {
+                                        navigate(subMenu.url);
+                                    } 
+                                }}
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'left',
@@ -82,7 +99,7 @@ const NestedListItem: React.FC<NestedListItemProps> = ({ baseUrl, menu, hovered,
                                     '&:hover': {
                                         backgroundColor: '#A2DC3F1A', // Background color on hover
                                     },
-                                    background: (subMenu.url === path[1]) ? "#75A428 !important" : "",
+                                    background: isItemActive(subMenu) ? "#75A428 !important" : "",
                                     height: '40px'
                                 }}
                                 key={subMenu.url}>

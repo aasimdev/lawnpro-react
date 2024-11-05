@@ -3,24 +3,27 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Dashboard from './pages/Dashboard';
 import { ThemeProvider } from '@mui/material';
 import theme from './config/ThemeConfig';
-import Customers from './pages/Customer/Customers';
+import Customers from './pages/customer/Customers';
 import Login from './pages/Login';
-import ForgotPassword from './pages/ForgotPassword';
-import { ClientDashboard } from './Client-Portal/pages/ClientDashboard';
+import ForgotPassword from './pages/ForgotPassword'; 
 import ClientLayout from './Client-Portal/layout/ClientLayout';
-import { Invoices } from './Client-Portal/pages/Invoices';
+import { Invoices } from './pages/client-portal/Invoices';
 import { ViewInvoice } from './Client-Portal/components/finance/invoice/ViewInvoice';
-import { Estimates } from './Client-Portal/pages/Estimates';
+import { Estimates } from './pages/client-portal/Estimates';
 import { ViewEstimate } from './Client-Portal/components/finance/estimate/ViewEstimate';
 import MainLayout from './layouts/MainLayout';
-import CustomerEditor from './pages/Customer/CustomerEditor';
-import { Payments } from './Client-Portal/pages/Payments';
-import { Documents } from './Client-Portal/pages/Documents';
+import CustomerEditor from './pages/customer/CustomerEditor';
+import { Payments } from './pages/client-portal/Payments';
+import Properties from './pages/property/Properties';
+import { Pictures } from './pages/client-portal/Pictures';
+import { WorkRequest } from './pages/client-portal/WorkRequest';
 import { ViewDocument } from './Client-Portal/components/finance/document/ViewDocument';
-import { Pictures } from './Client-Portal/pages/Pictures';
-import { WorkRequest } from './Client-Portal/pages/WorkRequest';
+import { Documents } from './pages/client-portal/Documents';
+import Reviews from './pages/review/Reviews';
+import ManageCredit from './pages/customer/ManageCredit';
+import { ClientDashboard } from './pages/client-portal/ClientDashboard';
 
-const clientRoutes = [
+const clientRoutes =  [
   '/client-dashboard',
   '/finance/invoices',
   '/finance/invoices/invoice-details',
@@ -53,7 +56,7 @@ const App: React.FC = () => {
         {isClientPage ? (
           <ClientLayout sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
             <Routes>
-              <Route path="/client-dashboard" element={<ClientDashboard />} />
+            <Route path="/client-dashboard" element={<ClientDashboard />} />
               <Route path="/finance/invoices" element={<Invoices />} />
               <Route path="/finance/estimates" element={<Estimates />} />
               <Route path="/finance/documents" element={<Documents />} />
@@ -71,7 +74,10 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/customers" element={<Customers />} />
-              <Route path="/customers/add" element={<CustomerEditor isNew={true} />} />
+              <Route path="/customers/add" element={<CustomerEditor isNew={true}/>} />
+              <Route path="/properties" element={<Properties />} />
+              <Route path="/reviews" element={<Reviews />} />
+              <Route path="/customers/manage-cards" element={<ManageCredit />} />
               {/* Add more main app routes here */}
             </Routes>
           </MainLayout>

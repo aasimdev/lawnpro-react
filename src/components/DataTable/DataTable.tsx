@@ -1,8 +1,8 @@
-import React, { ReactNode, useState } from "react";
-import DropdownMenu, { DropdownMenuItemProps } from "../Controllers/DropdownMenu";
+import React, { ReactNode, useEffect, useState } from "react";
+import DropdownMenu, { DropdownMenuItemProps } from "../controllers/DropdownMenu";
 import { Button, Checkbox, InputAdornment, TextField } from "@mui/material";
 import { IconPreferenceHorizontal, IconPrinter, IconSearch, IconSortASC, IconSortDSC, IconSortable } from "../../utils/SvgUtil";
-import Pagination from "../Controllers/Pagination";
+import Pagination from "../controllers/Pagination";
 import ColumnSelector, { Column } from "./ColumnSelector";
 import clsx from 'clsx'
 import FilterPopup from "./FilterPopup";
@@ -16,9 +16,11 @@ interface DataTableProps<T extends { id: number }> {
     handleFilter?: (filters: { [key: string]: (string | number)[] }) => void;
     handleSearch?: (keyword: string) => void;
     renderActions?: (row: T) => React.ReactNode; // New prop for customizable actions
+    isSelectable?: Boolean;
+    isFilter?: Boolean;
 }
 
-const DataTable = <T extends { id: number }>({ data, columns, actionMenu, handlePageSizeChange, handleFilter, totalPages, onSelectionChange, handleSearch, renderActions }: DataTableProps<T>) => {
+const DataTable = <T extends { id: number }>({ data, columns, actionMenu, isSelectable = true, isFilter = true, handlePageSizeChange, handleFilter, totalPages, onSelectionChange, handleSearch, renderActions }: DataTableProps<T>) => {
     const [pageSize, setPageSize] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
     const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
@@ -27,6 +29,11 @@ const DataTable = <T extends { id: number }>({ data, columns, actionMenu, handle
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
     const [searchKeyword, setSearchKeyword] = useState('');
     const [filters, setFilters] = useState<{ [key: string]: (string | number)[] }>({});
+
+    // Update selectedColumns when columns prop changes
+    useEffect(() => {
+        setSelectedColumns(columns.map(col => String(col.accessor)));
+    }, [columns]);
 
     const handleFilters = (key: string, value: (string | number)[]) => {
         setFilters((prevFilters) => ({
@@ -114,7 +121,9 @@ const DataTable = <T extends { id: number }>({ data, columns, actionMenu, handle
                         {actionMenu &&
                             <DropdownMenu title="Actions" items={actionMenu} className="bg-white text-[#525866] rounded-lg border-solid border-[1px] border-main-gray" />
                         }
-                        <Button startIcon={<IconPreferenceHorizontal size={16} />} onClick={handleActionClick}> Filter</Button>
+                        {isFilter &&
+                            (<Button startIcon={<IconPreferenceHorizontal size={16} />} onClick={handleActionClick}> Filter</Button>)
+                        }
                         <TextField
                             id="search-field"
                             placeholder="Search..."
@@ -139,7 +148,7 @@ const DataTable = <T extends { id: number }>({ data, columns, actionMenu, handle
                         />
                         <FilterPopup open={Boolean(anchorEl)} anchorEl={anchorEl} handleClose={handleActionClose} columns={columns} handleFilter={handleFilters} filters={filters} />
                         <span className="text-gray-600 text-xs">Total: <span className="text-black font-medium">166</span></span>
-                        <span className="text-gray-600 text-xs">Selected: <span className="text-black font-medium">{selectedRows.size}</span></span>
+                        {isSelectable && (<span className="text-gray-600 text-xs">Selected: <span className="text-black font-medium">{selectedRows.size}</span></span>)}
                     </div>
                     {/* Right */}
                     <div className="flex items-center gap-3">
@@ -155,12 +164,14 @@ const DataTable = <T extends { id: number }>({ data, columns, actionMenu, handle
                 <div className="flex flex-col gap-2 overflow-x-auto">
                     <table className="w-max min-w-full">
                         <thead className="bg-gray-50 ">
-                            <tr>
-                                <th>
-                                    <Checkbox onChange={handleBulkCheck}
-                                        checked={selectedRows.size === data.length}
-                                        indeterminate={selectedRows.size > 0 && selectedRows.size < data.length} />
-                                </th>
+                            <tr >
+                                {isSelectable &&
+                                    (<th className="flex items-center px-4 py-2 border-b cursor-pointer ">
+                                        <Checkbox onChange={handleBulkCheck}
+                                            checked={selectedRows.size === data.length}
+                                            indeterminate={selectedRows.size > 0 && selectedRows.size < data.length} />
+                                    </th>)
+                                }
                                 {columns
                                     .filter(col => selectedColumns.includes(String(col.accessor)))
                                     .map((column) => (
@@ -187,22 +198,26 @@ const DataTable = <T extends { id: number }>({ data, columns, actionMenu, handle
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((row) => (
+                            {data.length > 0 ? data.map((row) => (
                                 <tr key={row.id} className={
                                     clsx("border-b text-sm p-3.5",
                                         selectedRows.has(row.id) ? "bg-primary-alpha" : ""
                                     )
                                 }>
-                                    <td className="px-4 py-2">
-                                        <Checkbox
-                                            checked={selectedRows.has(row.id)}
-                                            onChange={() => handleCheckboxChange(row.id)} />
-                                    </td>
-                                    {columns.map((column) => (
-                                        <td key={String(column.accessor)} className="px-4 py-2">
-                                            {column.render ? column.render(row) : column.accessor ? row[column.accessor] as ReactNode : null}
-                                        </td>
-                                    ))}
+                                    {isSelectable &&
+                                        (<td className="px-4 py-2">
+                                            <Checkbox
+                                                checked={selectedRows.has(row.id)}
+                                                onChange={() => handleCheckboxChange(row.id)} />
+                                        </td>)
+                                    }
+                                    {columns
+                                        .filter(col => selectedColumns.includes(String(col.accessor)))
+                                        .map((column) => (
+                                            <td key={String(column.accessor)} className="px-4 py-2">
+                                                {column.render ? column.render(row) : column.accessor ? row[column.accessor] as ReactNode : null}
+                                            </td>
+                                        ))}
                                     <td className="px-4 py-2 space-x-2">
                                         {renderActions ? (
                                             renderActions(row) // Use custom actions if provided
@@ -212,7 +227,13 @@ const DataTable = <T extends { id: number }>({ data, columns, actionMenu, handle
                                         )}
                                     </td>
                                 </tr>
-                            ))}
+                            )) :
+                                // Display this row when data is empty
+                                <tr>
+                                    <td colSpan={columns.length} style={{ textAlign: 'center', padding: '1em' }}>
+                                        No available data
+                                    </td>
+                                </tr>}
                         </tbody>
                     </table>
                 </div>

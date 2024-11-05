@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import CustomBreadcrumbs from "../../components/CustomBreadcrumbs";
+import CustomBreadcrumbs from "../../components/controllers/CustomBreadcrumbs";
 import { Avatar, Link } from "@mui/material";
 import { IconAdd, IconCalendar, IconCall, IconDot, IconDownload, IconHome, IconLocation, IconMoreLine, IconRanking, IconSafeDelivery, IconUser, IconUserSearch } from "../../utils/SvgUtil";
-import DropdownMenu, { DropdownMenuItemProps } from "../../components/Controllers/DropdownMenu";
-import DataTable from "../../components/DataTable/DataTable";
+import DropdownMenu, { DropdownMenuItemProps } from "../../components/controllers/DropdownMenu";
+import DataTable from "../../components/datatable/DataTable";
 import { CustomersData } from "../../config/TableData";
-import { Column } from "../../components/DataTable/ColumnSelector";
+import { Column } from "../../components/datatable/ColumnSelector";
 import { formatToCurrency } from "../../utils/MathUtil";
 import { formatDateString } from "../../utils/DateUtil";
-import ConfirmDialog from "../../components/Dialog/ConfirmDialog";
-import IconDropdown from "../../components/Controllers/IconDropdown";
+import ConfirmDialog from "../../components/dialog/ConfirmDialog";
+import IconDropdown from "../../components/controllers/IconDropdown";
 import { useNavigate } from "react-router-dom";
 
 interface CustomerData {

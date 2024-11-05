@@ -285,12 +285,14 @@ export const ViewInvoice = () => {
           </Box>
         </div>
       </div>
-      <Box pt={2}>
+
+      {/* Invoice History */}
+      <Box mt={4}>
         <span className=" px-3 font-medium text-gray-600 text-sm flex gap-2 items-center">
           <DescriptionOutlinedIcon />
           Invoice History
         </span>
-        <div className="p-4 mt-4 bg-white border border-faded-light shadow-sm rounded-2xl">
+        <div className="p-4 mt-4 bg-white border border-faded-light shadow-sm rounded-2xl space-y-1.5">
           <div className="px-1 py-1 transition-all hover:bg-gray-week bg-white cursor-pointer flex justify-between">
             <span className=" font-medium text-text-dark text-sm">
               <span className="text-yellow-500">Viewed</span> {''}

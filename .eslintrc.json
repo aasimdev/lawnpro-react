@@ -1,0 +1,12 @@
+{
+    "overrides": [
+        {
+            "files": [
+                "*.usm.min.js"
+            ],
+            "rules": {
+                "no-unused-expressions": "off"
+            }
+        }
+    ]
+}
