@@ -15,6 +15,10 @@ import { ViewEstimate } from './Client-Portal/components/finance/estimate/ViewEs
 import MainLayout from './layouts/MainLayout';
 import CustomerEditor from './pages/Customer/CustomerEditor';
 import { Payments } from './Client-Portal/pages/Payments';
+import { Documents } from './Client-Portal/pages/Documents';
+import { ViewDocument } from './Client-Portal/components/finance/document/ViewDocument';
+import { Pictures } from './Client-Portal/pages/Pictures';
+import { WorkRequest } from './Client-Portal/pages/WorkRequest';
 
 const clientRoutes = [
   '/client-dashboard',
@@ -23,6 +27,10 @@ const clientRoutes = [
   '/finance/estimates',
   '/finance/estimates/estimate-details',
   '/finance/payments',
+  '/finance/documents',
+  '/finance/documents/document-details',
+  '/pictures',
+  '/work-request',
 ]; // Add more client routes as needed
 
 const App: React.FC = () => {
@@ -48,9 +56,13 @@ const App: React.FC = () => {
               <Route path="/client-dashboard" element={<ClientDashboard />} />
               <Route path="/finance/invoices" element={<Invoices />} />
               <Route path="/finance/estimates" element={<Estimates />} />
+              <Route path="/finance/documents" element={<Documents />} />
+              <Route path="/finance/payments" element={<Payments />} />
+              <Route path="/pictures" element={<Pictures />} />
+              <Route path="/work-request" element={<WorkRequest />} />
               <Route path="/finance/invoices/invoice-details" element={<ViewInvoice />} />
               <Route path="/finance/estimates/estimate-details" element={<ViewEstimate />} />
-              <Route path="/finance/payments" element={<Payments />} />
+              <Route path="/finance/documents/document-details" element={<ViewDocument />} />
               {/* Add more client routes here */}
             </Routes>
           </ClientLayout>
@@ -59,7 +71,7 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/customers" element={<Customers />} />
-              <Route path="/customers/add" element={<CustomerEditor isNew={true}/>} />
+              <Route path="/customers/add" element={<CustomerEditor isNew={true} />} />
               {/* Add more main app routes here */}
             </Routes>
           </MainLayout>

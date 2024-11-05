@@ -3,7 +3,6 @@ import {
   Button,
   Divider,
   Grid,
-  Link,
   Paper,
   Table,
   TableBody,
@@ -11,7 +10,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
 } from '@mui/material';
 import React from 'react';
 import { IconArrowLeftSingle, IconInvoice, IconPrinter } from '../../../../utils/SvgUtil';
@@ -21,6 +19,8 @@ import Visa from '../../../../assets/icons/Visa.svg';
 import Mastercard from '../../../../assets/icons/Mastercard.svg';
 import Amex from '../../../../assets/icons/Amex.svg';
 import logo from '../../../../assets/images/client_logo.svg';
+import { Link } from 'react-router-dom';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 
 const paypalCtx = [
   {
@@ -48,7 +48,7 @@ export const ViewInvoice = () => {
   return (
     <div className="px-8 pb-6 pt-20 bg-gray-week">
       <div className="p-4 rounded-2xl border border-faded-light shadow-sm bg-white">
-        <Link href="/finance/invoices" sx={{ textDecoration: 'none' }}>
+        <Link to="/finance/invoices" style={{ textDecoration: 'none' }}>
           <Box display={'flex'} alignItems={'center'}>
             <IconArrowLeftSingle size={16} color="#75A428" />
             <span className="text-xs font-medium text-primary-base">Back to listing</span>
@@ -117,9 +117,15 @@ export const ViewInvoice = () => {
             </Grid>
             <Grid item xs={12} lg={6}>
               <Box display={'flex'} flexDirection={'column'} gap={2} width={'100%'} pl={6}>
-              <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} py={0.5}
+                <Box
+                  display={'flex'}
+                  justifyContent={'space-between'}
+                  alignItems={'center'}
+                  py={0.5}
                   borderRadius={'8px'}
-                  bgcolor={'#F5F7FA'} px={1}>
+                  bgcolor={'#F5F7FA'}
+                  px={1}
+                >
                   <span className="text-sm font-medium text-text-dark">Customer #</span>
                   <span className="text-sm font-medium text-text-dark">10</span>
                 </Box>
@@ -206,33 +212,33 @@ export const ViewInvoice = () => {
                   <TableCell sx={{ border: 'none', pt: 3, px: '12px' }}>
                     <Grid container>
                       <Grid item xs={6}>
-                      <Box pr={1}>
-                        <span className="text-gray-600 text-sm font-normal block ">
-                          <span className="text-text-dark">Notes:</span> To pay online or access our customer portal
-                          please visit us on our website.
-                        </span>
-                        <span className="text-gray-600 text-sm font-normal block ">
-                          Instructions for first time portal users:
-                        </span>
+                        <Box pr={1}>
+                          <span className="text-gray-600 text-sm font-normal block ">
+                            <span className="text-text-dark">Notes:</span> To pay online or access our customer portal
+                            please visit us on our website.
+                          </span>
+                          <span className="text-gray-600 text-sm font-normal block ">
+                            Instructions for first time portal users:
+                          </span>
 
-                        <ul className="text-gray-600 text-sm font-normal list-decimal pl-5">
-                          <li>Click on “Client Login” Button on top of our homepage.</li>
-                          <li>
-                            Select Register and enter the email address provided to us and then create a password.
-                          </li>
-                          <li>
-                            To enable online bill pay go to “My Profile” and select “yes” next to create username and
-                            password.
-                          </li>
-                          <span className="text-gray-600 text-sm font-normal block ">
-                            Once you have completed these steps you should be able to select an invoice under the
-                            “Invoices”
-                          </span>
-                          <span className="text-gray-600 text-sm font-normal block ">
-                            tab and see payment options at the top of the page. If you have any issues please email or
-                            call me.
-                          </span>
-                        </ul>
+                          <ul className="text-gray-600 text-sm font-normal list-decimal pl-5">
+                            <li>Click on “Client Login” Button on top of our homepage.</li>
+                            <li>
+                              Select Register and enter the email address provided to us and then create a password.
+                            </li>
+                            <li>
+                              To enable online bill pay go to “My Profile” and select “yes” next to create username and
+                              password.
+                            </li>
+                            <span className="text-gray-600 text-sm font-normal block ">
+                              Once you have completed these steps you should be able to select an invoice under the
+                              “Invoices”
+                            </span>
+                            <span className="text-gray-600 text-sm font-normal block ">
+                              tab and see payment options at the top of the page. If you have any issues please email or
+                              call me.
+                            </span>
+                          </ul>
                         </Box>
                       </Grid>
                       <Grid item xs={2}>
@@ -247,11 +253,11 @@ export const ViewInvoice = () => {
                         <span className="text-text-dark block  py-1 pl-16 text-xs 2xl:text-sm">Total Due</span>
                       </Grid>
                       <Grid item xs={2}>
-                        <span className="text-gray-600 block py-3.5"></span>
-                        <span className="text-gray-600 block py-3.5 bg-gray-week"></span>
-                        <span className="text-gray-600 block py-3.5"></span>
-                        <span className="text-gray-600 block py-3.5 bg-gray-week"></span>
-                        <span className="text-gray-600 block py-3.5"></span>
+                        <span className="text-gray-600 block py-3 2xl:py-3.5"></span>
+                        <span className="text-gray-600 block py-3 2xl:py-3.5 bg-gray-week"></span>
+                        <span className="text-gray-600 block py-3 2xl:py-3.5"></span>
+                        <span className="text-gray-600 block py-3 2xl:py-3.5 bg-gray-week"></span>
+                        <span className="text-gray-600 block py-3 2xl:py-3.5"></span>
                       </Grid>
                       <Grid item xs={2}>
                         <span className="text-text-dark block  py-1 pl-16  text-xs 2xl:text-sm">$60.00</span>
@@ -271,8 +277,44 @@ export const ViewInvoice = () => {
               </TableBody>
             </Table>
           </TableContainer>
+
+          <Box pt={4} width={'300px'} textAlign={'center'} mx={'auto'}>
+            <span className="font-medium text-sm text-center   text-error-base">
+              Invoices past 15 days incur a 1% late charge. Testing edits
+            </span>
+          </Box>
         </div>
       </div>
+      <Box pt={2}>
+        <span className=" px-3 font-medium text-gray-600 text-sm flex gap-2 items-center">
+          <DescriptionOutlinedIcon />
+          Invoice History
+        </span>
+        <div className="p-4 mt-4 bg-white border border-faded-light shadow-sm rounded-2xl">
+          <div className="px-1 py-1 transition-all hover:bg-gray-week bg-white cursor-pointer flex justify-between">
+            <span className=" font-medium text-text-dark text-sm">
+              <span className="text-yellow-500">Viewed</span> {''}
+              by You
+            </span>
+
+            <Box display={'flex'} gap={0.5}>
+              <span className="text-sm text-text-dark">11/04/24</span>
+              <span className="text-sm text-text-dark">8:04 am</span>
+            </Box>
+          </div>
+          <div className="px-1 py-1 transition-all hover:bg-gray-week bg-white cursor-pointer flex justify-between">
+            <span className=" font-medium text-text-dark text-sm">
+              <span className="text-yellow-500">Viewed</span> {''}
+              by You
+            </span>
+
+            <Box display={'flex'} gap={0.5}>
+              <span className="text-sm text-text-dark">11/01/24</span>
+              <span className="text-sm text-text-dark">7:28 am</span>
+            </Box>
+          </div>
+        </div>
+      </Box>
     </div>
   );
 };

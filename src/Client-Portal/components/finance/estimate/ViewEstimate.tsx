@@ -3,7 +3,6 @@ import {
   Button,
   Divider,
   Grid,
-  Link,
   Paper,
   Table,
   TableBody,
@@ -23,6 +22,8 @@ import {
   IconThumbsUp,
 } from '../../../../utils/SvgUtil';
 import logo from '../../../../assets/images/client_logo.svg';
+import { Link } from 'react-router-dom';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 
 const data = [
   { date: 'Nov 16, 2022', description: 'Mow and Trim', price: '$25.00', quantity: '1', total: '$25.00' },
@@ -35,7 +36,7 @@ export const ViewEstimate = () => {
   return (
     <div className="px-8 pb-6 pt-20 bg-gray-week">
       <div className="p-4 rounded-2xl border border-faded-light shadow-sm bg-white">
-        <Link href="/finance/estimates" sx={{ textDecoration: 'none' }}>
+        <Link to="/finance/estimates" style={{ textDecoration: 'none' }}>
           <Box display={'flex'} alignItems={'center'}>
             <IconArrowLeftSingle size={16} color="#75A428" />
             <span className="text-xs font-medium text-primary-base">Back to listing</span>
@@ -134,9 +135,15 @@ export const ViewEstimate = () => {
             </Grid>
             <Grid item xs={12} lg={6}>
               <Box display={'flex'} flexDirection={'column'} gap={2} width={'100%'} pl={6}>
-              <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} py={0.5}
+                <Box
+                  display={'flex'}
+                  justifyContent={'space-between'}
+                  alignItems={'center'}
+                  py={0.5}
                   borderRadius={'8px'}
-                  bgcolor={'#F5F7FA'} px={1}>
+                  bgcolor={'#F5F7FA'}
+                  px={1}
+                >
                   <span className="text-sm font-medium text-text-dark">Customer #</span>
                   <span className="text-sm font-medium text-text-dark">10</span>
                 </Box>
@@ -144,7 +151,15 @@ export const ViewEstimate = () => {
                   <span className="text-sm font-medium text-text-dark">Estimate#</span>
                   <span className="text-sm font-medium text-text-dark">100642</span>
                 </Box>
-                <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} py={0.5} borderRadius={'8px'} bgcolor={'#F5F7FA'} px={1}>
+                <Box
+                  display={'flex'}
+                  justifyContent={'space-between'}
+                  alignItems={'center'}
+                  py={0.5}
+                  borderRadius={'8px'}
+                  bgcolor={'#F5F7FA'}
+                  px={1}
+                >
                   <span className="text-sm font-medium text-text-dark">Estimate Date</span>
                   <span className="text-sm font-medium text-text-dark">Nov 21, 2024</span>
                 </Box>
@@ -215,19 +230,19 @@ export const ViewEstimate = () => {
                     <Grid container>
                       <Grid item xs={6}>
                         <Box pr={1}>
-                        <span className="text-gray-600 text-sm font-normal block ">
-                          <span className="text-text-dark">Notes:</span> To pay online or access our customer portal
-                          please visit us on our website.
-                        </span>
-                        <span className="text-gray-600 text-sm font-normal block ">
-                          Instructions for first time portal users:
-                        </span>
-                        <ul className="text-gray-600 text-sm font-normal list-decimal pl-5">
-                          <li>Click on “Client Login” Button on top of our homepage.</li>
-                          <li>
-                            Select Register and enter the email address provided to us and then create a password.
-                          </li>
-                        </ul>
+                          <span className="text-gray-600 text-sm font-normal block ">
+                            <span className="text-text-dark">Notes:</span> To pay online or access our customer portal
+                            please visit us on our website.
+                          </span>
+                          <span className="text-gray-600 text-sm font-normal block ">
+                            Instructions for first time portal users:
+                          </span>
+                          <ul className="text-gray-600 text-sm font-normal list-decimal pl-5">
+                            <li>Click on “Client Login” Button on top of our homepage.</li>
+                            <li>
+                              Select Register and enter the email address provided to us and then create a password.
+                            </li>
+                          </ul>
                         </Box>
                       </Grid>
                       <Grid item xs={2}>
@@ -254,8 +269,34 @@ export const ViewEstimate = () => {
               </TableBody>
             </Table>
           </TableContainer>
+          <Box pt={4} textAlign={'center'}>
+            <span className="font-medium text-sm text-center   text-error-base">
+              The estimate expires in 39 days....
+            </span>
+          </Box>
         </div>
       </div>
+      <Box pt={2}>
+        <span className="  px-3 font-medium text-gray-600 text-sm flex gap-2 items-center">
+          <DescriptionOutlinedIcon />
+          Estimate History
+        </span>
+        <div className="p-4 mt-4 w-3/5 bg-white border border-faded-light shadow-sm rounded-2xl">
+          <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
+            <span className="text-sm font-normal text-gray-600">
+              <span className="font-medium text-text-dark">Sent by Email</span> {''}
+              by LawnProSoftware.com
+            </span>
+            <Box display={'flex'} gap={0.5}>
+              <span className="text-sm text-text-dark">10/31/24</span>
+              <span className="text-sm text-text-dark">1:44 pm</span>
+            </Box>
+          </Box>
+          <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
+            <span className="text-sm font-normal text-gray-600">Sent to Email: patrickcash1@me.com</span>
+          </Box>
+        </div>
+      </Box>
     </div>
   );
 };

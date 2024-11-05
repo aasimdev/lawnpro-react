@@ -8,6 +8,7 @@ import {
   IconCompact,
   IconDoubleNote,
   IconEstimates,
+  IconLeftArrow,
   IconPrinter,
 } from '../../utils/SvgUtil';
 import { NoDataScreen } from '../components/NoDataScreen';
@@ -272,7 +273,14 @@ export const Estimates = () => {
           </div>
         </>
       ) : (
-        <NoDataScreen title="Invoices" Icon={<IconEstimates size={24} color="#525866" />} />
+        <NoDataScreen
+          title="Invoices"
+          Icon={<IconEstimates size={24} color="#525866" />}
+          desc={`It looks like there are no records to show at the moment. Currently you don't have any estimates available.`}
+          btnIcon={<IconLeftArrow size={20} color="#fff" />}
+          btnTitle={'Go back to Dashbaord'}
+          path={'/client-dashboard'}
+        />
       )}
     </div>
   );

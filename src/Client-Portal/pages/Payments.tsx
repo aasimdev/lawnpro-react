@@ -623,7 +623,7 @@ export const Payments = () => {
               <GenericTable head={tableHead} payment={'payment'}>
                 {columns.map((property, index) => (
                   <tr key={property.id} className={`hover:bg-primary-alpha  `}>
-                    <td  className={`py-3 px-3 text-sm font-normal ${index === columns.length - 1 ? '' : 'border-b'}`}>
+                    <td className={`py-3 px-3 text-sm font-normal ${index === columns.length - 1 ? '' : 'border-b'}`}>
                       <div className="flex gap-2">
                         <IconCalendar size={20} color="#99A0AE" />
                         <span className="text-gray-600">{property.date}</span>
@@ -636,7 +636,11 @@ export const Payments = () => {
                       </Box>
                     </td>
 
-                    <td className={`py-3 px-3 text-sm text-gray-600 font-normal ${index === columns.length - 1 ? '' : 'border-b'}`}>
+                    <td
+                      className={`py-3 px-3 text-sm text-gray-600 font-normal ${
+                        index === columns.length - 1 ? '' : 'border-b'
+                      }`}
+                    >
                       <Box display={'flex'} gap={1} alignItems={'center'}>
                         {property.method === 'Cash' ? <IconCash size={20} color="#99A0AE" /> : <IconCard size={20} />}
                         {property.method}

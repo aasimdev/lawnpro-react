@@ -79,7 +79,7 @@ const GenericTable: React.FC<InvoiceDataTableProps> = ({
                   }}
                 />
               </Box>
-              <div className="w-7 h-5 cursor-pointer text-soft-400 text-mini rounded-md border border-main-gray flex justify-center items-center">
+              <div className="px-1.5 py-0.5 cursor-pointer text-soft-400 text-xs rounded-md border border-main-gray  ">
                 ⌘1
               </div>
             </div>
@@ -132,27 +132,27 @@ const GenericTable: React.FC<InvoiceDataTableProps> = ({
         </div>
       )}
       <div className="overflow-x-auto">
-        <table className="min-w-full">
-          <thead>
-            <tr className="bg-gray-week text-sm font-normal text-gray-600 rounded-lg">
-              <th className="py-2 px-3 text-start flex gap-2 items-center">
-                {payment !== 'payment' && (
-                  <Checkbox
-                    checked={isAllSelected}
-                    indeterminate={selectedRows.length > 0 && selectedRows.length < head.length}
-                    onChange={handleSelectAllChange}
-                  />
-                )}
-                {head[0].title}
+        <table className="w-max min-w-full">
+          <thead className="bg-gray-week ">
+            <tr>
+              <th className="py-1 px-3 text-start   text-sm font-normal text-gray-600 ">
+                <span className="flex gap-2 items-center">
+                  {payment !== 'payment' && (
+                    <Checkbox
+                      checked={isAllSelected}
+                      indeterminate={selectedRows.length > 0 && selectedRows.length < head.length}
+                      onChange={handleSelectAllChange}
+                    />
+                  )}
+                  {head[0].title}
+                </span>
               </th>
               {head.slice(1).map((heading) => (
-                <th key={heading.id} className="py-2 px-3 text-start">
+                <th key={heading.id} className="py-1 px-3 text-sm font-normal text-gray-600 text-start">
                   {heading.title}
                 </th>
               ))}
-              {payment !== 'payment' && (
-              <th className="py-2 px-3 text-start"></th>
-              )}
+              {payment !== 'payment' && <th className="py-1 px-3 text-start"></th>}
             </tr>
           </thead>
           <tbody>{children}</tbody>

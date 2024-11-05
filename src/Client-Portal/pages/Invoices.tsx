@@ -7,6 +7,7 @@ import {
   IconCompact,
   IconInvoice,
   IconInvoiceDolor,
+  IconLeftArrow,
   IconMoneySend,
   IconPaymentSuccess,
   IconPrinter,
@@ -282,7 +283,14 @@ export const Invoices = () => {
           </div>
         </>
       ) : (
-        <NoDataScreen title="Invoices" Icon={<IconInvoice size={24} color="#525866" />} />
+        <NoDataScreen
+          title="Invoices"
+          Icon={<IconInvoice size={24} color="#525866" />}
+          desc={`It looks like there are no records to show at the moment. Currently you don't have any invoices available.`}
+          btnIcon={<IconLeftArrow size={20} color="#fff" />}
+          btnTitle={'Go back to Dashbaord'}
+          path={'/client-dashboard'}
+        />
       )}
     </div>
   );
