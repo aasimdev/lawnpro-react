@@ -10,7 +10,7 @@ interface FilterPopupProps<T> {
     handleClose: () => void;
     columns: Column<T>[];
     filters?: { [key: string]: (string | number)[] };
-    handleFilter?: (key : string, value: (string | number)[]) => void;
+    handleFilter?: (key: string, value: (string | number)[]) => void;
 }
 
 const FilterPopup = <T,>({ open, anchorEl, handleClose, filters = {}, columns, handleFilter }: FilterPopupProps<T>) => {
@@ -27,9 +27,9 @@ const FilterPopup = <T,>({ open, anchorEl, handleClose, filters = {}, columns, h
                 horizontal: 'left',
             }}
             sx={{
-                "& .MuiPopover-paper" : {
+                "& .MuiPopover-paper": {
                     borderRadius: '16px',
-                    boxShadow:'0px 16px 32px -12px rgba(14, 18, 27, 0.10)',
+                    boxShadow: '0px 16px 32px -12px rgba(14, 18, 27, 0.10)',
                     border: '1px solid #E1E4EA'
                 }
             }}
@@ -38,8 +38,8 @@ const FilterPopup = <T,>({ open, anchorEl, handleClose, filters = {}, columns, h
                 {columns.map((column, index) => (
                     (column.filterType && column.filterOptions &&
                         <div className="flex flex-col col-span-1 text-sm font-medium gap-1" key={generateRandomId()}>
-                            <span>{column.header}</span>
-                            <Select2 options={column.filterOptions} onChange={handleFilter} accessor={String(column.accessor)} placeholder={`All ${column.header}`} value={filters[String(column.accessor)]} clearButton={true}/>
+                            <span>{column.filterLabel ? column.filterLabel : column.header}</span>
+                            <Select2 options={column.filterOptions} onChange={handleFilter} accessor={String(column.accessor)} placeholder={`All ${column.filterLabel ? column.filterLabel : column.header}`} value={filters[String(column.accessor)]} clearButton={true} />
                         </div>
                     )
                 ))}

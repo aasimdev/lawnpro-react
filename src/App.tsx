@@ -5,23 +5,26 @@ import { ThemeProvider } from '@mui/material';
 import theme from './config/ThemeConfig';
 import Customers from './pages/customer/Customers';
 import Login from './pages/Login';
-import ForgotPassword from './pages/ForgotPassword'; 
-import ClientLayout from './Client-Portal/layout/ClientLayout';
-import { Invoices } from './pages/client-portal/Invoices';
-import { ViewInvoice } from './Client-Portal/components/finance/invoice/ViewInvoice';
-import { Estimates } from './pages/client-portal/Estimates';
-import { ViewEstimate } from './Client-Portal/components/finance/estimate/ViewEstimate';
+import ForgotPassword from './pages/ForgotPassword';
 import MainLayout from './layouts/MainLayout';
 import CustomerEditor from './pages/customer/CustomerEditor';
-import { Payments } from './pages/client-portal/Payments';
 import Properties from './pages/property/Properties';
 import { Pictures } from './pages/client-portal/Pictures';
-import { WorkRequest } from './pages/client-portal/WorkRequest';
-import { ViewDocument } from './Client-Portal/components/finance/document/ViewDocument';
-import { Documents } from './pages/client-portal/Documents';
 import Reviews from './pages/review/Reviews';
 import ManageCredit from './pages/customer/ManageCredit';
+import ClientLayout from './layouts/ClientLayout';
 import { ClientDashboard } from './pages/client-portal/ClientDashboard';
+import { Invoices } from './pages/client-portal/Invoices';
+import { Estimates } from './pages/client-portal/Estimates';
+import { Documents } from './pages/client-portal/Documents';
+import { WorkRequest } from './pages/client-portal/WorkRequest';
+import { ViewInvoice } from './components/client-portal/finance/ViewInvoice';
+import { ViewEstimate } from './components/client-portal/finance/ViewEstimate';
+import { ViewDocument } from './components/client-portal/finance/ViewDocument';
+import { Payments } from './pages/client-portal/Payments';
+import Employees from './pages/employee/Employees'
+import Crews from './pages/crew/Crews'
+import Vendors from './pages/vendor/Vendors'
 
 const clientRoutes =  [
   '/client-dashboard',
@@ -78,6 +81,9 @@ const App: React.FC = () => {
               <Route path="/properties" element={<Properties />} />
               <Route path="/reviews" element={<Reviews />} />
               <Route path="/customers/manage-cards" element={<ManageCredit />} />
+              <Route path="/resource/employees" element={<Employees />} />
+              <Route path="/resource/crews" element={<Crews />} />
+              <Route path="/resource/vendors-suppliers" element={<Vendors />} />
               {/* Add more main app routes here */}
             </Routes>
           </MainLayout>

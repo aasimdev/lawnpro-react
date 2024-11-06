@@ -12,13 +12,13 @@ import {
   TableRow,
 } from '@mui/material';
 import React from 'react';
-import { IconArrowLeftSingle, IconInvoice, IconPrinter } from '../../../../utils/SvgUtil';
-import DropdownMenu from '../../../../components/DropdownMenu';
-import paypal from '../../../../assets/icons/PayPal.svg';
-import Visa from '../../../../assets/icons/Visa.svg';
-import Mastercard from '../../../../assets/icons/Mastercard.svg';
-import Amex from '../../../../assets/icons/Amex.svg';
-import logo from '../../../../assets/images/client_logo.svg';
+import { IconArrowLeftSingle, IconInvoice, IconPrinter } from '../../../utils/SvgUtil';
+import DropdownMenu from '../../DropdownMenu';
+import paypal from '../../../assets/icons/PayPal.svg';
+import Visa from '../../../assets/icons/Visa.svg';
+import Mastercard from '../../../assets/icons/Mastercard.svg';
+import Amex from '../../../assets/icons/Amex.svg';
+import logo from '../../../assets/images/client_logo.svg';
 import { Link } from 'react-router-dom';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 

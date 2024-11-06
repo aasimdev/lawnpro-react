@@ -1,4 +1,4 @@
-import { IconCredit, IconCustomers, IconDashboard, IconProperties, IconReviews } from "../utils/SvgUtil";
+import { IconCredit, IconCustomers, IconDashboard, IconProperties, IconReviews, IconSingleUserUnfilled, IconUserGroup } from "../utils/SvgUtil";
 interface UrlConfigType {
     [path: string]: {
         title: string;
@@ -17,4 +17,9 @@ export const UrlConfig: UrlConfigType = {
     '/reviews/': { title: 'Reviews', icon: IconReviews },
     '/customers/manage-cards': { title: 'Manage Credit Cards/ACH', icon: IconCredit },
     '/customers/manage-cards/': { title: 'Manage Credit Cards/ACH', icon: IconCredit },
+    '/resource/employees': { title: 'Employees', icon: IconSingleUserUnfilled },
+    '/resource/employees/': { title: 'Employees', icon: IconSingleUserUnfilled },
+    '/resource/crews': { title: 'Crews', icon: IconUserGroup },
+    '/resource/crews/': { title: 'Crews', icon: IconUserGroup },
+    '/resource/vendors-suppliers': { title: 'Vendors', icon: IconSingleUserUnfilled },
 }

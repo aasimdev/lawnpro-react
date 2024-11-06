@@ -14,6 +14,7 @@ export interface Column<T> {
     render?: (row: T) => React.ReactNode;
     filterOptions?: FilterOption[];
     filterType?: 'text' | 'select';
+    filterLabel?: string;
 }
 
 interface ColumnSelectorProps<T> {

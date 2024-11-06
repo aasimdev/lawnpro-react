@@ -12,8 +12,8 @@ import {
   IconPaymentSuccess,
   IconPrinter,
 } from '../../utils/SvgUtil';
-import { NoDataScreen } from '../../Client-Portal/components/NoDataScreen';
-import GenericTable from '../../Client-Portal/components/GenericTable';
+import GenericTable from '../../components/client-portal/GenericTable';
+import { NoDataScreen } from '../../components/client-portal/NoDataScreen';
 
 const invoicesData = [
   {

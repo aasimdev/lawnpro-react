@@ -36,10 +36,10 @@ import {
 } from '../../utils/SvgUtil';
 import { CheckCircle, OpenInNew } from '@mui/icons-material';
 import { ReactComponent as WisestackPatternSVG } from '../../assets/icons/WisestackPattern.svg';
-import GenricModal from '../../Client-Portal/components/GenericModal';
 import placeholder from '../../assets/icons/Placeholder.svg';
 import us from '../../assets/country/us.svg';
-import GenericTable from '../../Client-Portal/components/GenericTable';
+import GenricModal from '../../components/client-portal/GenericModal';
+import GenericTable from '../../components/client-portal/GenericTable';
 
 const balances = [
   {

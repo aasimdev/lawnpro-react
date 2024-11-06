@@ -1,7 +1,7 @@
 import React from 'react';
-import LogoImage from '../../assets/icons/client-logo.svg';
-import { IconUser } from '../../utils/SvgUtil';
+import LogoImage from '../assets/icons/client-logo.svg';
 import { Button } from '@mui/material';
+import { IconUser } from '../utils/SvgUtil';
 
 export const Header = () => {
   return (

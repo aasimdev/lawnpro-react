@@ -1,8 +1,8 @@
 import { Box, Button, Divider, Grid } from '@mui/material';
 import React from 'react';
-import { IconArrowLeftSingle, IconDocumentAttachment, IconPrinter } from '../../../../utils/SvgUtil';
-import logo from '../../../../assets/images/client_logo.svg';
+import logo from '../../../assets/images/client_logo.svg';
 import { Link } from 'react-router-dom';
+import { IconArrowLeftSingle, IconDocumentAttachment, IconPrinter } from '../../../utils/SvgUtil';
 
 export const ViewDocument = () => {
   return (

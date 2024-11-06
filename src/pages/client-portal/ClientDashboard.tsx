@@ -13,12 +13,10 @@ import {
 } from '../../utils/SvgUtil';
 import { Box, Button, Chip, Divider, Grid, Link } from '@mui/material';
 import avatar from '../../assets/images/avatar.svg';
-// import DashboardItem from '../../components/Dashboard/DashboardItem';
 import { CheckCircle, OpenInNew } from '@mui/icons-material';
-
 import { ReactComponent as WisestackPatternSVG } from '../../assets/icons/WisestackPattern.svg';
-import { PropertyTable } from '../../Client-Portal/components/PropertyTable';
-import EditModal from '../../Client-Portal/components/EditContactModal';
+import EditModal from '../../components/client-portal/EditContactModal';
+import { PropertyTable } from '../../components/client-portal/PropertyTable';
 
 const statement = [
   {

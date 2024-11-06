@@ -6,7 +6,7 @@ import Pagination from "../controllers/Pagination";
 import ColumnSelector, { Column } from "./ColumnSelector";
 import clsx from 'clsx'
 import FilterPopup from "./FilterPopup";
-interface DataTableProps<T extends { id: number }> {
+interface DataTableProps<T extends { id: number, isFixed?: boolean }> {
     data: T[];
     columns: Column<T>[];
     totalPages: number;
@@ -18,9 +18,11 @@ interface DataTableProps<T extends { id: number }> {
     renderActions?: (row: T) => React.ReactNode; // New prop for customizable actions
     isSelectable?: Boolean;
     isFilter?: Boolean;
+    showPrinter?: Boolean;
+    showExportCSV?: Boolean;
 }
 
-const DataTable = <T extends { id: number }>({ data, columns, actionMenu, isSelectable = true, isFilter = true, handlePageSizeChange, handleFilter, totalPages, onSelectionChange, handleSearch, renderActions }: DataTableProps<T>) => {
+const DataTable = <T extends { id: number, isFixed?: boolean }>({ data, columns, actionMenu, isSelectable = true, isFilter = true, showPrinter = true, showExportCSV = false, handlePageSizeChange, handleFilter, totalPages, onSelectionChange, handleSearch, renderActions }: DataTableProps<T>) => {
     const [pageSize, setPageSize] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
     const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
@@ -95,7 +97,7 @@ const DataTable = <T extends { id: number }>({ data, columns, actionMenu, isSele
     const handleBulkCheck = (event: React.ChangeEvent<HTMLInputElement>): void => {
         if (event.target.checked) {
             // Select all rows: create a new Set with all row IDs
-            const allRowIds = new Set(data.map(row => row.id)); // Assuming `data` has an `id` for each row
+            const allRowIds = new Set(data.filter(row => !(row.isFixed === true)).map(row => row.id)); // Assuming `data` has an `id` for each row
             setSelectedRows(allRowIds);
             onSelectionChange?.(data); // Notify parent with all rows selected
         } else {
@@ -152,7 +154,9 @@ const DataTable = <T extends { id: number }>({ data, columns, actionMenu, isSele
                     </div>
                     {/* Right */}
                     <div className="flex items-center gap-3">
-                        <Button startIcon={<IconPrinter size={18} />}>Print</Button>
+                        {showPrinter &&
+                            <Button startIcon={<IconPrinter size={18} />}>Print</Button>
+                        }
                         {/* <DropdownMenu icon={<IconLayoutColumn size={18} />} title="16/16 Columns" items={actionDropdown} className="bg-white text-[#525866] rounded-lg border-solid border-[1px] border-main-gray" /> */}
                         <ColumnSelector
                             columns={columns}
@@ -168,8 +172,8 @@ const DataTable = <T extends { id: number }>({ data, columns, actionMenu, isSele
                                 {isSelectable &&
                                     (<th className="flex items-center px-4 py-2 border-b cursor-pointer ">
                                         <Checkbox onChange={handleBulkCheck}
-                                            checked={selectedRows.size === data.length}
-                                            indeterminate={selectedRows.size > 0 && selectedRows.size < data.length} />
+                                            checked={selectedRows.size === data.filter(row => !(row.isFixed === true)).length}
+                                            indeterminate={selectedRows.size > 0 && selectedRows.size < data.filter(row => !(row.isFixed === true)).length} />
                                     </th>)
                                 }
                                 {columns
@@ -205,7 +209,7 @@ const DataTable = <T extends { id: number }>({ data, columns, actionMenu, isSele
                                     )
                                 }>
                                     {isSelectable &&
-                                        (<td className="px-4 py-2">
+                                        ((row.isFixed !== undefined && row.isFixed === true) ? <td></td> : <td className="px-4 py-2">
                                             <Checkbox
                                                 checked={selectedRows.has(row.id)}
                                                 onChange={() => handleCheckboxChange(row.id)} />

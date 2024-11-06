@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { List, Divider } from '@mui/material';
-import LogoImage from '../../assets/images/client_logo.svg';
-import { generateRandomId } from '../../utils/MathUtil';
-import NestedClientList from '../components/NestedClientList';
-import clientMenuConfig from '../../config/ClientMenuCofig';
+import LogoImage from '../assets/images/client_logo.svg';
+import { generateRandomId } from '../utils/MathUtil';
+import clientMenuConfig from '../config/ClientMenuCofig';
+import NestedClientList from '../components/client-portal/NestedClientList';
 
 interface SideBarProps {
   open: boolean;

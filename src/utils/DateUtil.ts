@@ -41,6 +41,41 @@ export const formatDateString = (dateString: string, format: string): string => 
         .replace('D', parseInt(day, 10).toString()); // Single-digit day if "D" is used
 }
 
+export const formatDateTimeString = (dateString: string, format: string): string => {
+    const date = new Date(dateString);
+
+    // Define each part of the date
+    const fullYear = date.getFullYear().toString();
+    const shortYear = fullYear.slice(-2);
+    const monthLong = date.toLocaleString('en-US', { month: 'long' });
+    const monthShort = date.toLocaleString('en-US', { month: 'short' });
+    const monthNumeric = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+
+    // Define each part of the time
+    const hours24 = date.getHours().toString().padStart(2, '0');
+    const hours12 = (date.getHours() % 12 || 12).toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const seconds = date.getSeconds().toString().padStart(2, '0');
+    const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
+
+    // Replace the format string with the appropriate date and time parts
+    return format
+        .replace('YYYY', fullYear)
+        .replace('YY', shortYear)
+        .replace('MMMM', monthLong)
+        .replace('MMM', monthShort)
+        .replace('MM', monthNumeric)
+        .replace('DD', day)
+        .replace('D', parseInt(day, 10).toString())
+        .replace('HH', hours24)
+        .replace('hh', hours12)
+        .replace('mm', minutes)
+        .replace('ss', seconds)
+        .replace('A', ampm); // AM/PM notation
+}
+
+
 export const getMonthAndDate = (dateString: string): { month: string, day: number } => {
     const date = new Date(dateString);
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button, Checkbox, Menu, MenuItem, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { IconCsv, IconDownload, IconFilter, IconPdf, IconSearch, IconSorting } from '../../utils/SvgUtil';
-import { FilterDropdown } from './FilterDropdown';
+import { FilterDropdown } from '../../components/client-portal/FilterDropdown';
 import DropdownMenu from '../../components/DropdownMenu';
 
 type InvoiceDataTableProps = {

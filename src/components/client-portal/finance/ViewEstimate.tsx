@@ -20,8 +20,8 @@ import {
   IconPrinter,
   IconThumbsDown,
   IconThumbsUp,
-} from "../../../../utils/SvgUtil";
-import logo from "../../../../assets/images/client_logo.svg";
+} from "../../../utils/SvgUtil";
+import logo from '../../../assets/images/client_logo.svg';
 import { Link } from "react-router-dom";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 

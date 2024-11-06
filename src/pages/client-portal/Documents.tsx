@@ -8,7 +8,7 @@ import {
   IconDocumentValidation,
   IconPrinter,
 } from '../../utils/SvgUtil';
-import GenericTable from '../../Client-Portal/components/GenericTable';
+import GenericTable from '../../components/client-portal/GenericTable';
 
 const status = [
   {

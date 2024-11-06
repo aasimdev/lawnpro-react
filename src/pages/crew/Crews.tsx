@@ -1,37 +1,35 @@
+import { Avatar, Button, Link } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import CustomBreadcrumbs from "../../components/controllers/CustomBreadcrumbs";
-import { Avatar, Button, Link, Rating } from "@mui/material";
-import { IconAdd,IconHome, IconMoreLine } from "../../utils/SvgUtil";
-import { DropdownMenuItemProps } from "../../components/controllers/DropdownMenu";
-import DataTable from "../../components/datatable/DataTable";
+import { IconAdd, IconCall, IconHome, IconLocation, IconMail, IconMoreLine } from "../../utils/SvgUtil";
 import { Column } from "../../components/datatable/ColumnSelector";
-import ConfirmDialog from "../../components/dialog/ConfirmDialog";
+import { DropdownMenuItemProps } from "../../components/controllers/DropdownMenu";
 import IconDropdown from "../../components/controllers/IconDropdown";
-import { useNavigate } from "react-router-dom";
+import CustomBreadcrumbs from "../../components/controllers/CustomBreadcrumbs";
+import DataTable from "../../components/datatable/DataTable";
+import ConfirmDialog from "../../components/dialog/ConfirmDialog";
+import clsx from 'clsx'
+import { formatDateTimeString } from "../../utils/DateUtil";
+import { generateRandomId } from "../../utils/MathUtil";
 
-interface ReviewData {
+interface CrewData {
     id: number;
     name: string;
-    date: string;
-    rating: number;
-    service: string;
-    review: string;
-    avatar: string;
+    members: string[];
+    tags: string[];
+    notes: string;
 }
 
-const Reviews: React.FC = () => {
-    const [reviews, setReviews] = useState<ReviewData[]>([]);
-    const [selectedReviews, setSelectedReviews] = useState<ReviewData[]>([]);
+const Crews: React.FC = () => {
+    const [employees, setEmployees] = useState<CrewData[]>([]);
+    const [selectedEmployees, setSelectedEmployees] = useState<CrewData[]>([]);
     const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
-    const reviewData: ReviewData[] = [{
+    const crewData: CrewData[] = [{
         id: 1053,
-        name: "Patrick Cash",
-        date: "2024-10-03",
-        rating: 4.6,
-        service: "Snow Removal",
-        review: "Snow was removed really well.",
-        avatar: "/images/tempAvatar.jpg"
+        name: "Backup Crew	",
+        members: ["Heather Carter", "Pat Cash"],
+        tags: ['crewTag'],
+        notes: ""
     }]
 
     const handleFilter = (filters: { [key: string]: (string | number)[] }) => {
@@ -51,8 +49,8 @@ const Reviews: React.FC = () => {
         setDeleteDialogOpen(false);
     };
 
-    const handleSelectionChange = (selectedRows: ReviewData[]) => {
-        setSelectedReviews(selectedRows);
+    const handleSelectionChange = (selectedRows: CrewData[]) => {
+        setSelectedEmployees(selectedRows);
     };
 
     const handleSearch = (searchKeyword: string) => {
@@ -66,7 +64,7 @@ const Reviews: React.FC = () => {
         // };
 
         // fetchData(); // Call the function
-        setReviews(reviewData)
+        setEmployees(crewData)
 
     }, []); // Empty dependency array to run only on component mount
 
@@ -78,36 +76,54 @@ const Reviews: React.FC = () => {
             underline="hover"
             key="2"
             color="black"
-            href="/review/"
+            href="/resource/crews"
         >
-            Reviews
+            Crews
         </Link>
     ];
 
-    const columns: Column<ReviewData>[] = [
-        { header: 'ID', accessor: 'id', sortable: true },
+    const columns: Column<CrewData>[] = [
         {
-            header: 'Name', accessor: 'name', sortable: true,
-            render: (row: ReviewData) => (
-                <div className="flex items-center gap-2">
-                    <Avatar src={row.avatar} alt="" />
-                    <div className="flex flex-col">
-                        <span className="text-sm font-medium">{row['name']}</span>
-                    </div>
+            header: 'Name', accessor: 'name', sortable: false,
+            render: (row: CrewData) => (
+                <span className="text-sm font-medium">{row.name}</span>
+            )
+        },
+        {
+            header: 'Members', accessor: 'members', sortable: false,
+            render: (row: CrewData) => (
+                <div className="flex flex-col gap-1">
+                    {
+                        row.members.map((member, index) => (
+                            <span key={generateRandomId()} className="text-sm">{member}</span>
+                    ))
+                    }
                 </div>
             )
         },
-        { header: 'Date', accessor: 'date', sortable: true },
         {
-            header: 'Rating', accessor: 'rating', sortable: true,
-            render: (row: ReviewData) => (
+            header: "Tags", accessor: 'tags', sortable: false,
+            render: (row: CrewData) => (
                 <div>
-                    <Rating value={row.rating} readOnly={true} precision={0.1}/>
+                    {row['tags'].length > 0 &&
+                        (
+                            <div className="flex items-center justify-start gap-2">
+                                <div className="px-2 py-1 border rounded-md">
+                                    <span className="text-xs text-gray-600 font-medium">{row['tags'][0]}</span>
+                                </div>
+                                {
+                                    row['tags'].length > 1 &&
+                                    (
+                                        <div className="px-2 border rounded-full bg-faded-lighter">
+                                            <span className="text-xs text-faded-base font-medium ">+{row['tags'].length - 1}</span>
+                                        </div>
+                                    )
+                                }
+                            </div>)
+                    }
                 </div>
             )
         },
-        { header: 'Service', accessor: 'service', sortable: false },
-        { header: 'Review', accessor: 'review', sortable: false },
     ];
 
     const actionDropdown: DropdownMenuItemProps[] = [{
@@ -116,9 +132,12 @@ const Reviews: React.FC = () => {
     }
     ]
 
-    const renderAdditionalActions = (row: ReviewData) => {
+    const renderAdditionalActions = (row: CrewData) => {
         const additionalActions: DropdownMenuItemProps[] = [{
-            title: 'Delete Review',
+            title: 'Edit Crew',
+            trigger: () => console.log(row)
+        }, {
+            title: 'Delete Crew',
             trigger: () => console.log(row)
         }]
         return (
@@ -135,7 +154,7 @@ const Reviews: React.FC = () => {
                     <Button className="!bg-primary-base !text-white"><IconAdd /> Link Google Business </Button>
                 </div>
             </div>
-            <DataTable data={reviews}
+            <DataTable data={employees}
                 columns={columns}
                 totalPages={5}
                 actionMenu={actionDropdown}
@@ -144,6 +163,7 @@ const Reviews: React.FC = () => {
                 handleFilter={handleFilter}
                 handleSearch={handleSearch}
                 renderActions={renderAdditionalActions}
+                showPrinter={false}
             />
             {/* Dialogs */}
             <ConfirmDialog
@@ -157,4 +177,4 @@ const Reviews: React.FC = () => {
     )
 }
 
-export default Reviews
+export default Crews;

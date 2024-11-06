@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
-import { NoDataScreen } from '../../Client-Portal/components/NoDataScreen';
-import { IconAddCircle, IconDateCalendar, IconFilter, IconSearch, IconSorting, IconWork } from '../../utils/SvgUtil';
+import {
+  IconAddCircle,
+  IconDateCalendar,
+  IconFilter,
+  IconMail,
+  IconPhone,
+  IconSearch,
+  IconSorting,
+  IconWork,
+} from '../../utils/SvgUtil';
 import { Box, Button, Divider, TextField } from '@mui/material';
-import { FilterDropdown } from '../../Client-Portal/components/FilterDropdown';
 import DropdownMenu from '../../components/DropdownMenu';
 import user from '../../assets/images/user-img.svg';
+import { NoDataScreen } from '../../components/client-portal/NoDataScreen';
+import { FilterDropdown } from '../../components/client-portal/FilterDropdown';
 
 const status = [
   {
@@ -139,20 +148,34 @@ export const WorkRequest = () => {
             </Box>
             <div className="grid grid-cols-2 gap-2">
               <Box display={'flex'} flexDirection={'column'} gap={1}>
-                <Box display={'flex'} flexDirection={'column'} gap={0.4}>
+                <Box display={'flex'} flexDirection={'column'} gap={1}>
                   <span className="text-gray-600 font-normal text-xs">Status</span>
                   <div className="py-1 px-2  w-24  rounded-lg text-gray-600 items-center font-normal text-xs bg-white border border-faded-light flex gap-1">
                     <div className="w-1.5 h-1.5 rounded-full bg-success-base"></div>
                     Completed
                   </div>
                 </Box>
+                <Box display={'flex'} flexDirection={'column'} gap={1}>
+                  <span className="text-gray-600 font-normal text-xs">Email</span>
+                  <Box display={'flex'} gap={0.5} alignItems={'center'}>
+                    <IconMail size={20} color="#525866" />
+                    <span className="text-gray-600 font-normal text-sm">heather_carter@gmail.com</span>
+                  </Box>
+                </Box>
               </Box>
               <Box display={'flex'} flexDirection={'column'} gap={1}>
-                <Box display={'flex'} flexDirection={'column'} gap={0.4}>
+                <Box display={'flex'} flexDirection={'column'} gap={1}>
                   <span className="text-gray-600 font-normal text-xs">Created At</span>
                   <Box display={'flex'} gap={0.5} alignItems={'center'}>
                     <IconDateCalendar size={20} color="#525866" />
                     <span className="text-gray-600 font-normal text-sm">June 04, 2024</span>
+                  </Box>
+                </Box>
+                <Box display={'flex'} flexDirection={'column'} gap={1}>
+                  <span className="text-gray-600 font-normal text-xs mt-1">Cell Phone</span>
+                  <Box display={'flex'} gap={0.5} alignItems={'center'}>
+                    <IconPhone size={20} color="#525866" />
+                    <span className="text-gray-600 font-normal text-sm">(555) 000-0000</span>
                   </Box>
                 </Box>
               </Box>

@@ -1,6 +1,6 @@
 // menuConfig.ts
 import React from "react";
-import { IconDashboard, IconStartup, IconInvoice2Mail, IconCustomers, IconProperties, IconResources, IconAutomation, IconSchedule, IconTodo, IconNotes, IconTimeQuarter, IconDollarSquare, IconPlask, IconDocAttach, IconContracts, IconAnalytics, IconChatting, IconCallRinging, IconCalculator, IconStore, IconDatabase, IconMessage, IconMail, IconLeaf, IconStarSquare, IconCredit, IconCreditACH, IconCreditChange } from "../utils/SvgUtil";
+import { IconDashboard, IconStartup, IconInvoice2Mail, IconCustomers, IconProperties, IconResources, IconAutomation, IconSchedule, IconTodo, IconNotes, IconTimeQuarter, IconDollarSquare, IconPlask, IconDocAttach, IconContracts, IconAnalytics, IconChatting, IconCallRinging, IconCalculator, IconStore, IconDatabase, IconMessage, IconMail, IconLeaf, IconStarSquare, IconCredit, IconCreditACH, IconCreditChange, IconSingleUserUnfilled, IconUserGroup } from "../utils/SvgUtil";
 // import { ReactComponent as Invoice2MailSVG } from '../assets/icons/invoice2mail.svg'
 export interface SidebarItem {
     title: string;
@@ -68,14 +68,19 @@ export const sidebarConfig: SidebarItem[] = [
         subMenu: [
             {
                 title: "Employees",
-                icon: IconCustomers,
-                url: "/employees"
+                icon: IconSingleUserUnfilled,
+                url: "/resource/employees"
             },
             {
                 title: "Crews",
-                icon: IconProperties,
-                url: "/crews"
-            }
+                icon: IconUserGroup,
+                url: "/resource/crews"
+            },
+            {
+                title: "Vendor/Suppliers",
+                icon: IconSingleUserUnfilled,
+                url: "/resource/vendors-suppliers"
+            },
         ]
     },
     {
