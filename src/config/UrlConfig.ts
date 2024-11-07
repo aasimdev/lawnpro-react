@@ -1,4 +1,4 @@
-import { IconCredit, IconCustomers, IconDashboard, IconProperties, IconReviews, IconSingleUserUnfilled, IconUserGroup } from "../utils/SvgUtil";
+import { IconCredit, IconCustomers, IconDashboard, IconProperties, IconRepair, IconReviews, IconSettings, IconSingleUserUnfilled, IconTags, IconUserGroup } from "../utils/SvgUtil";
 interface UrlConfigType {
     [path: string]: {
         title: string;
@@ -22,4 +22,10 @@ export const UrlConfig: UrlConfigType = {
     '/resource/crews': { title: 'Crews', icon: IconUserGroup },
     '/resource/crews/': { title: 'Crews', icon: IconUserGroup },
     '/resource/vendors-suppliers': { title: 'Vendors', icon: IconSingleUserUnfilled },
+    '/resource/items-services': { title: 'Items & Services', icon: IconSettings },
+    '/resource/items-services/inventory-items': { title: 'Items & Services', icon: IconSettings },
+    '/resource/items-services/packages': { title: 'Items / Services Packages', icon: IconSettings },
+    '/resource/items-services/categories': { title: 'Items & Services Categories', icon: IconSettings },
+    '/resource/equipments': { title: 'Trucks / Equipment', icon: IconRepair },
+    '/resource/tags': { title: 'Tags', icon: IconTags },
 }

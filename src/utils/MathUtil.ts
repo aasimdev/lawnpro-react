@@ -42,3 +42,7 @@ export const formatToShortCurrency = (value: number): string => {
 export const generateRandomId = (): string => {
     return Math.random().toString(36).substring(2, 8);
 };
+
+export const toDecimalPlaces = (num: number, decimals = 2) : string => {
+    return num.toFixed(decimals);
+}

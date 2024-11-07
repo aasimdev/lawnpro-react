@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/**/*.{js,jsx,ts,tsx}', // Scan React files
+    "./src/**/*.{js,jsx,ts,tsx}", // Scan React files
   ],
   theme: {
     extend: {
@@ -10,7 +10,7 @@ module.exports = {
       },
       colors: {
         'main-gray': '#E1E4EA', // Define a custom blue color
-        'soft-400': '#99A0AE',
+        'soft-400': "#99A0AE",
         'stroke-300': '#CACFD8',
         'primary-base': '#75A428',
         'primary-alpha': '#A2DC3F1A',
@@ -28,7 +28,7 @@ module.exports = {
         'blue-400': '#6895FF',
         'neutral-800': '#222530',
         'faded-base': '#717784',
-        'faded-lighter': '#F2F5F8',
+        'faded-lighter': "#F2F5F8",
         'success-base': '#75A428',
         'success-dark': '#1B290A',
         'success-light': '#D7EEA8',
@@ -46,33 +46,33 @@ module.exports = {
         'green-50': '#F6FBEA',
       },
       maxWidth: {
-        135: '540px',
+        '135': '540px'
       },
       width: {
         23: '95px',
       },
       borderWidth: {
-        mini: '1px', // Custom width of 18rem
+        'mini': '1px',   // Custom width of 18rem
       },
       padding: {
-        mid: '10px',
+        'mid': '10px'
       },
       fontSize: {
-        tiny: '10px',
-        mini: '11px',
+        'tiny': '10px',
+        'mini': '11px',
         '3xl-plus': '32px',
-        md: '16px',
+          md: '16px',
         '4xl-plus': '40px',
       },
       margin: {
-        18: '72px',
-      },
+        '18': '72px'
+      }
     },
   },
   plugins: [
     function ({ addBase }) {
       addBase({
-        '::-webkit-scrollbar': { width: '4px', height: '4px' },
+        '::-webkit-scrollbar': { width: '4px', height: "4px" },
         '::-webkit-scrollbar-track': { backgroundColor: 'transparent' },
         '::-webkit-scrollbar-thumb': {
           borderRadius: '999px',
@@ -100,4 +100,5 @@ module.exports = {
       });
     },
   ],
-};
+}
+

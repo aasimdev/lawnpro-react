@@ -22,7 +22,7 @@ const NestedListItem: React.FC<NestedListItemProps> = ({ baseUrl, menu, hovered,
         }
         // Check if any children match the current URL
         if (item.subMenu) {
-            return item.subMenu.some((child) => child.url === location.pathname);
+            return item.subMenu.some((child) => child.url &&location.pathname.startsWith(child.url ));
         }
         return false;
     };

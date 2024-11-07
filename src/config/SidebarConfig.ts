@@ -1,6 +1,6 @@
 // menuConfig.ts
 import React from "react";
-import { IconDashboard, IconStartup, IconInvoice2Mail, IconCustomers, IconProperties, IconResources, IconAutomation, IconSchedule, IconTodo, IconNotes, IconTimeQuarter, IconDollarSquare, IconPlask, IconDocAttach, IconContracts, IconAnalytics, IconChatting, IconCallRinging, IconCalculator, IconStore, IconDatabase, IconMessage, IconMail, IconLeaf, IconStarSquare, IconCredit, IconCreditACH, IconCreditChange, IconSingleUserUnfilled, IconUserGroup } from "../utils/SvgUtil";
+import { IconDashboard, IconStartup, IconInvoice2Mail, IconCustomers, IconProperties, IconResources, IconAutomation, IconSchedule, IconTodo, IconNotes, IconTimeQuarter, IconDollarSquare, IconPlask, IconDocAttach, IconContracts, IconAnalytics, IconChatting, IconCallRinging, IconCalculator, IconStore, IconDatabase, IconMessage, IconMail, IconLeaf, IconStarSquare, IconCredit, IconCreditACH, IconCreditChange, IconSingleUserUnfilled, IconUserGroup, IconSettings, IconRepair, IconClipboard, IconTags } from "../utils/SvgUtil";
 // import { ReactComponent as Invoice2MailSVG } from '../assets/icons/invoice2mail.svg'
 export interface SidebarItem {
     title: string;
@@ -80,6 +80,31 @@ export const sidebarConfig: SidebarItem[] = [
                 title: "Vendor/Suppliers",
                 icon: IconSingleUserUnfilled,
                 url: "/resource/vendors-suppliers"
+            },
+            {
+                title: "Items & Suppliers",
+                icon: IconSettings,
+                url: "/resource/items-services"
+            },
+            {
+                title: "Truck / Equipment",
+                icon: IconRepair,
+                url: "/resource/equipments"
+            },
+            {
+                title: "Custom Fields",
+                icon: IconClipboard,
+                url: "/custom-fields"
+            },
+            {
+                title: "Email Links",
+                icon: IconMail,
+                url: "/resource/email-links"
+            },
+            {
+                title: "Tags",
+                icon: IconTags,
+                url: "/resource/tags"
             },
         ]
     },

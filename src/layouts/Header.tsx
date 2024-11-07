@@ -1,7 +1,7 @@
 import React from 'react';
 import LogoImage from '../assets/icons/client-logo.svg';
 import { Button } from '@mui/material';
-import { IconSingleUserUnfilled } from '../utils/SvgUtil';
+import { IconSingleUserUnfilled, IconUser } from '../utils/SvgUtil';
 import { Link } from 'react-router-dom';
 
 export const Header = () => {

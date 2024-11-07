@@ -175,7 +175,7 @@ const Employees: React.FC = () => {
             <div className="flex items-center justify-between">
                 <CustomBreadcrumbs elements={breadcrumbs}></CustomBreadcrumbs>
                 <div className="flex items-center gap-3">
-                    <Button className="!bg-primary-base !text-white"><IconAdd /> Link Google Business </Button>
+                    <Button className="!bg-primary-base !text-white"><IconAdd /> Add Employee </Button>
                 </div>
             </div>
             <DataTable data={employees}
