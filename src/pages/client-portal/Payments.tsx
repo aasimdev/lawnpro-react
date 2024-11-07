@@ -132,7 +132,7 @@ export const Payments = () => {
     <>
       {/* add credit modal  */}
 
-      <GenricModal open={open} handleClose={handleClose} width={'400px'}>
+      <GenricModal open={open} handleClose={handleClose} width={'400px'} radius={'20px'}>
         <div className="py-4 pr-4 pl-5 flex justify-between ">
           <Box display={'flex'} gap={2} alignItems={'center'}>
             <div className="w-10 cursor-pointer h-10 rounded-full bg-white border border-main-gray flex justify-center items-center ">
@@ -217,7 +217,7 @@ export const Payments = () => {
 
       {/* payment modal  */}
 
-      <GenricModal open={openPaymentModal} handleClose={handleClosePaymentModal} width={'400px'}>
+      <GenricModal open={openPaymentModal} handleClose={handleClosePaymentModal} width={'400px'} radius={'20px'}>
         <div className="py-4 pr-4 pl-5 flex justify-between ">
           <Box display={'flex'} gap={2} alignItems={'center'}>
             <div className="w-10 cursor-pointer h-10 rounded-full bg-white border border-main-gray flex justify-center items-center ">
@@ -427,7 +427,7 @@ export const Payments = () => {
                 color: '#000',
               },
             }}
-            onClick={handleClose}
+            onClick={handleClosePaymentModal}
           >
             Cancel
           </Button>
@@ -450,7 +450,7 @@ export const Payments = () => {
         </div>
       </GenricModal>
 
-      <GenricModal open={openWisetakModal} handleClose={handleCloseWisetakModal} width={'469px'}>
+      <GenricModal open={openWisetakModal} handleClose={handleCloseWisetakModal} width={'469px'} radius={'20px'}>
         <div className="py-4 pr-4 pl-5 flex justify-between ">
           <Box display={'flex'} gap={2} alignItems={'center'}>
             <IconWisestackLogo />

@@ -22,11 +22,13 @@ import { ViewInvoice } from './components/client-portal/finance/ViewInvoice';
 import { ViewEstimate } from './components/client-portal/finance/ViewEstimate';
 import { ViewDocument } from './components/client-portal/finance/ViewDocument';
 import { Payments } from './pages/client-portal/Payments';
-import Employees from './pages/employee/Employees'
-import Crews from './pages/crew/Crews'
-import Vendors from './pages/vendor/Vendors'
+import Employees from './pages/employee/Employees';
+import Crews from './pages/crew/Crews';
+import Vendors from './pages/vendor/Vendors';
+import { RateUs } from './pages/client-portal/RateUs';
+import { MyProfile } from './pages/client-portal/MyProfile';
 
-const clientRoutes =  [
+const clientRoutes = [
   '/client-dashboard',
   '/finance/invoices',
   '/finance/invoices/invoice-details',
@@ -37,6 +39,8 @@ const clientRoutes =  [
   '/finance/documents/document-details',
   '/pictures',
   '/work-request',
+  '/rate-us',
+  '/profile',
 ]; // Add more client routes as needed
 
 const App: React.FC = () => {
@@ -59,13 +63,15 @@ const App: React.FC = () => {
         {isClientPage ? (
           <ClientLayout sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
             <Routes>
-            <Route path="/client-dashboard" element={<ClientDashboard />} />
+              <Route path="/client-dashboard" element={<ClientDashboard />} />
               <Route path="/finance/invoices" element={<Invoices />} />
               <Route path="/finance/estimates" element={<Estimates />} />
               <Route path="/finance/documents" element={<Documents />} />
               <Route path="/finance/payments" element={<Payments />} />
               <Route path="/pictures" element={<Pictures />} />
               <Route path="/work-request" element={<WorkRequest />} />
+              <Route path="/rate-us" element={<RateUs />} />
+              <Route path="/profile" element={<MyProfile />} />
               <Route path="/finance/invoices/invoice-details" element={<ViewInvoice />} />
               <Route path="/finance/estimates/estimate-details" element={<ViewEstimate />} />
               <Route path="/finance/documents/document-details" element={<ViewDocument />} />
@@ -77,7 +83,7 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/customers" element={<Customers />} />
-              <Route path="/customers/add" element={<CustomerEditor isNew={true}/>} />
+              <Route path="/customers/add" element={<CustomerEditor isNew={true} />} />
               <Route path="/properties" element={<Properties />} />
               <Route path="/reviews" element={<Reviews />} />
               <Route path="/customers/manage-cards" element={<ManageCredit />} />

@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
-import {
-  IconAddCircle,
-  IconDateCalendar,
-  IconFilter,
-  IconMail,
-  IconPhone,
-  IconSearch,
-  IconSorting,
-  IconWork,
-} from '../../utils/SvgUtil';
+import { IconAddCircle, IconFilter, IconSearch, IconSorting, IconWork } from '../../utils/SvgUtil';
 import { Box, Button, Divider, TextField } from '@mui/material';
 import DropdownMenu from '../../components/DropdownMenu';
 import user from '../../assets/images/user-img.svg';
 import { NoDataScreen } from '../../components/client-portal/NoDataScreen';
 import { FilterDropdown } from '../../components/client-portal/FilterDropdown';
+import us from '../../assets/country/us.svg';
+import { WorkData } from '../../components/client-portal/WorkData';
 
 const status = [
   {
@@ -26,12 +19,89 @@ const status = [
     title: 'Full Paid',
   },
 ];
+const jobData = [
+  {
+    id: '#10343',
+    title: 'Basic Landscaping',
+    customer: 'Ashley Carter',
+    email: 'heather_carter@gmail.com',
+    phone: '(555) 000-0000',
+    address: '106 Gaither Drive, Gadsden NJ 08054, US',
+    createdAt: 'June 04, 2024',
+    status: {
+      label: 'Completed',
+      color: 'bg-success-base',
+    },
+  },
+  {
+    id: '#10343',
+    title: 'Garden Maintenance',
+    customer: 'Ashley Carter',
+    email: 'heather_carter@gmail.com',
+    phone: '(555) 000-0000',
+    address: '106 Gaither Drive, Gadsden NJ 08054, US',
+    createdAt: 'June 04, 2024',
+    status: {
+      label: 'In Progress',
+      color: 'bg-warning-base',
+    },
+    description:
+      'Lawn aeration, regular mowing to maintain an even height, and seasonal fertilizers to promote growth.',
+  },
+];
+const countries = [
+  { code: 'US', name: 'United States', flag: '🇺🇸' },
+  { code: 'CA', name: 'Canada', flag: '🇨🇦' },
+  { code: 'GB', name: 'United Kingdom', flag: '🇬🇧' },
+  { code: 'AU', name: 'Australia', flag: '🇦🇺' },
+];
+
+const customerTitle = [
+  {
+    label: 'No Title',
+    value: '',
+  },
+  {
+    label: '+1.',
+    value: '+1.',
+    img: us,
+  },
+  {
+    label: '+92',
+    value: '+92',
+    img: us,
+  },
+  {
+    label: '+91',
+    value: '+91',
+    img: us,
+  },
+  {
+    label: '+40',
+    value: '+40',
+    img: us,
+  },
+];
 
 export const WorkRequest = () => {
+  const [open, setOpen] = useState<boolean>(false);
+  const [opens, setOpens] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+
   const [showContent, setShowContent] = useState(false);
   const [filterAnchorEl, setFilterAnchorEl] = useState<null | HTMLElement>(null);
   const openFilter = Boolean(filterAnchorEl);
+  const [selectedValue, setSelectedValue] = useState([]); // Stores selected values
 
+  const handleChange = (key: string, value: React.SetStateAction<never[]>) => {
+    if (key === 'customer_title') {
+      setSelectedValue(value); // Updates selected values
+    }
+  };
+
+  const handleClick = () => {
+    setOpens(!opens);
+  };
   const handleButtonClick = () => {
     setShowContent(true);
   };
@@ -39,10 +109,17 @@ export const WorkRequest = () => {
   const handleFilterClick = (event: React.MouseEvent<HTMLElement>) => {
     setFilterAnchorEl(event.currentTarget);
   };
+  const handleCountrySelect = (country: { code: string; name: string; flag: string }) => {
+    setSelectedCountry(country);
+    setOpens(false);
+  };
 
   const handleFilterClose = () => {
     setFilterAnchorEl(null);
   };
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <div className="px-8 pb-6 pt-20 bg-gray-week">
@@ -73,12 +150,13 @@ export const WorkRequest = () => {
                 '&:hover': { backgroundColor: '#a2c56a', color: '#fff' },
               }}
               startIcon={<IconAddCircle size={20} color="#fff" />}
+              onClick={handleOpen}
             >
               New Request
             </Button>
           </Box>
           <Divider orientation="horizontal" />
-          <div className="flex items-center justify-between pt-4 pb-6">
+          <div className="flex items-center justify-between pt-4  ">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg shadow-sm w-72 border border-main-gray flex justify-between items-center">
                 <Box display="flex" alignItems="center" gap={1}>
@@ -132,55 +210,20 @@ export const WorkRequest = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            <Box display={'flex'} flexDirection={'column'} gap={1}>
-              <Box display={'flex'} flexDirection={'column'}>
-                <span className="text-text-dark font-bold text-sm">#10343</span>
-                <span className="text-text-dark font-medium text-sm">Basic Landscaping</span>
-              </Box>
-              <Box display={'flex'} flexDirection={'column'} gap={0.4}>
-                <span className="text-gray-600 font-normal text-xs">Customer</span>
-                <Box display={'flex'} gap={0.5} alignItems={'center'}>
-                  <img src={user} className="w-6 h-6 rounded-full" alt="" />
-                  <span className="text-gray-600 font-normal text-sm">Ashley Carter</span>
-                </Box>
-              </Box>
-            </Box>
-            <div className="grid grid-cols-2 gap-2">
-              <Box display={'flex'} flexDirection={'column'} gap={1}>
-                <Box display={'flex'} flexDirection={'column'} gap={1}>
-                  <span className="text-gray-600 font-normal text-xs">Status</span>
-                  <div className="py-1 px-2  w-24  rounded-lg text-gray-600 items-center font-normal text-xs bg-white border border-faded-light flex gap-1">
-                    <div className="w-1.5 h-1.5 rounded-full bg-success-base"></div>
-                    Completed
-                  </div>
-                </Box>
-                <Box display={'flex'} flexDirection={'column'} gap={1}>
-                  <span className="text-gray-600 font-normal text-xs">Email</span>
-                  <Box display={'flex'} gap={0.5} alignItems={'center'}>
-                    <IconMail size={20} color="#525866" />
-                    <span className="text-gray-600 font-normal text-sm">heather_carter@gmail.com</span>
-                  </Box>
-                </Box>
-              </Box>
-              <Box display={'flex'} flexDirection={'column'} gap={1}>
-                <Box display={'flex'} flexDirection={'column'} gap={1}>
-                  <span className="text-gray-600 font-normal text-xs">Created At</span>
-                  <Box display={'flex'} gap={0.5} alignItems={'center'}>
-                    <IconDateCalendar size={20} color="#525866" />
-                    <span className="text-gray-600 font-normal text-sm">June 04, 2024</span>
-                  </Box>
-                </Box>
-                <Box display={'flex'} flexDirection={'column'} gap={1}>
-                  <span className="text-gray-600 font-normal text-xs mt-1">Cell Phone</span>
-                  <Box display={'flex'} gap={0.5} alignItems={'center'}>
-                    <IconPhone size={20} color="#525866" />
-                    <span className="text-gray-600 font-normal text-sm">(555) 000-0000</span>
-                  </Box>
-                </Box>
-              </Box>
-            </div>
-          </div>
+          <WorkData
+            data={jobData}
+            img={user}
+            handleClose={handleClose}
+            open={open}
+            customerTitle={customerTitle}
+            selectedValue={selectedValue}
+            handleChange={handleChange}
+            handleClick={handleClick}
+            selectedCountry={selectedCountry}
+            opens={opens}
+            countries={countries}
+            handleCountrySelect={handleCountrySelect}
+          />
         </div>
       )}
     </div>

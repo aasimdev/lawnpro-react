@@ -7,9 +7,10 @@ interface Props {
   handleClose: () => void;
   children: React.ReactNode;
   width: string;
+  radius: string;
 }
 
-const GenricModal: React.FC<Props> = ({ open, handleClose, children, width }) => {
+const GenricModal: React.FC<Props> = ({ open, handleClose, children, width, radius }) => {
   const style = {
     position: 'absolute',
     top: '50%',
@@ -19,7 +20,9 @@ const GenricModal: React.FC<Props> = ({ open, handleClose, children, width }) =>
     maxWidth: width, // Use the `width` prop here for maxWidth
     bgcolor: 'background.paper',
     boxShadow: 24,
-    borderRadius: '20px',
+    borderRadius: radius,
+    overflowX: 'scroll',
+    height: '600px',
   };
 
   return (
