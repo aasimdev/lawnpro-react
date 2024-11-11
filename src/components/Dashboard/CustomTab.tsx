@@ -7,7 +7,7 @@ interface CustomTabProps {
 
 const CustomTab = styled(Tab)<CustomTabProps>(({ selected }) => ({
     borderRadius: 'var(--radius-6, 6px)',
-    backgroundColor: selected ? 'var(--bg-white-0, #FFF)' : 'transparent',
+    // backgroundColor: selected ? 'var(--bg-white-0, #FFF)' : 'transparent',
     boxShadow: selected
         ? '0px 6px 10px 0px rgba(14, 18, 27, 0.06), 0px 2px 4px 0px rgba(14, 18, 27, 0.03)'
         : 'none',

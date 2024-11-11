@@ -9,7 +9,7 @@ const DashboardButtonGroup: React.FC = () => {
             <div className='w-full border-[1px] border-main-gray border-solid px-3 py-1 border-r-0 hover:text-black'><span>6 Months</span></div>
             <div className='w-full border-[1px] border-main-gray border-solid px-3 py-1 rounded-r hover:text-black'><span>1 Year</span></div>
         </div>
-    )
+    // )
 }
 
 export default DashboardButtonGroup
