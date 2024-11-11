@@ -128,9 +128,24 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                   }}
                   variant="outlined"
                   sx={{
+                    outline: 'none',
                     '& .MuiInputBase-input::placeholder': {
-                      color: 'gray', // Change to your desired color
-                      opacity: 1, // Ensures the color is fully opaque
+                      color: '#99A0AE',
+                      opacity: 1,
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused': {
+                        backgroundColor: '#F5F7FA', // Active background color
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #F5F7FA', // Focused border color
+                        },
+                      },
                     },
                   }}
                 />
@@ -163,7 +178,8 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                         border: '1px solid #E1E4EA',
                         color: '#525866',
                         '&:hover': {
-                          backgroundColor: '#E1E4EA',
+                          backgroundColor: '#F5F7FA',
+                          border: '1px solid transparent',
                           color: '#000',
                         },
                       }}
@@ -198,7 +214,7 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                       justifyContent: 'center',
                       alignItems: 'center',
                       display: 'flex',
-                      border: '1px solid #0000003b',
+                      border: '1px solid #E1E4EA',
                       '&:hover': {
                         backgroundColor: 'transparent',
                       },
@@ -267,9 +283,24 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                   placeholder="106 Gaither Drive"
                   variant="outlined"
                   sx={{
+                    outline: 'none',
                     '& .MuiInputBase-input::placeholder': {
-                      color: 'gray',
+                      color: '#99A0AE',
                       opacity: 1,
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused': {
+                        backgroundColor: '#F5F7FA', // Active background color
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #F5F7FA', // Focused border color
+                        },
+                      },
                     },
                   }}
                   inputProps={{
@@ -298,7 +329,7 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                       justifyContent: 'center',
                       alignItems: 'center',
                       display: 'flex',
-                      border: '1px solid #0000003b',
+                      border: '1px solid #E1E4EA',
                       '&:hover': {
                         backgroundColor: 'transparent',
                       },
@@ -331,7 +362,7 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                         top: '45px',
                         zIndex: 10,
                         background: 'white',
-                        border: '1px solid #0000003b',
+                        border: '1px solid #E1E4EA',
                         borderRadius: '8px',
                       }}
                     >
@@ -362,9 +393,24 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                   id="input-with-icon-textfield-street2"
                   variant="outlined"
                   sx={{
+                    outline: 'none',
                     '& .MuiInputBase-input::placeholder': {
-                      color: 'gray',
+                      color: '#99A0AE',
                       opacity: 1,
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused': {
+                        backgroundColor: '#F5F7FA', // Active background color
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #F5F7FA', // Focused border color
+                        },
+                      },
                     },
                   }}
                   inputProps={{
@@ -386,9 +432,24 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                   placeholder="Ashlyn Carter"
                   variant="outlined"
                   sx={{
+                    outline: 'none',
                     '& .MuiInputBase-input::placeholder': {
-                      color: 'gray',
+                      color: '#99A0AE',
                       opacity: 1,
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused': {
+                        backgroundColor: '#F5F7FA', // Active background color
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #F5F7FA', // Focused border color
+                        },
+                      },
                     },
                   }}
                   inputProps={{
@@ -410,9 +471,24 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                   placeholder="08054"
                   variant="outlined"
                   sx={{
+                    outline: 'none',
                     '& .MuiInputBase-input::placeholder': {
-                      color: 'gray',
+                      color: '#99A0AE',
                       opacity: 1,
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused': {
+                        backgroundColor: '#F5F7FA', // Active background color
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #F5F7FA', // Focused border color
+                        },
+                      },
                     },
                   }}
                   inputProps={{
@@ -440,9 +516,24 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                   placeholder="heather_carter@gmail.com"
                   variant="outlined"
                   sx={{
+                    outline: 'none',
                     '& .MuiInputBase-input::placeholder': {
-                      color: 'gray',
+                      color: '#99A0AE',
                       opacity: 1,
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused': {
+                        backgroundColor: '#F5F7FA', // Active background color
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #F5F7FA', // Focused border color
+                        },
+                      },
                     },
                   }}
                   inputProps={{
@@ -462,9 +553,24 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                   id="input-with-icon-textfield-fax"
                   variant="outlined"
                   sx={{
+                    outline: 'none',
                     '& .MuiInputBase-input::placeholder': {
-                      color: 'gray',
+                      color: '#99A0AE',
                       opacity: 1,
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused': {
+                        backgroundColor: '#F5F7FA', // Active background color
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #F5F7FA', // Focused border color
+                        },
+                      },
                     },
                   }}
                   inputProps={{
@@ -484,9 +590,24 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                   id="input-with-icon-textfield-business-phone"
                   variant="outlined"
                   sx={{
+                    outline: 'none',
                     '& .MuiInputBase-input::placeholder': {
-                      color: 'gray',
+                      color: '#99A0AE',
                       opacity: 1,
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused': {
+                        backgroundColor: '#F5F7FA', // Active background color
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #F5F7FA', // Focused border color
+                        },
+                      },
                     },
                   }}
                   inputProps={{
@@ -506,9 +627,24 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                   id="input-with-icon-textfield-cell-phone"
                   variant="outlined"
                   sx={{
+                    outline: 'none',
                     '& .MuiInputBase-input::placeholder': {
-                      color: 'gray',
+                      color: '#99A0AE',
                       opacity: 1,
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused': {
+                        backgroundColor: '#F5F7FA', // Active background color
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #F5F7FA', // Focused border color
+                        },
+                      },
                     },
                   }}
                   inputProps={{
@@ -529,7 +665,8 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                 border: '1px solid #E1E4EA',
                 color: '#525866',
                 '&:hover': {
-                  backgroundColor: '#E1E4EA',
+                  backgroundColor: '#F5F7FA',
+                  border: '1px solid transparent',
                   color: '#000',
                 },
               }}
@@ -544,7 +681,7 @@ const EditModal: React.FC<EditModalProps> = ({ open, handleClose }) => {
                 background: '#75A428',
                 color: '#fff',
                 '&:hover': {
-                  backgroundColor: '#639922', // Darker green for hover effect
+                  backgroundColor: '#4c6f1c',
                   color: '#fff',
                 },
               }}

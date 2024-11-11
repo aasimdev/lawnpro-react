@@ -30,7 +30,10 @@ export const ViewDocument = () => {
                 background: '#75A428',
                 fontWeight: '500',
                 fontSize: '14px',
-                '&:hover': { backgroundColor: '#a2c56a', color: '#fff' },
+                '&:hover': {
+                  backgroundColor: '#4c6f1c',
+                  color: '#fff',
+                },
               }}
               startIcon={<IconPrinter size={20} color="#fff" />}
             >

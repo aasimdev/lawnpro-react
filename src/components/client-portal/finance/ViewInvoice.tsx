@@ -63,7 +63,7 @@ export const ViewInvoice = () => {
             <span className="text-xs text-text-dark font-medium">Pay Online:</span>
             <DropdownMenu
               title=""
-              className="bg-white text-[#525866] rounded-lg border-solid border-[1px] border-main-gray"
+              className="bg-white text-[#525866] rounded-lg border-solid border-[1px] border-main-gray hover:bg-gray-week hover:border-transparent"
               items={[]}
               icon={<img src={Visa} alt="Visa" />}
               icon2={<img src={Mastercard} alt="Mastercard" />}
@@ -71,7 +71,7 @@ export const ViewInvoice = () => {
             />
             <DropdownMenu
               title=""
-              className="bg-white text-[#525866] rounded-lg border-solid border-[1px] border-main-gray"
+              className="bg-white text-[#525866] rounded-lg border-solid border-[1px] border-main-gray hover:bg-gray-week hover:border-transparent"
               items={paypalCtx}
               icon={<img src={paypal} alt="paypal" />}
             />
@@ -80,7 +80,10 @@ export const ViewInvoice = () => {
                 borderRadius: '8px',
                 border: '1px solid #E1E4EA',
                 color: '#525866',
-                '&:hover': { backgroundColor: '#E1E4EA', color: '#000' },
+                '&:hover': {
+                  backgroundColor: '#F5F7FA',
+                  border: '1px solid transparent',
+                },
               }}
               startIcon={<IconPrinter size={20} color="#99A0AE" />}
             >

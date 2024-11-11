@@ -97,11 +97,22 @@ export const WorkData: React.FC<Props> = ({
               variant="outlined"
               sx={{
                 '& .MuiInputBase-input::placeholder': {
-                  color: 'gray', // Change to your desired color
-                  opacity: 1, // Ensures the color is fully opaque
+                  color: 'gray',
+                  opacity: 1,
                 },
                 '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#E1E4EA',
+                  border: ' 1px solid #E1E4EA',
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  border: ' 1px solid #E1E4EA',
+                },
+                '& .MuiOutlinedInput-root': {
+                  '&.Mui-focused': {
+                    backgroundColor: '#F5F7FA', // Active background color
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: '1px solid #F5F7FA', // Focused border color
+                    },
+                  },
                 },
               }}
             />
@@ -112,19 +123,29 @@ export const WorkData: React.FC<Props> = ({
               <span className="text-sm text-primary-base">*</span>
             </Box>
             <TextField
-              id="input-with-icon-textfield-email"
-              placeholder="heather_carter@gmail.com"
-              variant="outlined"
+              id="input-with-icon-textfield"
+              placeholder="Ashlyn Carter"
               sx={{
+                outline: 'none',
                 '& .MuiInputBase-input::placeholder': {
                   color: 'gray',
                   opacity: 1,
                 },
                 '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#E1E4EA',
+                  border: ' 1px solid #E1E4EA',
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  border: ' 1px solid #E1E4EA',
+                },
+                '& .MuiOutlinedInput-root': {
+                  '&.Mui-focused': {
+                    backgroundColor: '#F5F7FA', // Active background color
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: '1px solid #F5F7FA', // Focused border color
+                    },
+                  },
                 },
               }}
-              inputProps={{}}
             />
           </Box>
           <Box display="flex" flexDirection="column" gap={1}>
@@ -145,16 +166,32 @@ export const WorkData: React.FC<Props> = ({
               </div>
               <div className="col-span-9">
                 <TextField
-                  placeholder="(555) 000-0000"
-                  variant="outlined"
+                  id="input-with-icon-textfield"
+                  placeholder="Ashlyn Carter"
                   sx={{
+                    outline: 'none',
                     width: '100%',
-                    '& .MuiOutlinedInput-root': {
-                      borderRadius: '0px 10px 10px 0px', // Set the desired border radius here
+                    '& .MuiInputBase-input::placeholder': {
+                      color: 'gray',
+                      opacity: 1,
                     },
                     '& .MuiOutlinedInput-notchedOutline': {
-                      borderLeft: 0,
-                      borderColor: '#E1E4EA',
+                      borderRight: ' 1px solid #E1E4EA',
+                      borderTop: ' 1px solid #E1E4EA',
+                      borderBottom: ' 1px solid #E1E4EA',
+                      borderLeft: '0',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      borderRadius: '0px 10px 10px 0px',
+                      '&.Mui-focused': {
+                        backgroundColor: '#F5F7FA', // Active background color
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #F5F7FA', // Focused border color
+                        },
+                      },
                     },
                   }}
                 />
@@ -250,12 +287,24 @@ export const WorkData: React.FC<Props> = ({
               placeholder="106 Gaither Drive"
               variant="outlined"
               sx={{
+                outline: 'none',
                 '& .MuiInputBase-input::placeholder': {
                   color: 'gray',
                   opacity: 1,
                 },
                 '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#E1E4EA',
+                  border: ' 1px solid #E1E4EA',
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  border: ' 1px solid #E1E4EA',
+                },
+                '& .MuiOutlinedInput-root': {
+                  '&.Mui-focused': {
+                    backgroundColor: '#F5F7FA', // Active background color
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: '1px solid #F5F7FA', // Focused border color
+                    },
+                  },
                 },
               }}
             />
@@ -271,12 +320,24 @@ export const WorkData: React.FC<Props> = ({
                 placeholder="Ashlyn Carter"
                 variant="outlined"
                 sx={{
+                  outline: 'none',
                   '& .MuiInputBase-input::placeholder': {
                     color: 'gray',
                     opacity: 1,
                   },
                   '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: '#E1E4EA',
+                    border: ' 1px solid #E1E4EA',
+                  },
+                  '&:hover .MuiOutlinedInput-notchedOutline': {
+                    border: ' 1px solid #E1E4EA',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '&.Mui-focused': {
+                      backgroundColor: '#F5F7FA', // Active background color
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        border: '1px solid #F5F7FA', // Focused border color
+                      },
+                    },
                   },
                 }}
                 inputProps={{
@@ -296,12 +357,24 @@ export const WorkData: React.FC<Props> = ({
                 placeholder="08054"
                 variant="outlined"
                 sx={{
+                  outline: 'none',
                   '& .MuiInputBase-input::placeholder': {
                     color: 'gray',
                     opacity: 1,
                   },
                   '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: '#E1E4EA',
+                    border: ' 1px solid #E1E4EA',
+                  },
+                  '&:hover .MuiOutlinedInput-notchedOutline': {
+                    border: ' 1px solid #E1E4EA',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '&.Mui-focused': {
+                      backgroundColor: '#F5F7FA', // Active background color
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        border: '1px solid #F5F7FA', // Focused border color
+                      },
+                    },
                   },
                 }}
                 inputProps={{
@@ -340,7 +413,8 @@ export const WorkData: React.FC<Props> = ({
                 color: '#525866',
                 width: '182px',
                 '&:hover': {
-                  backgroundColor: '#E1E4EA',
+                  backgroundColor: '#F5F7FA',
+                  border: '1px solid transparent',
                   color: '#000',
                 },
               }}
@@ -357,7 +431,7 @@ export const WorkData: React.FC<Props> = ({
                 width: '182px',
 
                 '&:hover': {
-                  backgroundColor: '#639922', // Darker green for hover effect
+                  backgroundColor: '#4c6f1c',
                   color: '#fff',
                 },
               }}

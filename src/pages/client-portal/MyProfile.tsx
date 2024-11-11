@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import {
   IconAddCredit,
   IconBank,
+  IconBlankCard,
   IconCalendar,
+  IconCalendarLine,
   IconCreditCard,
   IconDelete,
   IconHidePassword,
   IconInfo,
+  IconLocked,
   IconLockPassword,
   IconLogin,
   IconMail,
@@ -15,7 +18,9 @@ import {
   IconShowPassword,
   IconSingleUserUnfilled,
 } from '../../utils/SvgUtil';
-import { Box, Button, Divider, InputAdornment, Switch, SwitchProps, TextField } from '@mui/material';
+import placeholder from '../../assets/icons/Placeholder.svg';
+
+import { Box, Button, Divider, Grid, InputAdornment, Switch, SwitchProps, TextField, Checkbox } from '@mui/material';
 
 import { styled } from '@mui/material/styles';
 import GenericTable from '../../components/client-portal/GenericTable';
@@ -85,6 +90,11 @@ const columns = [
 
 export const MyProfile = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [showAddCard, setShowAddCard] = useState(false);
+
+  const handleAddCardClick = () => {
+    setShowAddCard(!showAddCard);
+  };
 
   return (
     <div className="px-8 pb-6 pt-20 bg-gray-week">
@@ -125,7 +135,7 @@ export const MyProfile = () => {
               </Box>
               <TextField
                 id="input-with-icon-textfield-email"
-                placeholder="hello@domain.com"
+                placeholder="hello@domaindd.com"
                 variant="outlined"
                 slotProps={{
                   input: {
@@ -143,12 +153,25 @@ export const MyProfile = () => {
                   },
                 }}
                 sx={{
+                  outline: 'none',
+
                   '& .MuiInputBase-input::placeholder': {
                     color: 'gray',
                     opacity: 1,
                   },
                   '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: '#E1E4EA',
+                    border: ' 1px solid #E1E4EA',
+                  },
+                  '&:hover .MuiOutlinedInput-notchedOutline': {
+                    border: ' 1px solid #E1E4EA', // Hover color
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '&.Mui-focused': {
+                      backgroundColor: '#F5F7FA', // Active background color
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        border: '1px solid #F5F7FA', // Focused border color
+                      },
+                    },
                   },
                 }}
               />
@@ -161,6 +184,27 @@ export const MyProfile = () => {
               <TextField
                 id="input-with-icon-textfield"
                 placeholder="Password"
+                sx={{
+                  outline: 'none',
+                  '& .MuiInputBase-input::placeholder': {
+                    color: 'gray',
+                    opacity: 1,
+                  },
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    border: ' 1px solid #E1E4EA',
+                  },
+                  '&:hover .MuiOutlinedInput-notchedOutline': {
+                    border: ' 1px solid #E1E4EA',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '&.Mui-focused': {
+                      backgroundColor: '#F5F7FA', // Active background color
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        border: '1px solid #F5F7FA', // Focused border color
+                      },
+                    },
+                  },
+                }}
                 slotProps={{
                   input: {
                     startAdornment: (
@@ -203,7 +247,8 @@ export const MyProfile = () => {
                   color: '#525866',
                   width: '50%',
                   '&:hover': {
-                    backgroundColor: '#E1E4EA',
+                    backgroundColor: '#F5F7FA',
+                    border: '1px solid transparent',
                     color: '#000',
                   },
                 }}
@@ -219,7 +264,7 @@ export const MyProfile = () => {
                   width: '50%',
 
                   '&:hover': {
-                    backgroundColor: '#639922', // Darker green for hover effect
+                    backgroundColor: '#4c6f1c',
                     color: '#fff',
                   },
                 }}
@@ -239,26 +284,32 @@ export const MyProfile = () => {
               <Button
                 sx={{
                   borderRadius: '8px',
-                  border: 'none',
+                  border: !showAddCard ? 'none' : '1px solid #E1E4EA',
                   color: '#525866',
-                  background: '#F5F7FA',
-                  '&:hover': { backgroundColor: '#F5F7FA', color: '#525866' },
+                  background: !showAddCard ? '#F5F7FA' : '',
+                  '&:hover': {
+                    backgroundColor: '#F5F7FA',
+                    border: '1px solid transparent',
+                    color: '#000',
+                  },
                 }}
                 startIcon={<IconPencilEdit size={20} color="#CACFD8" />}
-                disabled
+                disabled={!showAddCard}
               >
                 Edit
               </Button>
               <Button
                 sx={{
                   borderRadius: '8px',
-                  border: 'none',
-                  color: '#525866',
-                  background: '#F5F7FA',
-                  '&:hover': { backgroundColor: '#F5F7FA', color: '#525866' },
+                  background: !showAddCard ? '#F5F7FA' : '',
+
+                  color: '#FB3748',
+                  border: !showAddCard ? 'none' : '1px solid #FB3748',
+                  '&:hover': { backgroundColor: '#FFEBEC', color: '#FB3748', border: '1px solid transparent' },
                 }}
-                startIcon={<IconDelete size={20} color="#CACFD8" />}
-                disabled
+                startIcon={<IconDelete size={20} color={!showAddCard ? '#00000042' : '#FB3748'} />}
+                disabled={!showAddCard}
+                onClick={handleAddCardClick}
               >
                 Delete
               </Button>
@@ -266,27 +317,209 @@ export const MyProfile = () => {
           </Box>
 
           <Divider orientation="horizontal" />
-          <Box py={5} display={'flex'} textAlign={'center'} flexDirection={'column'} gap={2} justifyContent={'center'}>
-            <img src="/images/noData.svg" className=" w-20 h-20 mx-auto" alt="" />
-            <span className="text-gray-600 font-medium">No Credit Card Information Found</span>
-          </Box>
-          <Box>
-            <Button
-              variant="outlined"
-              sx={{
-                borderRadius: '8px',
-                border: '1px solid #E1E4EA',
-                color: '#525866',
-                width: '100%',
-                '&:hover': {
-                  backgroundColor: '#E1E4EA',
-                  color: '#000',
-                },
-              }}
-            >
-              Add Credit Card
-            </Button>
-          </Box>
+
+          {/* add card  */}
+          {showAddCard ? (
+            <Box pt={2} display={'flex'} flexDirection={'column'} gap={2}>
+              <div className="py-1.5 px-5 bg-gray-week uppercase text-soft-400 text-xs">
+                <span>Credit Card Details</span>
+              </div>
+              <Box display={'flex'} gap={0.5} flexDirection={'column'}>
+                <Box display={'flex'}>
+                  <span className="text-sm font-medium">Card Number</span>
+                  <span className="text-sm text-primary-base">*</span>
+                </Box>
+                <TextField
+                  id="input-with-icon-textfield"
+                  placeholder="0000 0000 0000 0000"
+                  slotProps={{
+                    input: {
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <IconBlankCard size={20} color="#99A0AE" />
+                        </InputAdornment>
+                      ),
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <img src={placeholder} alt="placeholder" />
+                        </InputAdornment>
+                      ),
+                    },
+                    htmlInput: {
+                      style: {
+                        padding: '8px',
+                        paddingLeft: 0,
+                      },
+                    },
+                  }}
+                  sx={{
+                    outline: 'none',
+
+                    '& .MuiInputBase-input::placeholder': {
+                      color: 'gray',
+                      opacity: 1,
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused': {
+                        backgroundColor: '#F5F7FA', // Active background color
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #F5F7FA', // Focused border color
+                        },
+                      },
+                    },
+                  }}
+                  variant="outlined"
+                />
+              </Box>
+              <Grid container spacing={2}>
+                <Grid item xs={12} lg={6}>
+                  <Box display="flex" flexDirection="column" gap={1}>
+                    <Box display="flex">
+                      <span className="text-sm font-medium text-text-dark">Expiration Date</span>
+                      <span className="text-sm text-primary-base">*</span>
+                    </Box>
+                    <TextField
+                      id="input-with-icon-textfield-email"
+                      placeholder="DD / MM / YYYY"
+                      variant="outlined"
+                      slotProps={{
+                        input: {
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <IconCalendarLine size={20} color="#99A0AE" />
+                            </InputAdornment>
+                          ),
+                        },
+                        htmlInput: {
+                          style: {
+                            padding: '8px',
+                            paddingLeft: 0,
+                          },
+                        },
+                      }}
+                      sx={{
+                        outline: 'none',
+
+                        '& .MuiInputBase-input::placeholder': {
+                          color: 'gray',
+                          opacity: 1,
+                        },
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: ' 1px solid #E1E4EA',
+                        },
+                        '&:hover .MuiOutlinedInput-notchedOutline': {
+                          border: ' 1px solid #E1E4EA',
+                        },
+                        '& .MuiOutlinedInput-root': {
+                          '&.Mui-focused': {
+                            backgroundColor: '#F5F7FA', // Active background color
+                            '& .MuiOutlinedInput-notchedOutline': {
+                              border: '1px solid #F5F7FA', // Focused border color
+                            },
+                          },
+                        },
+                      }}
+                    />
+                  </Box>
+                </Grid>
+                <Grid item xs={12} lg={6}>
+                  <Box display="flex" flexDirection="column" gap={1}>
+                    <Box display="flex">
+                      <span className="text-sm font-medium text-text-dark">CVC</span>
+                      <span className="text-sm text-primary-base">*</span>
+                    </Box>
+                    <TextField
+                      id="input-with-icon-textfield-fax"
+                      variant="outlined"
+                      placeholder="CVC"
+                      slotProps={{
+                        input: {
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <IconLocked size={20} />
+                            </InputAdornment>
+                          ),
+                        },
+                        htmlInput: {
+                          style: {
+                            padding: '8px',
+                            paddingLeft: 0,
+                          },
+                        },
+                      }}
+                      sx={{
+                        outline: 'none',
+
+                        '& .MuiInputBase-input::placeholder': {
+                          color: 'gray',
+                          opacity: 1,
+                        },
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: ' 1px solid #E1E4EA',
+                        },
+                        '&:hover .MuiOutlinedInput-notchedOutline': {
+                          border: ' 1px solid #E1E4EA',
+                        },
+                        '& .MuiOutlinedInput-root': {
+                          '&.Mui-focused': {
+                            backgroundColor: '#F5F7FA', // Active background color
+                            '& .MuiOutlinedInput-notchedOutline': {
+                              border: '1px solid #F5F7FA', // Focused border color
+                            },
+                          },
+                        },
+                      }}
+                    />
+                  </Box>
+                </Grid>
+              </Grid>
+              <Box display={'flex'} gap={0.3} alignItems={'center'}>
+                <Checkbox />
+                <span className="text-mini font-normal text-gray-600">
+                  Allow Gadsden Lawn Care to automatically charge this card for services rendered
+                </span>
+              </Box>
+            </Box>
+          ) : (
+            <>
+              <Box
+                py={5}
+                display={'flex'}
+                textAlign={'center'}
+                flexDirection={'column'}
+                gap={2}
+                justifyContent={'center'}
+              >
+                <img src="/images/noData.svg" className=" w-20 h-20 mx-auto" alt="" />
+                <span className="text-gray-600 font-medium">No Credit Card Information Found</span>
+              </Box>
+              <Box>
+                <Button
+                  variant="outlined"
+                  onClick={handleAddCardClick}
+                  sx={{
+                    borderRadius: '8px',
+                    border: '1px solid #E1E4EA',
+                    color: '#525866',
+                    width: '100%',
+                    '&:hover': {
+                      backgroundColor: '#F5F7FA',
+                      border: '1px solid transparent',
+                      color: '#000',
+                    },
+                  }}
+                >
+                  Add Credit Card
+                </Button>
+              </Box>
+            </>
+          )}
         </div>
         <div className="p-4 border border-faded-light rounded-2xl bg-white relative">
           <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} pb={2}>
@@ -337,7 +570,8 @@ export const MyProfile = () => {
                 color: '#525866',
                 width: '100%',
                 '&:hover': {
-                  backgroundColor: '#E1E4EA',
+                  backgroundColor: '#F5F7FA',
+                  border: '1px solid transparent',
                   color: '#000',
                 },
               }}

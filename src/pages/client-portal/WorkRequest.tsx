@@ -186,7 +186,11 @@ export const WorkRequest = () => {
                   borderRadius: '8px',
                   border: '1px solid #E1E4EA',
                   color: '#525866',
-                  '&:hover': { backgroundColor: 'transparent', color: '#525866' },
+                  '&:hover': {
+                    backgroundColor: '#F5F7FA',
+                    border: '1px solid transparent',
+                    color: '#000',
+                  },
                 }}
                 startIcon={<IconFilter size={20} color="#99A0AE" />}
                 onClick={handleFilterClick}
@@ -203,7 +207,7 @@ export const WorkRequest = () => {
 
               <DropdownMenu
                 title="Sort by"
-                className="bg-white text-gray-600 rounded-lg border-solid border-[1px] border-main-gray"
+                className="bg-white text-gray-600 rounded-lg border-solid border-[1px] border-main-gray hover:bg-gray-week hover:border-transparent"
                 items={[{ title: 'Ascending' }, { title: 'Descending' }]}
                 icon={<IconSorting size={20} color="#99A0AE" />}
               />

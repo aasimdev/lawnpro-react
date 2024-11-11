@@ -89,7 +89,7 @@ export const PropertyTable: React.FC = () => {
         </thead>
         <tbody>
           {properties.map((property) => (
-            <tr key={property.id} className="hover:bg-gray-100">
+            <tr key={property.id} className="hover:bg-primary-alpha">
               <td className="py-2 text-sm font-normal px-4 border-b">
                 <Box display={'flex'} gap={2} alignItems={'center'}>
                   <div className="w-9 h-9 flex items-center justify-center rounded-full border border-[#E1E4EA]">

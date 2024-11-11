@@ -8,9 +8,10 @@ interface Props {
   children: React.ReactNode;
   width: string;
   radius: string;
+  height?: string;
 }
 
-const GenricModal: React.FC<Props> = ({ open, handleClose, children, width, radius }) => {
+const GenricModal: React.FC<Props> = ({ open, handleClose, children, width, radius, height }) => {
   const style = {
     position: 'absolute',
     top: '50%',
@@ -22,7 +23,7 @@ const GenricModal: React.FC<Props> = ({ open, handleClose, children, width, radi
     boxShadow: 24,
     borderRadius: radius,
     overflowX: 'scroll',
-    height: '600px',
+    minHeight: height ? height : '600px',
   };
 
   return (

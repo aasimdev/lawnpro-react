@@ -91,7 +91,8 @@ export const RateUs = () => {
               </Box>
               <textarea
                 placeholder="Placeholder text..."
-                className="py-2.5 pl-3 pr-2.5 outline-none border border-faded-light rounded-xl"
+                className="py-2.5 pl-3 pr-2.5 outline-none border border-faded-light rounded-xl
+             focus:bg-gray-week focus:border-gray-week"
               ></textarea>
             </Box>
             <div className=" pt-2 flex justify-end gap-2">
@@ -103,7 +104,8 @@ export const RateUs = () => {
                   color: '#525866',
                   width: '120px',
                   '&:hover': {
-                    backgroundColor: '#E1E4EA',
+                    backgroundColor: '#F5F7FA',
+                    border: '1px solid transparent',
                     color: '#000',
                   },
                 }}
@@ -119,7 +121,7 @@ export const RateUs = () => {
                   width: '120px',
 
                   '&:hover': {
-                    backgroundColor: '#639922', // Darker green for hover effect
+                    backgroundColor: '#4c6f1c',
                     color: '#fff',
                   },
                 }}

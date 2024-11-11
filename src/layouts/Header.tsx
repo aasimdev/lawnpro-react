@@ -27,8 +27,8 @@ export const Header = () => {
               color: 'white',
               border: 'none',
               '&:hover': {
-                background: '#6c757d',
-                color: '#f0f0f0',
+                background: '#fff',
+                color: '#000',
               },
             }}
           >

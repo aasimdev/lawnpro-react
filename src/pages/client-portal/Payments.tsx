@@ -132,7 +132,7 @@ export const Payments = () => {
     <>
       {/* add credit modal  */}
 
-      <GenricModal open={open} handleClose={handleClose} width={'400px'} radius={'20px'}>
+      <GenricModal open={open} handleClose={handleClose} width={'400px'} radius={'20px'} height={'244px'}>
         <div className="py-4 pr-4 pl-5 flex justify-between ">
           <Box display={'flex'} gap={2} alignItems={'center'}>
             <div className="w-10 cursor-pointer h-10 rounded-full bg-white border border-main-gray flex justify-center items-center ">
@@ -154,10 +154,14 @@ export const Payments = () => {
               <span className="text-sm font-medium text-text-dark">Credit Amount</span>
               <span className="text-sm text-primary-base">*</span>
             </Box>
-            <div className="flex justify-between border border-faded-light rounded-lg ">
-              <div className="py-2.5 pl-3 pr-2.5 flex gap-2">
+            <div className="flex justify-between items-center border group border-faded-light rounded-lg hover:bg-gray-100 hover:border-transparent">
+              <div className="py-2.5 pl-3 pr-2.5 flex gap-2 items-center">
                 <span className="text-gray-600">$</span>
-                <input type="text" className="border-none outline-none" placeholder="00" />
+                <input
+                  type="text"
+                  className="border-none outline-none bg-transparent placeholder-gray-400 focus:bg-gray-50 group-hover:bg-gray-100"
+                  placeholder="00"
+                />
               </div>
               <Box
                 display="flex"
@@ -167,10 +171,13 @@ export const Payments = () => {
                 sx={{
                   cursor: 'pointer',
                   borderLeft: '1px solid #E1E4EA',
+                  '&:hover': {
+                    backgroundColor: '#f0f0f0', // Adds hover effect to the right section
+                  },
                 }}
               >
                 <img src={us} alt="USA Flag" />
-                USA
+                <span>USA</span>
               </Box>
             </div>
           </Box>
@@ -184,7 +191,8 @@ export const Payments = () => {
               color: '#525866',
               width: '174px',
               '&:hover': {
-                backgroundColor: '#E1E4EA',
+                backgroundColor: '#F5F7FA',
+                border: '1px solid transparent',
                 color: '#000',
               },
             }}
@@ -201,7 +209,7 @@ export const Payments = () => {
               width: '174px',
 
               '&:hover': {
-                backgroundColor: '#639922', // Darker green for hover effect
+                backgroundColor: '#4c6f1c',
                 color: '#fff',
               },
             }}
@@ -260,6 +268,27 @@ export const Payments = () => {
                   },
                 },
               }}
+              sx={{
+                outline: 'none',
+                '& .MuiInputBase-input::placeholder': {
+                  color: '#99A0AE',
+                  opacity: 1,
+                },
+                '& .MuiOutlinedInput-notchedOutline': {
+                  border: ' 1px solid #E1E4EA',
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  border: ' 1px solid #E1E4EA',
+                },
+                '& .MuiOutlinedInput-root': {
+                  '&.Mui-focused': {
+                    backgroundColor: '#F5F7FA', // Active background color
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: '1px solid #F5F7FA', // Focused border color
+                    },
+                  },
+                },
+              }}
               variant="outlined"
             />
           </Box>
@@ -290,6 +319,27 @@ export const Payments = () => {
                       },
                     },
                   }}
+                  sx={{
+                    outline: 'none',
+                    '& .MuiInputBase-input::placeholder': {
+                      color: '#99A0AE',
+                      opacity: 1,
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused': {
+                        backgroundColor: '#F5F7FA', // Active background color
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #F5F7FA', // Focused border color
+                        },
+                      },
+                    },
+                  }}
                 />
               </Box>
             </Grid>
@@ -315,6 +365,27 @@ export const Payments = () => {
                       style: {
                         padding: '8px',
                         paddingLeft: 0,
+                      },
+                    },
+                  }}
+                  sx={{
+                    outline: 'none',
+                    '& .MuiInputBase-input::placeholder': {
+                      color: '#99A0AE',
+                      opacity: 1,
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused': {
+                        backgroundColor: '#F5F7FA', // Active background color
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #F5F7FA', // Focused border color
+                        },
                       },
                     },
                   }}
@@ -351,6 +422,27 @@ export const Payments = () => {
                 },
               }}
               variant="outlined"
+              sx={{
+                outline: 'none',
+                '& .MuiInputBase-input::placeholder': {
+                  color: '#99A0AE',
+                  opacity: 1,
+                },
+                '& .MuiOutlinedInput-notchedOutline': {
+                  border: ' 1px solid #E1E4EA',
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  border: ' 1px solid #E1E4EA',
+                },
+                '& .MuiOutlinedInput-root': {
+                  '&.Mui-focused': {
+                    backgroundColor: '#F5F7FA', // Active background color
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: '1px solid #F5F7FA', // Focused border color
+                    },
+                  },
+                },
+              }}
             />
           </Box>
           <Grid container spacing={2}>
@@ -376,6 +468,27 @@ export const Payments = () => {
                       style: {
                         padding: '8px',
                         paddingLeft: 0,
+                      },
+                    },
+                  }}
+                  sx={{
+                    outline: 'none',
+                    '& .MuiInputBase-input::placeholder': {
+                      color: '#99A0AE',
+                      opacity: 1,
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused': {
+                        backgroundColor: '#F5F7FA', // Active background color
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #F5F7FA', // Focused border color
+                        },
                       },
                     },
                   }}
@@ -407,6 +520,27 @@ export const Payments = () => {
                       },
                     },
                   }}
+                  sx={{
+                    outline: 'none',
+                    '& .MuiInputBase-input::placeholder': {
+                      color: '#99A0AE',
+                      opacity: 1,
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      border: ' 1px solid #E1E4EA',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused': {
+                        backgroundColor: '#F5F7FA', // Active background color
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #F5F7FA', // Focused border color
+                        },
+                      },
+                    },
+                  }}
                 />
               </Box>
             </Grid>
@@ -423,7 +557,8 @@ export const Payments = () => {
               color: '#525866',
               width: '174px',
               '&:hover': {
-                backgroundColor: '#E1E4EA',
+                backgroundColor: '#F5F7FA',
+                border: '1px solid transparent',
                 color: '#000',
               },
             }}
@@ -440,7 +575,7 @@ export const Payments = () => {
               width: '174px',
 
               '&:hover': {
-                backgroundColor: '#639922', // Darker green for hover effect
+                backgroundColor: '#4c6f1c',
                 color: '#fff',
               },
             }}
@@ -512,7 +647,10 @@ export const Payments = () => {
                 border: 'none',
                 color: 'white',
                 background: '#75A428',
-                '&:hover': { backgroundColor: '#a2c56a', color: '#fff' },
+                '&:hover': {
+                  backgroundColor: '#4c6f1c',
+                  color: '#fff',
+                },
               }}
               startIcon={<IconSecurePayment size={20} color="#fff" />}
               onClick={handleOpen}
